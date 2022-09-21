@@ -14,7 +14,7 @@ Install yay:
 
 General:
 
-> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-gaps i3lock nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst network-manager-applet os-prober texlive-most biber tllocalmgr-git xterm
+> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-gaps betterlockscreen nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst network-manager-applet os-prober texlive-most biber tllocalmgr-git xterm playerctl man-db man-pages
 
 Desktop:
 
@@ -54,10 +54,6 @@ Powerlevel10k:
 
 > git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-Polybar themes:
-
-> git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh && ./setup.sh
-
 ---
 
 ## SYSTEMCTL
@@ -66,14 +62,26 @@ Polybar themes:
 
 > sudo systemctl enable fail2ban
 
-> sudo systemctl start auto-cpufreq
+> sudo systemctl enable auto-cpufreq
 
+> sudo systemctl enable betterlockscreen@$USER
+
+> sudo systemctl daemon-reload && sudo systemctl start liquidcfg && systemctl enable liquidcfg
 ---
 
 ## OTHER COMMANDS
 
+Boot in TTY:
+
 > sudo systemctl set-default multi-user.target
 
+Generate lockscreen background:
+
+> betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1
+
+Generate man database:
+
+> mandb
 ---
 
 ## KEYMAP
