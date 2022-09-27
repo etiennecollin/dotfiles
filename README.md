@@ -14,7 +14,7 @@ Install yay:
 
 General:
 
-> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-gaps betterlockscreen nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst os-prober texlive-most biber tllocalmgr-git xterm playerctl man-db man-pages autotiling noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono
+> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-gaps betterlockscreen nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst os-prober texlive-most biber tllocalmgr-git xterm playerctl man-db man-pages autotiling noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono wol-systemd
 
 Desktop:
 
@@ -67,6 +67,19 @@ Powerlevel10k:
 > sudo systemctl enable betterlockscreen@$USER
 
 > sudo systemctl daemon-reload && sudo systemctl start liquidcfg && systemctl enable liquidcfg
+
+---
+
+## WOL
+
+List network interfaces with:
+
+> ip link show
+
+Enable systemd service (wol@_interface_.service) for each interface with:
+
+> sudo systemctl enable wol@enp113s0.service
+> sudo systemctl enable wol@enp112s0.service
 
 ---
 
