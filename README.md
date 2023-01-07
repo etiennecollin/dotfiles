@@ -14,7 +14,7 @@ Install yay:
 
 General:
 
-> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-gaps betterlockscreen nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst os-prober texlive-most biber tllocalmgr-git xterm playerctl man-db man-pages autotiling noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono wol-systemd parsec-bin
+> yay -Syu brave-bin curl github-desktop discord htop via-bin celluloid yubikey-manager-qt yubioath-desktop zsh openssh fail2ban visual-studio-code-bin xdg-ninja-git glow neovim neofetch i3-wm betterlockscreen nano polybar python-pywal rofi picom nnn zip unzip arandr feh udisks2 udiskie imagemagick scrot lxappearance lxsession dunst os-prober texlive-most biber tllocalmgr-git xterm playerctl man-db man-pages autotiling noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono wol-systemd parsec-bin github-cli
 
 Desktop:
 
@@ -100,6 +100,13 @@ Generate lockscreen background:
 Generate man database:
 
 > mandb
+
+Antidote:
+- Download installer from official website
+- Before proceeding to the installation, run:
+> mkdir /etc/dbus-1 && mkdir /etc/dbus-1/system.d
+- If Antidote was previously installed:
+> rm -rf /opt/Druide
 
 ---
 
