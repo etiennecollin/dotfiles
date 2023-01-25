@@ -1,0 +1,2 @@
+-- add bindings for nmap <C-p> <Plug>MarkdownPreviewToggle
+-- add bindi ngs for command :Glow
