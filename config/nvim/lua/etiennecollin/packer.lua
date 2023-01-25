@@ -8,13 +8,18 @@ function get_config(fileName)
     return string.format('require("etiennecollin/config/%s")', fileName)
 end
 
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
+
+    -------------------------
+    -------------------------
+    -- Theme & Customization
+    -------------------------
+    -------------------------
 
     -- Color theme
     use({
@@ -23,12 +28,28 @@ return require("packer").startup(function(use)
         config = get_config("dracula")
     })
 
+    -------------------------
+    -------------------------
+    -- Project management
+    -------------------------
+    -------------------------
+
     -- File browser
     use({
-        "nvim-telescope/telescope.nvim", tag = "0.1.1",
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.1",
         -- or                            , branch = "0.1.x",
-        requires = { {"nvim-lua/plenary.nvim"} }
+        requires = {{"nvim-lua/plenary.nvim"}}
     })
+
+    -- Better file navigation and adds marks
+    use({"theprimeagen/harpoon"})
+
+    -------------------------
+    -------------------------
+    -- Language support
+    -------------------------
+    -------------------------
 
     -- Syntax highlighting
     use({
@@ -41,33 +62,22 @@ return require("packer").startup(function(use)
     use({
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
-        requires = {
-            -- LSP Support
-            {"neovim/nvim-lspconfig"},             -- Required
-            {"williamboman/mason.nvim"},           -- Optional
-            {"williamboman/mason-lspconfig.nvim"}, -- Optional
-
-            -- Autocompletion
-            {"hrsh7th/nvim-cmp"},         -- Required
-            {"hrsh7th/cmp-nvim-lsp"},     -- Required
-            {"hrsh7th/cmp-buffer"},       -- Optional
-            {"hrsh7th/cmp-path"},         -- Optional
-            {"saadparwaiz1/cmp_luasnip"}, -- Optional
-            {"hrsh7th/cmp-nvim-lua"},     -- Optional
-
-            -- Snippets
-            {"L3MON4D3/LuaSnip"},             -- Required
-            {"rafamadriz/friendly-snippets"}, -- Optional
+        requires = { -- LSP Support
+        {"neovim/nvim-lspconfig"}, -- Required
+        {"williamboman/mason.nvim"}, -- Optional
+        {"williamboman/mason-lspconfig.nvim"}, -- Optional
+        -- Autocompletion
+        {"hrsh7th/nvim-cmp"}, -- Required
+        {"hrsh7th/cmp-nvim-lsp"}, -- Required
+        {"hrsh7th/cmp-buffer"}, -- Optional
+        {"hrsh7th/cmp-path"}, -- Optional
+        {"saadparwaiz1/cmp_luasnip"}, -- Optional
+        {"hrsh7th/cmp-nvim-lua"}, -- Optional
+        -- Snippets
+        {"L3MON4D3/LuaSnip"}, -- Required
+        {"rafamadriz/friendly-snippets"} -- Optional
         },
         config = get_config("lsp")
-    })
-
-    -- Better file navigation and adds marks
-    use({"theprimeagen/harpoon"})
-
-    use({
-        "folke/which-key.nvim",
-        config = get_config("whichkey")
     })
 
     -- Handle Rust language server
@@ -79,6 +89,12 @@ return require("packer").startup(function(use)
         config = get_config("vimtex")
     })
 
+    -------------------------
+    -------------------------
+    -- Language specific
+    -------------------------
+    -------------------------
+
     -- Markdown
     -- Quick preview
     use({
@@ -88,7 +104,33 @@ return require("packer").startup(function(use)
     -- Complete preview
     use({
         "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
+        run = function()
+            vim.fn["mkdp#util#install"]()
+        end,
         setup = get_config("markdownpreview")
     })
+
+    -------------------------
+    -------------------------
+    -- Other Plugins
+    -------------------------
+    -------------------------
+
+    use({
+        "akinsho/toggleterm.nvim",
+        tag = '*',
+        config = get_config("toggleterm")
+    })
+
+    -------------------------
+    -------------------------
+    -- Bindings
+    -------------------------
+    -------------------------
+
+    use({
+        "folke/which-key.nvim",
+        config = get_config("whichkey")
+    })
+
 end)

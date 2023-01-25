@@ -10,34 +10,42 @@ local conf = {
     }
 }
 
-local opts = {
-    mode = "n", -- NORMAL mode
-    -- prefix: use "<leader>f" for example for mapping everything related to finding files
-    -- the prefix is prepended to every mapping part of `mappings`
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false -- use `nowait` when creating keymaps
+local optsT = {
+    mode = "t", -- TERMINAL mode
+    -- the prefix is prepended to every mapping
+    prefix = ""
 }
 
-local mappings = {
-    q = {"<cmd>q<cR>", "Quit"},
-    w = {"<cmd>update!<cR>", "Save"},
+local mappingsT = {
+    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle all terminals"}
+}
+
+local optsN = {
+    mode = "n", -- NORMAL mode
+    -- the prefix is prepended to every mapping
+    prefix = "<leader>"
+}
+
+local mappingsN = {
+    q = {"<cmd>q<cr>", "Quit"},
+    w = {"<cmd>update!<cr>", "Save"},
+    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle all terminals"},
 
     -- Harpoon
     a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
     e = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
-    ["1"] = {"<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Go to mark 1"},
-    ["2"] = {"<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Go to mark 2"},
-    ["3"] = {"<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Go to mark 3"},
-    ["4"] = {"<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Go to mark 4"},
-    ["5"] = {"<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "Go to mark 5"},
-    ["6"] = {"<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "Go to mark 6"},
-    ["7"] = {"<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "Go to mark 7"},
-    ["8"] = {"<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Go to mark 8"},
-    ["9"] = {"<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Go to mark 9"},
-    ["0"] = {"<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "Go to mark 10"},
+    h = {
+        ["1"] = {"<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Go to mark 1"},
+        ["2"] = {"<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Go to mark 2"},
+        ["3"] = {"<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Go to mark 3"},
+        ["4"] = {"<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Go to mark 4"},
+        ["5"] = {"<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "Go to mark 5"},
+        ["6"] = {"<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "Go to mark 6"},
+        ["7"] = {"<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "Go to mark 7"},
+        ["8"] = {"<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Go to mark 8"},
+        ["9"] = {"<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Go to mark 9"},
+        ["0"] = {"<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "Go to mark 10"}
+    },
 
     b = {
         name = "Buffer",
@@ -52,7 +60,7 @@ local mappings = {
         name = "Markdown",
         c = {"<cmd>MarkdownPreviewClose<cr>", "Close preview"},
         g = {"<cmd>Glow<cr>", "Glow"},
-        o = {"<cmd>MarkdownPreviewOpen<cr>", "Open preview"},
+        o = {"<cmd>MarkdownPreviewOpen<cr>", "Open preview"}
     },
 
     p = {
@@ -68,6 +76,14 @@ local mappings = {
         v = {"<cmd>Ex<cr>", "Browser"}
     },
 
+    t = {
+        name = "Terminal",
+        f = {"<cmd>ToggleTerm direction=float<cr>", "Float"},
+        h = {"<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal"},
+        t = {"<cmd>ToggleTerm direction=tab<cr>", "Tab"},
+        v = {"<cmd>ToggleTerm direction=vertical<cr>", "Vertical"}
+    },
+
     z = {
         name = "Packer",
         c = {"<cmd>PackerClean<cr>", "Clean"},
@@ -75,10 +91,11 @@ local mappings = {
         i = {"<cmd>PackerInstall<cr>", "Install"},
         s = {"<cmd>PackerSync<cr>", "Sync"},
         S = {"<cmd>PackerStatus<cr>", "Status"},
-        u = {"<cmd>PackerUpdate<cr>", "Update"},
+        u = {"<cmd>PackerUpdate<cr>", "Update"}
 
     }
 }
 
 whichkey.setup(conf)
-whichkey.register(mappings, opts)
+whichkey.register(mappingsN, optsN)
+whichkey.register(mappingsT, optsT)

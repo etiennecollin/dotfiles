@@ -184,6 +184,12 @@ _G.packer_plugins = {
     path = "/Users/etiennecollin/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["toggleterm.nvim"] = {
+    config = { 'require("etiennecollin/config/toggleterm")' },
+    loaded = true,
+    path = "/Users/etiennecollin/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   vimtex = {
     config = { 'require("etiennecollin/config/vimtex")' },
     loaded = true,
@@ -206,6 +212,18 @@ time([[Setup for markdown-preview.nvim]], false)
 time([[packadd for markdown-preview.nvim]], true)
 vim.cmd [[packadd markdown-preview.nvim]]
 time([[packadd for markdown-preview.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("etiennecollin/config/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require("etiennecollin/config/whichkey")
+time([[Config for which-key.nvim]], false)
+-- Config for: dracula
+time([[Config for dracula]], true)
+require("etiennecollin/config/dracula")
+time([[Config for dracula]], false)
 -- Config for: vimtex
 time([[Config for vimtex]], true)
 require("etiennecollin/config/vimtex")
@@ -218,18 +236,10 @@ time([[Config for lsp-zero.nvim]], false)
 time([[Config for glow.nvim]], true)
 require("etiennecollin/config/glow")
 time([[Config for glow.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("etiennecollin/config/treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: dracula
-time([[Config for dracula]], true)
-require("etiennecollin/config/dracula")
-time([[Config for dracula]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require("etiennecollin/config/whichkey")
-time([[Config for which-key.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+require("etiennecollin/config/toggleterm")
+time([[Config for toggleterm.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
