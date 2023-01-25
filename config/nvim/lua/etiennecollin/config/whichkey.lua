@@ -58,9 +58,9 @@ local mappingsN = {
 
     m = {
         name = "Markdown",
-        c = {"<cmd>MarkdownPreviewClose<cr>", "Close preview"},
         g = {"<cmd>Glow<cr>", "Glow"},
-        o = {"<cmd>MarkdownPreviewOpen<cr>", "Open preview"}
+        s = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"},
+        S = {"<cmd>MarkdownPreview<cr>", "Start preview"}
     },
 
     p = {
