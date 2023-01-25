@@ -29,7 +29,7 @@ local optsN = {
 local mappingsN = {
     q = {"<cmd>q<cr>", "Quit"},
     w = {"<cmd>update!<cr>", "Save"},
-    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle all terminals"},
+    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle terminals"},
 
     -- Harpoon
     a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
