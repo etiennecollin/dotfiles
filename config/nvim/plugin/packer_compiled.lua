@@ -122,7 +122,6 @@ _G.packer_plugins = {
     url = "https://github.com/ellisonleao/glow.nvim"
   },
   harpoon = {
-    config = { 'require("etiennecollin/config/harpoon")' },
     loaded = true,
     path = "/Users/etiennecollin/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
@@ -215,14 +214,6 @@ time([[Config for vimtex]], false)
 time([[Config for lsp-zero.nvim]], true)
 require("etiennecollin/config/lsp")
 time([[Config for lsp-zero.nvim]], false)
--- Config for: harpoon
-time([[Config for harpoon]], true)
-require("etiennecollin/config/harpoon")
-time([[Config for harpoon]], false)
--- Config for: dracula
-time([[Config for dracula]], true)
-require("etiennecollin/config/dracula")
-time([[Config for dracula]], false)
 -- Config for: glow.nvim
 time([[Config for glow.nvim]], true)
 require("etiennecollin/config/glow")
@@ -231,6 +222,10 @@ time([[Config for glow.nvim]], false)
 time([[Config for nvim-treesitter]], true)
 require("etiennecollin/config/treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: dracula
+time([[Config for dracula]], true)
+require("etiennecollin/config/dracula")
+time([[Config for dracula]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 require("etiennecollin/config/whichkey")

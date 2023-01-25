@@ -1,5 +1,5 @@
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 local whichkey = require("which-key")
 
@@ -22,8 +22,22 @@ local opts = {
 }
 
 local mappings = {
-    q = {"<cmd>q!<cR>", "Quit"},
+    q = {"<cmd>q<cR>", "Quit"},
     w = {"<cmd>update!<cR>", "Save"},
+
+    -- Harpoon
+    a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
+    e = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
+    ["1"] = {"<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Go to mark 1"},
+    ["2"] = {"<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Go to mark 2"},
+    ["3"] = {"<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Go to mark 3"},
+    ["4"] = {"<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Go to mark 4"},
+    ["5"] = {"<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "Go to mark 5"},
+    ["6"] = {"<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "Go to mark 6"},
+    ["7"] = {"<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "Go to mark 7"},
+    ["8"] = {"<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Go to mark 8"},
+    ["9"] = {"<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Go to mark 9"},
+    ["0"] = {"<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "Go to mark 10"},
 
     b = {
         name = "Buffer",
@@ -56,18 +70,14 @@ local mappings = {
 
     z = {
         name = "Packer",
-        c = {"<cmd>PackerCompile<cr>", "Compile"},
-        C = {"<cmd>PackerClean<cr>", "Clean"},
+        c = {"<cmd>PackerClean<cr>", "Clean"},
+        C = {"<cmd>PackerCompile<cr>", "Compile"},
         i = {"<cmd>PackerInstall<cr>", "Install"},
         s = {"<cmd>PackerSync<cr>", "Sync"},
         S = {"<cmd>PackerStatus<cr>", "Status"},
         u = {"<cmd>PackerUpdate<cr>", "Update"},
 
-    },
-    -- g = {
-    --     name = "Git",
-    --     s = {"<cmd>Neogit<CR>", "Status"}
-    -- }
+    }
 }
 
 whichkey.setup(conf)

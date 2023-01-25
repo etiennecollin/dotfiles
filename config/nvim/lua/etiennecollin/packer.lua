@@ -63,10 +63,7 @@ return require("packer").startup(function(use)
     })
 
     -- Better file navigation and adds marks
-    use({
-        "theprimeagen/harpoon",
-        config = get_config("harpoon")
-    })
+    use({"theprimeagen/harpoon"})
 
     use({
         "folke/which-key.nvim",
