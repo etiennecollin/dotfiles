@@ -17,12 +17,21 @@ local opts = {
 }
 
 local mappings = {
-    q = {"<cmd>q<cr>", "Quit"},
-    w = {"<cmd>update!<cr>", "Save"},
-
-    -- Harpoon
     a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
+
+    b = {
+        name = "Buffer",
+        c = {"<cmd>bd!<cr>", "Close current buffer"},
+        D = {"<cmd>%bd|e#|bd#<cr>", "Delete all buffers"},
+        n = {"<cmd>enew<cr>", "New buffer"},
+        s = {"<cmd>split<cr>", "Split buffer"},
+        v = {"<cmd>vsplit<cr>", "Vsplit buffer"}
+    },
+
     e = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
+
+    g = {"<cmd>Git<cr>", "Git status"},
+
     h = {
         ["1"] = {"<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Go to mark 1"},
         ["2"] = {"<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Go to mark 2"},
@@ -34,15 +43,6 @@ local mappings = {
         ["8"] = {"<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Go to mark 8"},
         ["9"] = {"<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Go to mark 9"},
         ["0"] = {"<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "Go to mark 10"}
-    },
-
-    b = {
-        name = "Buffer",
-        c = {"<cmd>bd!<cr>", "Close current buffer"},
-        D = {"<cmd>%bd|e#|bd#<cr>", "Delete all buffers"},
-        n = {"<cmd>enew<cr>", "New buffer"},
-        s = {"<cmd>split<cr>", "Split buffer"},
-        v = {"<cmd>vsplit<cr>", "Vsplit buffer"}
     },
 
     m = {
@@ -65,6 +65,8 @@ local mappings = {
         v = {"<cmd>Ex<cr>", "Browser"}
     },
 
+    q = {"<cmd>q<cr>", "Quit"},
+
     t = {
         name = "Terminal",
         f = {"<cmd>ToggleTerm direction=float<cr>", "Float"},
@@ -72,6 +74,10 @@ local mappings = {
         t = {"<cmd>ToggleTerm direction=tab<cr>", "Tab"},
         v = {"<cmd>ToggleTerm direction=vertical<cr>", "Vertical"}
     },
+
+    u = {"<cmd>UndotreeToggle<cr>", "Undotree"},
+
+    w = {"<cmd>update!<cr>", "Save"},
 
     z = {
         name = "Packer",
