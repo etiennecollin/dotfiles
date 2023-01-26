@@ -32,7 +32,7 @@ return require("packer").startup(function(use)
 
     -------------------------
     -------------------------
-    -- Project management
+    -- File management
     -------------------------
     -------------------------
 
@@ -45,7 +45,10 @@ return require("packer").startup(function(use)
     })
 
     -- Better file navigation and adds marks
-    use({"theprimeagen/harpoon"})
+    use("theprimeagen/harpoon")
+
+    -- Ultimate undo tree
+    use("mbbill/undotree")
 
     -------------------------
     -------------------------
@@ -96,17 +99,17 @@ return require("packer").startup(function(use)
 
     -------------------------
     -------------------------
-    -- Language specific
+    -- Other Plugins
     -------------------------
     -------------------------
 
-    -- Markdown
-    -- Quick preview
+    -- Markdown quick preview
     use({
         "ellisonleao/glow.nvim",
         config = get_config("glow")
     })
-    -- Complete preview
+
+    -- Markdown complete preview
     use({
         "iamcco/markdown-preview.nvim",
         run = function()
@@ -115,17 +118,15 @@ return require("packer").startup(function(use)
         setup = get_config("markdownpreview")
     })
 
-    -------------------------
-    -------------------------
-    -- Other Plugins
-    -------------------------
-    -------------------------
-
+    -- Terminal inside neovim
     use({
         "akinsho/toggleterm.nvim",
         tag = '*',
         config = get_config("toggleterm")
     })
+
+    -- Git integration
+    use("tpope/vim-fugitive")
 
     -------------------------
     -------------------------
