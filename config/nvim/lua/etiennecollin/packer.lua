@@ -14,6 +14,8 @@ vim.cmd [[packadd packer.nvim]]
 return require("packer").startup(function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
+    -- Required by null-ls and used by other plugins
+    use("nvim-lua/plenary.nvim")
 
     -------------------------
     -------------------------
@@ -75,13 +77,16 @@ return require("packer").startup(function(use)
         {"hrsh7th/cmp-nvim-lua"}, -- Optional
         -- Snippets
         {"L3MON4D3/LuaSnip"}, -- Required
-        {"rafamadriz/friendly-snippets"} -- Optional
-        },
+        {"rafamadriz/friendly-snippets"}, -- Optional
+        -- Handle Rust language server
+        {"simrat39/rust-tools.nvim"}, -- Required for rust_analyzer
+        -- DAP
+        {"mfussenegger/nvim-dap"}, -- Optional
+        -- Linter and Formatter
+        {"jose-elias-alvarez/null-ls.nvim"}, -- Required
+        {"jay-babu/mason-null-ls.nvim"}}, -- Required to link null-ls to mason
         config = get_config("lsp")
     })
-
-    -- Handle Rust language server
-    use("simrat39/rust-tools.nvim")
 
     -- LaTeX support
     use({

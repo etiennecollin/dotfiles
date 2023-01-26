@@ -10,26 +10,15 @@ local conf = {
     }
 }
 
-local optsT = {
-    mode = "t", -- TERMINAL mode
-    -- the prefix is prepended to every mapping
-    prefix = ""
-}
-
-local mappingsT = {
-    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle all terminals"}
-}
-
-local optsN = {
+local opts = {
     mode = "n", -- NORMAL mode
     -- the prefix is prepended to every mapping
     prefix = "<leader>"
 }
 
-local mappingsN = {
+local mappings = {
     q = {"<cmd>q<cr>", "Quit"},
     w = {"<cmd>update!<cr>", "Save"},
-    ["`"] = {"<cmd>ToggleTermToggleAll<cr>", "Toggle terminals"},
 
     -- Harpoon
     a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
@@ -59,8 +48,8 @@ local mappingsN = {
     m = {
         name = "Markdown",
         g = {"<cmd>Glow<cr>", "Glow"},
-        s = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"},
-        S = {"<cmd>MarkdownPreview<cr>", "Start preview"}
+        s = {"<cmd>MarkdownPreview<cr>", "Start preview"},
+        S = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"}
     },
 
     p = {
@@ -97,5 +86,4 @@ local mappingsN = {
 }
 
 whichkey.setup(conf)
-whichkey.register(mappingsN, optsN)
-whichkey.register(mappingsT, optsT)
+whichkey.register(mappings, opts)
