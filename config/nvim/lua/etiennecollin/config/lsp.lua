@@ -186,3 +186,18 @@ require("null-ls").setup({
     }
 })
 require'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- LuaSnip ---------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+require("luasnip").setup({
+    -- Enable autotriggered snippets
+    enable_autosnippets = true
+})
+
+require("luasnip.loaders.from_lua").lazy_load({
+    paths = "~/.config/nvim/lua/etiennecollin/snippets"
+})
