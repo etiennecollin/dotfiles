@@ -17,33 +17,47 @@ local opts = {
 }
 
 local mappings = {
-    a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
+    a = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
+
+    A = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
 
     b = {
         name = "Buffer",
-        c = {"<cmd>bd!<cr>", "Close current buffer"},
         D = {"<cmd>%bd|e#|bd#<cr>", "Delete all buffers"},
+        f = {"<cmd>BufferLinePick<cr>", "Pick buffer"},
+        F = {"<cmd>BufferLinePickClose<cr>", "Pick buffer to close"},
+        -- h = {"<cmd>split<cr>", "Hsplit window"},
         n = {"<cmd>enew<cr>", "New buffer"},
-        s = {"<cmd>split<cr>", "Split buffer"},
-        v = {"<cmd>vsplit<cr>", "Vsplit buffer"}
+        p = {"<cmd>BufferLineTogglePin<cr>", "Toggle buffer pin"},
+        -- v = {"<cmd>vsplit<cr>", "Vsplit window"}
     },
 
-    e = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
+    c = {"<plug>NERDCommenterToggle", "Toggle commenting"},
+
+    C = {
+        name = "Commenting",
+        a = {"<plug>NERDCommenterAltDelims", "Alternative"},
+        m = {"<plug>NERDCommenterMinimal", "Minimal"},
+        s = {"<plug>NERDCommenterSexy", "Pretty"}
+    },
+
+    d = {
+        name = "NvimTree",
+        s = {"<cmd>NvimTreeFindFile<cr>", "Find file"},
+        c = {"<cmd>NvimTreeCollapseKeepBuffers<cr>", "Collapse"}
+    },
+
+    e = {"<cmd>NvimTreeFocus<cr>", "Open file explorer"},
+
+    f = {"<cmd>LspZeroFormat<cr>", "Format file"},
 
     g = {"<cmd>Git<cr>", "Git status"},
 
-    h = {
-        ["1"] = {"<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Go to mark 1"},
-        ["2"] = {"<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Go to mark 2"},
-        ["3"] = {"<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Go to mark 3"},
-        ["4"] = {"<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Go to mark 4"},
-        ["5"] = {"<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "Go to mark 5"},
-        ["6"] = {"<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "Go to mark 6"},
-        ["7"] = {"<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "Go to mark 7"},
-        ["8"] = {"<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "Go to mark 8"},
-        ["9"] = {"<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "Go to mark 9"},
-        ["0"] = {"<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "Go to mark 10"}
-    },
+    h = {"<cmd>BufferLineCyclePrev<cr>", "Buffer cycle prev"},
+    H = {"<cmd>BufferLineMovePrev<cr>", "Buffer move prev"},
+
+    l = {"<cmd>BufferLineCycleNext<cr>", "Buffer cycle next"},
+    L = {"<cmd>BufferLineMoveNext<cr>", "Buffer move next"},
 
     m = {
         name = "Markdown",
@@ -65,7 +79,11 @@ local mappings = {
         v = {"<cmd>Ex<cr>", "Browser"}
     },
 
-    q = {"<cmd>q<cr>", "Quit"},
+    q = {"<cmd>bd!<cr>", "Close buffer"},
+    Q = {"<cmd>q!<cr>", "Quit"},
+
+    s = {":%s//gI<Left><Left><Left>", "Replace all"},
+    S = {":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace word"},
 
     t = {
         name = "Terminal",
@@ -78,6 +96,9 @@ local mappings = {
     u = {"<cmd>UndotreeToggle<cr>", "Undotree"},
 
     w = {"<cmd>update!<cr>", "Save"},
+    W = {"<cmd>w !sudo tee > /dev/null %<cr>", "Sudo save"},
+
+    x = {"<cmd>!chmod +x %", "Make executable"},
 
     z = {
         name = "Packer",
