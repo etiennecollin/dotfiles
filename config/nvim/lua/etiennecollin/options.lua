@@ -1,3 +1,7 @@
+-- Disable netrw at the very start (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 vim.opt.nu = true
@@ -11,6 +15,12 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.wrap = true
 
 vim.opt.hidden = true
@@ -23,6 +33,7 @@ vim.opt.hidden = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+-- Set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
@@ -32,3 +43,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
+
+-- Vertically center document when entering insert mode
+vim.cmd("autocmd InsertEnter * norm zz")
+
+-- Remove trailing whitespace on save
+vim.cmd("autocmd BufWritePre,FileWritePre * :%s/\\s\\+$//e")
