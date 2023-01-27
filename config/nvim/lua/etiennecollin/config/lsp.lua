@@ -1,8 +1,8 @@
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--- LSP-ZERO -------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- LSP-ZERO --------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Learn the keybindings, see :help lsp-zero-keybindings
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp = require("lsp-zero")
@@ -21,66 +21,137 @@ lsp.set_preferences({ -- See :help lsp-zero-preferences
     }
 })
 
--- local cmp = require("cmp")
--- local cmp_select = {behavior = cmp.SelectBehavior.Select}
--- local cmp_mappings = lsp.defaults.cmp_mappings({
---   ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
---   ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
---   ["<C-y>"] = cmp.mapping.confirm({ select = true }),
---   ["<C-Space>"] = cmp.mapping.complete(),
--- })
--- -- disable completion with tab
--- -- this helps with copilot setup
--- cmp_mappings["<Tab>"] = nil
--- cmp_mappings["<S-Tab>"] = nil
--- lsp.setup_nvim_cmp({
---   mapping = cmp_mappings
--- })
+-- CMP setup -------------
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+
+local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local cmp_behavior = {
+    behavior = cmp.SelectBehavior.Select
+}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+    ["<cr>"] = nil, -- Disable completion with return key
+    ["<C-e>"] = cmp.mapping(cmp.mapping.close()),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(cmp_behavior)),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(cmp_behavior)),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.confirm({
+                select = true
+            })
+        elseif luasnip.expand_or_jumpable() then
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+            luasnip.expand_or_jump()
+        elseif has_words_before() then
+            cmp.complete()
+        else
+            fallback()
+        end
+    end, {"i", "s"}),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.select_next_item(cmp_behavior)
+        elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+        else
+            fallback()
+        end
+    end, {"i", "s"})
+})
+
+lsp.setup_nvim_cmp({
+    mapping = cmp_mappings
+})
 
 lsp.on_attach(function(client, bufnr)
-    local opts = {
-        buffer = bufnr,
-        remap = false
-    }
-    vim.keymap.set("n", "gd", function()
-        vim.lsp.buf.definition()
-    end, opts)
     vim.keymap.set("n", "K", function()
         vim.lsp.buf.hover()
-    end, opts)
-    vim.keymap.set("n", "<leader>vws", function()
-        vim.lsp.buf.workspace_symbol()
-    end, opts)
-    vim.keymap.set("n", "<leader>vd", function()
-        vim.diagnostic.open_float()
-    end, opts)
-    vim.keymap.set("n", "[d", function()
-        vim.diagnostic.goto_next()
-    end, opts)
-    vim.keymap.set("n", "]d", function()
-        vim.diagnostic.goto_prev()
-    end, opts)
-    vim.keymap.set("n", "<leader>vca", function()
-        vim.lsp.buf.code_action()
-    end, opts)
-    vim.keymap.set("n", "<leader>vrr", function()
+    end, {
+        buffer = bufnr,
+        desc = "Symbol info"
+    })
+    vim.keymap.set("n", "gd", function()
+        vim.lsp.buf.definition()
+    end, {
+        buffer = bufnr,
+        desc = "Goto definition"
+    })
+    vim.keymap.set("n", "gD", function()
+        vim.lsp.buf.declaration()
+    end, {
+        buffer = bufnr,
+        desc = "Goto declaration"
+    })
+    vim.keymap.set("n", "gi", function()
+        vim.lsp.buf.implementation()
+    end, {
+        buffer = bufnr,
+        desc = "Goto implementation"
+    })
+    vim.keymap.set("n", "go", function()
+        vim.lsp.buf.type_definition()
+    end, {
+        buffer = bufnr,
+        desc = "Goto type definition"
+    })
+    vim.keymap.set("n", "gr", function()
         vim.lsp.buf.references()
-    end, opts)
-    vim.keymap.set("n", "<leader>vrn", function()
-        vim.lsp.buf.rename()
-    end, opts)
-    vim.keymap.set("i", "<C-h>", function()
+    end, {
+        buffer = bufnr,
+        desc = "Goto references"
+    })
+    vim.keymap.set("n", "<C-k>", function()
         vim.lsp.buf.signature_help()
-    end, opts)
+    end, {
+        buffer = bufnr,
+        desc = "Symbol signature info"
+    })
+    vim.keymap.set("n", "<F2>", function()
+        vim.lsp.buf.rename()
+    end, {
+        buffer = bufnr,
+        desc = "Refactor rename"
+    })
+    vim.keymap.set("n", "<F4>", function()
+        vim.lsp.buf.code_action()
+    end, {
+        buffer = bufnr,
+        desc = "Code action"
+    })
+    vim.keymap.set("n", "gl", function()
+        vim.diagnostic.open_float()
+    end, {
+        buffer = bufnr,
+        desc = "Show diagnostics"
+    })
+    vim.keymap.set("n", "[d", function()
+        vim.diagnostic.goto_prev()
+    end, {
+        buffer = bufnr,
+        desc = "Goto prev diagnostic"
+    })
+    vim.keymap.set("n", "]d", function()
+        vim.diagnostic.goto_next()
+    end, {
+        buffer = bufnr,
+        desc = "Goto next diagnostic"
+    })
 end)
+
 lsp.nvim_workspace() -- (Optional) Configure lua language server for nvim
 lsp.setup()
 
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--- Rust Analyzer --------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Rust Analyzer ---------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 -- Initialize rust_analyzer with rust-tools
 -- see :help lsp-zero.build_options()
@@ -95,11 +166,11 @@ require('rust-tools').setup({
     server = rust_lsp
 })
 
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
--- Null-LS --------------------------------------------------------------------
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Null-LS ---------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 require("mason").setup()
 require("mason-null-ls").setup({
