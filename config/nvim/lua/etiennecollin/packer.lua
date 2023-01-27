@@ -4,8 +4,15 @@
 --     require("etiennecollin/config/" .. fileName)
 --   end
 -- end
+-----------------------------
+-----------------------------
+-- Packer setup vs config:
+-- setup: run before the plugin is loaded
+-- config: run after the plugin is loaded
+-----------------------------
+-----------------------------
 function get_config(fileName)
-    return string.format('require("etiennecollin/config/%s")', fileName)
+    return string.format("require('etiennecollin/config/%s')", fileName)
 end
 
 -- Only required if you have packer configured as `opt`
@@ -29,6 +36,33 @@ return require("packer").startup(function(use)
         as = "dracula",
         config = get_config("dracula")
     })
+
+    -- File explorer
+    use {
+        "nvim-tree/nvim-tree.lua",
+        requires = {"nvim-tree/nvim-web-devicons" -- optional, for file icons
+        },
+        tag = "nightly", -- optional, updated every week. (see issue #1193)
+        config = get_config("nvimtree")
+    }
+
+    -- Tabs bar
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons',
+        config = get_config("bufferline")
+    }
+
+    -- Status bar
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+            opt = true
+        },
+        config = get_config("lualine")
+    }
 
     -------------------------
     -------------------------
@@ -121,12 +155,18 @@ return require("packer").startup(function(use)
     -- Terminal inside neovim
     use({
         "akinsho/toggleterm.nvim",
-        tag = '*',
+        tag = "*",
         config = get_config("toggleterm")
     })
 
     -- Git integration
     use("tpope/vim-fugitive")
+
+    -- Easy commenting
+    use({
+        "preservim/nerdcommenter",
+        setup = get_config("nerdcommenter")
+    })
 
     -------------------------
     -------------------------
