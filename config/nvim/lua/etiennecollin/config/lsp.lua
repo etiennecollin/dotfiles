@@ -134,13 +134,13 @@ lsp.on_attach(function(client, bufnr)
         vim.diagnostic.goto_prev()
     end, {
         buffer = bufnr,
-        desc = "Goto prev diagnostic"
+        desc = "Previous diagnostic"
     })
     vim.keymap.set("n", "]d", function()
         vim.diagnostic.goto_next()
     end, {
         buffer = bufnr,
-        desc = "Goto next diagnostic"
+        desc = "Next diagnostic"
     })
 end)
 
