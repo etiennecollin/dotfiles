@@ -195,7 +195,10 @@ require'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
 
 require("luasnip").setup({
     -- Enable autotriggered snippets
-    enable_autosnippets = true
+    enable_autosnippets = true,
+
+    -- Auto update fields sharing same argument
+    update_events = "TextChanged,TextChangedI"
 })
 
 require("luasnip.loaders.from_lua").lazy_load({
