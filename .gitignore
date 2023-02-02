@@ -2,3 +2,6 @@
 .vscode
 packer_compiled.lua
 indent.log
+.zsh_history
+.zcompdump-archlinux-5.9.zwc
+.zcompdump-archlinux-5.9
