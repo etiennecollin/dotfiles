@@ -80,15 +80,15 @@ source $ZSH/oh-my-zsh.sh
 #######################################################################################################################
 
 # Aliases
-alias ls='ls --color=auto'
+alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
-alias vim=nvim
 alias v=nvim
+alias vim=nvim
 alias top=htop
 alias nnn="nnn -e -H -i -P p"
-
-alias bynn="cd ~/GitHub/BYNN/"
-alias label="cd ~/GitHub/BYNN/src/labelling && labelme images/ --labels labels.txt --validatelabel exact --nodata --autosave --keep-prev"
+alias ssh="ssh -X"
+alias bynn="cd ~/github/BYNN/"
+alias label="cd ~/github/BYNN/src/labelling && labelme images/ --labels labels.txt --validatelabel exact --nodata --autosave --keep-prev"
 alias jekyll-run="cd ~/GitHub/etiennecollin.github.io && bundle exec jekyll serve --livereload"
 
 # Custom GPG functions
@@ -114,6 +114,38 @@ function reveal {
   gpg --decrypt --output ${output} "${1}" \
     && echo "$(basename "${1}") -> $(basename "${output}")"
 }
+
+function cd {
+    # Check that number of arguments is 1
+    if [ $# -ne 1 ]; then
+        echo "Please input the path to a directory as the argument."
+        return 0
+    fi
+
+    # Store the given path as a variable
+    dirpath=$1
+
+    # Check that the path is a directory
+    if ! [[ -d $dirpath ]]; then
+        echo "Please input the path to a directory as the argument."
+        return 0
+    fi
+
+    # While $dirpath contains a single item...
+    while [ $(ls $dirpath | wc -l) -eq 1 ]; do
+        # If the item in the directory is also a directory
+        if [[ -d $dirpath/$(ls $dirpath) ]]; then
+            # Add it to the path to cd into
+            dirpath=$dirpath/$(ls $dirpath)
+        else
+            break
+        fi
+    done
+
+    # cd into the directories
+    chdir $dirpath
+}
+
 #######################################################################################################################
 
 # Initialize pyenv and pyenv-virtualenv
