@@ -198,7 +198,10 @@ require("luasnip").setup({
     enable_autosnippets = true,
 
     -- Auto update fields sharing same argument
-    update_events = "TextChanged,TextChangedI"
+    update_events = "TextChanged,TextChangedI",
+
+    -- Use <Tab> to trigger visual selection
+    store_selection_keys = "<Tab>"
 })
 
 require("luasnip.loaders.from_lua").lazy_load({
