@@ -48,6 +48,7 @@ local mappings = {
     },
 
     e = {"<cmd>NvimTreeFocus<cr>", "Open file explorer"},
+    E = {"<cmd>NvimTreeClose<cr>", "Close file explorer"},
 
     f = {"<cmd>LspZeroFormat<cr>", "Format file"},
 
@@ -62,8 +63,8 @@ local mappings = {
     m = {
         name = "Markdown",
         g = {"<cmd>Glow<cr>", "Glow"},
-        s = {"<cmd>MarkdownPreview<cr>", "Start preview"},
-        S = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"}
+        v = {"<cmd>MarkdownPreviewToggle<cr>", "Toggle preview"},
+        V = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"}
     },
 
     p = {
