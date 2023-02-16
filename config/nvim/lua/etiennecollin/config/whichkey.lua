@@ -17,9 +17,9 @@ local opts = {
 }
 
 local mappings = {
-    a = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Marks explorer"},
+    a = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon"},
 
-    A = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add mark"},
+    A = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add to Harpoon"},
 
     b = {
         name = "Buffer",
@@ -77,10 +77,9 @@ local mappings = {
         S = {"<cmd>Telescope grep_string<cr>", "Search word"},
         t = {"<cmd>Telescope treesitter<cr>", "Treesitter"},
         T = {"<cmd>Telescope tags<cr>", "Tags"},
-        v = {"<cmd>Ex<cr>", "Browser"}
     },
 
-    q = {"<cmd>bd!<cr>", "Close buffer"},
+    q = {"<cmd>bd<cr>", "Close buffer"},
     Q = {"<cmd>q!<cr>", "Quit"},
 
     s = {":%s//gI<Left><Left><Left>", "Replace all"},
@@ -97,15 +96,15 @@ local mappings = {
     u = {"<cmd>UndotreeToggle<cr>", "Undotree"},
 
     w = {"<cmd>update!<cr>", "Save"},
-    W = {"<cmd>w !sudo tee > /dev/null %<cr>", "Sudo save"},
 
     x = {"<cmd>!chmod +x %", "Make executable"},
 
     z = {
-        name = "Packer",
+        name = "Packer/Mason",
         c = {"<cmd>PackerClean<cr>", "Clean"},
         C = {"<cmd>PackerCompile<cr>", "Compile"},
         i = {"<cmd>PackerInstall<cr>", "Install"},
+        m = {"<cmd>Mason<cr>", "Mason"},
         s = {"<cmd>PackerSync<cr>", "Sync"},
         S = {"<cmd>PackerStatus<cr>", "Status"},
         u = {"<cmd>PackerUpdate<cr>", "Update"}
