@@ -7,10 +7,11 @@
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
-lsp.ensure_installed({"rust_analyzer", "sumneko_lua"})
+lsp.ensure_installed({"rust_analyzer", "lua_ls", "jdtls", "ltex", "marksman", "pyright", "clangd"})
 -- Don't initialize this language server we will use rust-tools to setup rust_analyzer
-lsp.skip_server_setup({'rust_analyzer'})
-lsp.set_preferences({ -- See :help lsp-zero-preferences
+lsp.skip_server_setup({"rust_analyzer"})
+lsp.set_preferences({
+    -- See :help lsp-zero-preferences
     set_lsp_keymaps = true, -- set to false if you want to configure your own keybindings
     manage_nvim_cmp = true, -- set to false if you want to configure nvim-cmp on your own
     sign_icons = {
@@ -35,7 +36,7 @@ local cmp_behavior = {
     behavior = cmp.SelectBehavior.Select
 }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ["<cr>"] = nil, -- Disable completion with return key
+    ["<CR>"] = vim.NIL, -- Disable completion with return key
     ["<C-e>"] = cmp.mapping(cmp.mapping.close()),
     ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(cmp_behavior)),
     ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(cmp_behavior)),
@@ -155,14 +156,14 @@ lsp.setup()
 
 -- Initialize rust_analyzer with rust-tools
 -- see :help lsp-zero.build_options()
-local rust_lsp = lsp.build_options('rust_analyzer', {
+local rust_lsp = lsp.build_options("rust_analyzer", {
     single_file_support = false,
     on_attach = function(client, bufnr)
-        print('hello rust-tools')
+        print("hello rust-tools")
     end
 })
 
-require('rust-tools').setup({
+require("rust-tools").setup({
     server = rust_lsp
 })
 
@@ -174,9 +175,11 @@ require('rust-tools').setup({
 
 require("mason").setup()
 require("mason-null-ls").setup({
-    ensure_installed = {
-        -- Optional: List sources here, when available in mason.
-    },
+    ensure_installed = { -- Optional: List sources here, when available in mason.
+    -- DAP
+    "debugpy", "java-debug-adapter", "java-test", -- Linters
+    "codespell", "cpplint", "semgrep", "ruff", "vulture", "pydocstyle", -- Formatters
+    "black", "latexindent", "rustfmt", "prettier", "clang-format"},
     automatic_installation = false,
     automatic_setup = true -- Setup Mason handlers in null-ls.
 })
@@ -185,7 +188,7 @@ require("null-ls").setup({
         -- Anything not supported by mason.
     }
 })
-require'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
+require("mason-null-ls").setup_handlers() -- If `automatic_setup` is true.
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -196,10 +199,8 @@ require'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
 require("luasnip").setup({
     -- Enable autotriggered snippets
     enable_autosnippets = true,
-
     -- Auto update fields sharing same argument
     update_events = "TextChanged,TextChangedI",
-
     -- Use <Tab> to trigger visual selection
     store_selection_keys = "<Tab>"
 })
