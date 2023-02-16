@@ -1,9 +1,8 @@
-local begins_line = require("etiennecollin.config.luasnip").begins_line
-local in_text = require("etiennecollin.config.luasnip").in_text
+local tex_utils = require("etiennecollin.config.luasnip")
 
 return {
     s(
-        "setup",
+        {trig = "setup"},
         fmta(
             [[
             \input{/Users/etiennecollin/github/latex-templates/paths}
@@ -62,26 +61,25 @@ return {
                 i(7, "Due time"),
                 i(8, "Doc Subtitle "),
                 i(9, "Doc Title"),
-                i(0, "Subfiles")
+                i(0, "subfile_01")
             }
         ),
-        { condition = in_text and begins_line }
+        { condition = tex_utils.in_text and tex_utils.begins_line }
     ),
     s(
-        "subsetup",
+        {trig = "subsetup"},
         fmta(
             [[
-            \documentclass[../<>.tex]{subfiles}
+            \documentclass[../<>]{subfiles}
             \begin{document}
             <>
             \end{document}
             ]],
             {
-                i(1, "Main file name"),
+                i(1, "main.tex"),
                 i(0, "Content"),
             }
         ),
-        { condition = in_text and begins_line }
-    ),
-
+        { condition = tex_utils.in_text and tex_utils.begins_line }
+    )
 }
