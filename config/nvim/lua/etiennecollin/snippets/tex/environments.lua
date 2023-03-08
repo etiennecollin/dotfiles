@@ -28,5 +28,18 @@ return {
         ),
         { condition = tex_utils.in_env("example") }
     ),
-
+    s({ trig = "es"},
+        fmta(
+            [[
+            \[
+                \begin{split}
+                    <>
+                \end{split}
+            \]
+            ]],
+            {
+                i(0),
+            }
+        )
+    ),
 }
