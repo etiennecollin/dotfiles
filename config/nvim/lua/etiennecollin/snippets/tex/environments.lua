@@ -42,4 +42,17 @@ return {
             }
         )
     ),
+    s({ trig = "amat"},
+        fmta(
+            [[
+            \begin{amatrix}{<>}
+                <>
+            \end{amatrix}
+            ]],
+            {
+                i(1),
+                i(0),
+            }
+        )
+    ),
 }
