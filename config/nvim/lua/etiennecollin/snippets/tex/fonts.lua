@@ -25,4 +25,9 @@ return {
             t("\\lambda"),
         }
     ),
+    s({ trig = ";t", snippetType = "autosnippet" },
+        {
+            t("\\theta"),
+        }
+    ),
 }
