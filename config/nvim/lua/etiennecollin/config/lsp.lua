@@ -7,7 +7,9 @@
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
-lsp.ensure_installed({"rust_analyzer", "lua_ls", "jdtls", "ltex", "marksman", "pyright", "clangd"})
+-- For a list of LSPs, see:
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+lsp.ensure_installed({"rust_analyzer", "lua_ls", "jdtls", "ltex", "marksman", "pyright", "clangd", "asm_lsp", "bashls"})
 -- Don't initialize this language server we will use rust-tools to setup rust_analyzer
 lsp.skip_server_setup({"rust_analyzer"})
 lsp.set_preferences({
