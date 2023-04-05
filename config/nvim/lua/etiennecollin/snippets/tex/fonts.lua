@@ -25,6 +25,16 @@ return {
             t("\\lambda"),
         }
     ),
+    s({ trig = ";m", snippetType = "autosnippet" },
+        {
+            t("\\mu"),
+        }
+    ),
+    s({ trig = ";s", snippetType = "autosnippet" },
+        {
+            t("\\sigma"),
+        }
+    ),
     s({ trig = ";t", snippetType = "autosnippet" },
         {
             t("\\theta"),
