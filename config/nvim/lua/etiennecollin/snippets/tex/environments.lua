@@ -28,6 +28,33 @@ return {
         ),
         { condition = tex_utils.in_env("example") }
     ),
+    s({ trig = "exercise"},
+        fmta(
+            [[
+            \begin{exercise}{<>}
+                <>
+            \end{exercise}
+            ]],
+            {
+                i(1),
+                i(0),
+            }
+        )
+    ),
+    s({ trig = "subexercise"},
+        fmta(
+            [[
+            \begin{subexercise}{<>}
+                <>
+            \end{subexercise}
+            ]],
+            {
+                i(1),
+                i(0),
+            }
+        ),
+        { condition = tex_utils.in_env("exercise") }
+    ),
     s({ trig = "es"},
         fmta(
             [[
