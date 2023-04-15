@@ -190,7 +190,6 @@ require("null-ls").setup({
         -- Anything not supported by mason.
     }
 })
-require("mason-null-ls").setup_handlers() -- If `automatic_setup` is true.
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
