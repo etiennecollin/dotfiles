@@ -20,6 +20,7 @@ bindsym $mod+b exec brave
 bindsym $mod+d exec --no-startup-id "kitty nnn -e -H -i -P p"
 bindsym $mod+e exec code
 bindsym $mod+f exec "rofi -modi drun,run -show drun"
+bindsym $mod+t exec brave --app --profile-directory=Default --app-id=emefpkhgihlhfddcjfghpndaeliajgjj
 bindsym $mod1+Ctrl+Delete exec --no-startup-id "kitty htop"
 bindsym Print exec --no-startup-id scrot 'Arch-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$XDG_PICTURES_DIR/screenshots/$n'
 
