@@ -11,9 +11,10 @@ lsp.preset("recommended")
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 lsp.ensure_installed({"rust_analyzer", "lua_ls", "jdtls", "ltex", "marksman", "pyright", "clangd", "asm_lsp", "bashls"})
 -- Don't initialize this language server we will use rust-tools to setup rust_analyzer
-lsp.skip_server_setup({"rust_analyzer"})
+-- lsp.skip_server_setup({"rust_analyzer"})
 lsp.set_preferences({
     -- See :help lsp-zero-preferences
+    suggest_lsp_servers = true, -- set to true if you want to be prompted to install missing LSP servers
     set_lsp_keymaps = true, -- set to false if you want to configure your own keybindings
     manage_nvim_cmp = true, -- set to false if you want to configure nvim-cmp on your own
     sign_icons = {
@@ -150,6 +151,10 @@ end)
 lsp.nvim_workspace() -- (Optional) Configure lua language server for nvim
 lsp.setup()
 
+vim.diagnostic.config({
+    virtual_text = true
+})
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Rust Analyzer ---------------------------------------------------------------
@@ -157,17 +162,23 @@ lsp.setup()
 --------------------------------------------------------------------------------
 
 -- Initialize rust_analyzer with rust-tools
--- see :help lsp-zero.build_options()
-local rust_lsp = lsp.build_options("rust_analyzer", {
-    single_file_support = false,
-    on_attach = function(client, bufnr)
-        print("hello rust-tools")
-    end
-})
-
-require("rust-tools").setup({
-    server = rust_lsp
-})
+-- local rt = require("rust-tools")
+-- rt.setup({
+--     server = {
+--         on_attach = function()
+--             -- Hover actions
+--             vim.keymap.set("n", "<leader>ra", rt.hover_actions.hover_actions, {
+--                 buffer = bufnr,
+--                 desc = "Rust Tools hover actions"
+--             })
+--             -- Code action groups
+--             vim.keymap.set("n", "<Leader>rc", rt.code_action_group.code_action_group, {
+--                 buffer = bufnr,
+--                 desc = "Rust Tools code actions"
+--             })
+--         end,
+--     },
+-- })
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
