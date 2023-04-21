@@ -92,6 +92,7 @@ return require("packer").startup(function(use)
     -- Syntax highlighting
     use({
         "nvim-treesitter/nvim-treesitter",
+        requires = {{"nvim-treesitter/nvim-treesitter-context"}},
         config = get_config("treesitter"),
         run = ":TSUpdate"
     })
