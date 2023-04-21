@@ -89,6 +89,13 @@ return require("packer").startup(function(use)
     -------------------------
     -------------------------
 
+    -- List of diagnostics and other LSP stuff
+    use({
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = get_config("trouble")
+    })
+
     -- Syntax highlighting
     use({
         "nvim-treesitter/nvim-treesitter",
