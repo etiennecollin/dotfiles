@@ -108,7 +108,6 @@ local mappings = {
         s = {"<cmd>PackerSync<cr>", "Sync"},
         S = {"<cmd>PackerStatus<cr>", "Status"},
         u = {"<cmd>PackerUpdate<cr>", "Update"}
-
     }
 }
 

@@ -120,7 +120,8 @@ return require("packer").startup(function(use)
         {"mfussenegger/nvim-dap"}, -- Optional
         -- Linter and Formatter
         {"jose-elias-alvarez/null-ls.nvim"}, -- Required
-        {"jay-babu/mason-null-ls.nvim"}}, -- Required to link null-ls to mason
+        {"jay-babu/mason-null-ls.nvim"} -- Required to link null-ls to mason
+        },
         config = get_config("lsp")
     })
 
