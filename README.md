@@ -4,13 +4,14 @@
 
 ## Table of Contents <!-- omit from toc -->
 
-- [PACKAGES](#packages)
-- [GITHUB REPOS](#github-repos)
-- [CONFIG FILES](#config-files)
-- [SYSTEMCTL](#systemctl)
-- [OTHER COMMANDS](#other-commands)
+- [Install Packages and Dependencies](#install-packages-and-dependencies)
+- [Clone GitHub Repos](#clone-github-repos)
+- [Link Config Files](#link-config-files)
+- [Systemctl Setup](#systemctl-setup)
+- [Other Commands](#other-commands)
 
-## PACKAGES
+
+## Install Packages and Dependencies
 
 Install yay:
 
@@ -39,7 +40,7 @@ yay -Syu auto-cpufreq
 
 ---
 
-## GITHUB REPOS
+## Clone GitHub Repos
 
 nnn plugins:
 
@@ -61,7 +62,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 ---
 
-## CONFIG FILES
+## Link Config Files
 
 Start i3 with "startx":
 
@@ -92,7 +93,7 @@ ln -s ~/github/dotfiles/config/neofetch ~/.config/neofetch
 
 ---
 
-## SYSTEMCTL
+## Systemctl Setup
 
 ```bash
 sudo systemctl enable sshd
@@ -108,7 +109,7 @@ sudo systemctl daemon-reload && sudo systemctl start liquidcfg && systemctl enab
 
 ---
 
-## OTHER COMMANDS
+## Other Commands
 
 For autotiling:
 
