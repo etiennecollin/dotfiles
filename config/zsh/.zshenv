@@ -1,5 +1,6 @@
 export EDITOR=nvim
 export VISUAL=nvim
+export BROWSER=brave
 
 # NNN
 export LC_COLLATE="C" # hidden files on top
@@ -34,3 +35,4 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+. "$HOME/.cargo/env"
