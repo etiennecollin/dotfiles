@@ -115,7 +115,7 @@ function reveal {
     && echo "$(basename "${1}") -> $(basename "${output}")"
 }
 
-function cd {
+function scd {
     # Check that number of arguments is 1
     if [ $# -ne 1 ]; then
         echo "Please input the path to a directory as the argument."
@@ -143,7 +143,7 @@ function cd {
     done
 
     # cd into the directories
-    chdir $dirpath
+    cd $dirpath
 }
 
 #######################################################################################################################
