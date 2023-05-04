@@ -62,7 +62,6 @@ local mappings = {
 
     m = {
         name = "Markdown",
-        g = {"<cmd>Glow<cr>", "Glow"},
         v = {"<cmd>MarkdownPreviewToggle<cr>", "Toggle preview"},
         V = {"<cmd>MarkdownPreviewStop<cr>", "Stop preview"}
     },

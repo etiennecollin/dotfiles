@@ -145,12 +145,6 @@ return require("packer").startup(function(use)
     -------------------------
     -------------------------
 
-    -- Markdown quick preview
-    use({
-        "ellisonleao/glow.nvim",
-        config = get_config("glow")
-    })
-
     -- Markdown complete preview
     use({
         "iamcco/markdown-preview.nvim",
