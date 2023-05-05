@@ -20,12 +20,16 @@
 
 ### xinit
 
-1. In `~/.xinitrc` delete content after last `fi`
-2. Run the following command:
+1. Copy the default `xinitrc` config
     ```bash
-    sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc && echo -e "\nexec i3" >> ~/.xinitrc
+    sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
     ```
-3. Start X session with `startx`
+2. In `~/.xinitrc` delete everything after last `fi`
+3. Add your DE/WM to `xinitrc` (in this case, i3):
+    ```bash
+    sudo printf "\nexec i3\n" >> ~/.xinitrc
+    ```
+4. Start X session with `startx`
 
 ---
 
