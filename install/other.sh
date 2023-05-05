@@ -47,7 +47,7 @@ while true; do
         break
     elif [ "$input" = "2" ]; then
         echo "Disabling sudo for power commands..."
-        printf "\n$USER archlinux =NOPASSWD: /usr/bin/systemctl poweroff,/usr/bin/systemctl halt,/usr/bin/systemctl reboot, /usr/bin/systemctl suspend, /usr/bin/systemctl hibernate" | sudo tee -a /etc/sudoers
+        printf "\n$USER archlinux =NOPASSWD: /usr/bin/systemctl poweroff,/usr/bin/systemctl halt,/usr/bin/systemctl reboot, /usr/bin/systemctl suspend, /usr/bin/systemctl hibernate\n" | sudo tee -a /etc/sudoers
         break
     else
         echo "Wrong input"
