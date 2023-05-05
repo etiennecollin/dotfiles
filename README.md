@@ -12,15 +12,15 @@
 
 ## Installation
 
-Run the `installation.sh` script as with sudo.
-
-```bash
-sudo sh ./installation.sh
-```
+1. Clone this repository
+2. Run the `installation.sh` script as root:
+    ```bash
+    sudo sh ./installation.sh
+    ```
 
 ### xinit
 
-1. In `~/.xinitrc` delete content after last `fi`.
+1. In `~/.xinitrc` delete content after last `fi`
 2. Run the following command:
     ```bash
     sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc && echo -e "\nexec i3" >> ~/.xinitrc
