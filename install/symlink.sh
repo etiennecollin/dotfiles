@@ -51,3 +51,5 @@ fi
 
 echo "Creating symlinks for wallpapers..."
 ln -s ~/github/dotfiles/wallpapers ~/pictures/wallpapers >/dev/null
+
+exit 0

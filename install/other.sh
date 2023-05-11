@@ -76,3 +76,5 @@ while true; do
         echo "Wrong input"
     fi
 done
+
+exit 0

@@ -21,3 +21,5 @@ if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
 else
     echo "Powerlevel10k already installed. Skipping..."
 fi
+
+exit 0

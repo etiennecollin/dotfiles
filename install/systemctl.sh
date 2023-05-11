@@ -12,3 +12,5 @@ if [ -x $(command -v betterlockscreen) ]; then
     echo "Enabling betterlockscreen..."
     sudo systemctl enable betterlockscreen@$USER >/dev/null
 fi
+
+exit 0
