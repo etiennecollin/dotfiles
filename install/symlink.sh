@@ -6,7 +6,7 @@
 
 if [ -d ~/github/dotfiles ]; then
     echo "Deleting old dotfiles repository..."
-    rm -rf ~/github/dotfiles >/dev/null
+    rm -rf ~/github/dotfiles
 fi
 
 echo "Cloning dotfiles from GitHub..."
@@ -14,7 +14,7 @@ git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/
 
 if [ ! -d ~/.config ]; then
     echo "Creating ~/.config directory..."
-    mkdir ~/.config >/dev/null
+    mkdir ~/.config
 fi
 
 ########################################################################################################################
@@ -43,13 +43,13 @@ echo "Creating symlinks for cloned dotfiles..."
 
 if [ ! -d ~/pictures ]; then
     echo "Creating ~/pictures directory..."
-    mkdir ~/pictures >/dev/null
+    mkdir ~/pictures
 elif [ -d ~/pictures/wallpapers ]; then
     echo "Deleting old wallpapers..."
-    rm -rf ~/pictures/wallpapers >/dev/null
+    rm -rf ~/pictures/wallpapers
 fi
 
 echo "Creating symlinks for wallpapers..."
-ln -s ~/github/dotfiles/wallpapers ~/pictures/wallpapers >/dev/null
+ln -s ~/github/dotfiles/wallpapers ~/pictures/wallpapers
 
 exit 0
