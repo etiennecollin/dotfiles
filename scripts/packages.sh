@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-yayArguments=" --answerclean All --answerdiff None --answeredit None --answerupgrade None --removemake --devel -Syu --needed"
+yayArguments=" --answerclean None --answerdiff None --answeredit None --answerupgrade None --removemake --devel -Syu --needed"
 
 ########################################################################################################################
 # yay
