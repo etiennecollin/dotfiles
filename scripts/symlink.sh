@@ -6,7 +6,7 @@
 
 if [ -d ~/github/dotfiles ]; then
     echo "Deleting old dotfiles repository..."
-    rm -rf ~/github/dotfiles
+    sudo rm -rf ~/github/dotfiles
 fi
 
 echo "Cloning dotfiles from GitHub..."
@@ -23,7 +23,7 @@ fi
 
 cd ~/.config
 echo "Deleting old dotfiles..."
-rm -rf i3 polybar nvim kitty zsh/.zshrc zsh/.zshenv zsh/p10k.zsh neofetch
+sudo rm -rf i3 polybar nvim kitty zsh/.zshrc zsh/.zshenv zsh/p10k.zsh neofetch
 
 echo "Creating symlinks for cloned dotfiles..."
 {

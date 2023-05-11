@@ -68,10 +68,6 @@ while true; do
         echo "Setting up autotiling..."
         pip3 install i3ipc
 
-        # Setup lockscreen wallpaper
-        echo "Setting default lockscreen wallpaper..."
-        betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
-
         break
     elif [ "$input" = "2" ]; then
         echo "Installing hyprland..."

@@ -8,6 +8,16 @@ echo "Generating man database..."
 mandb >/dev/null
 
 ########################################################################################################################
+# Generate lockscreen wallpaper
+########################################################################################################################
+
+if [ -x $(command -v betterlockscreen) ]; then
+    # Setup lockscreen wallpaper
+    echo "Setting default lockscreen wallpaper..."
+    betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
+fi
+
+########################################################################################################################
 # Set default boot target
 ########################################################################################################################
 
