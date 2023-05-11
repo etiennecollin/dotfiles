@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-yayArguments=" --save --answerclean All --answerdiff None --answeredit None -Syu --needed"
+yayArguments=" --answerclean All --answerdiff None --answeredit None --answerupgrade None --removemake --devel -Syu --needed"
 
 ########################################################################################################################
 # yay
@@ -33,7 +33,7 @@ latex="texlive-most biber tllocalmgr-git"
 
 # Install packages
 echo "Installing packages..."
-yay "${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${latex}" >/dev/null
+yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${latex}
 
 # nnn plugins
 echo "Installing nnn plugins..."
@@ -59,11 +59,11 @@ while true; do
 
     if [ "$input" = "1" ]; then
         echo "Installing i3wm..."
-        yay "${yayArguments} ${i3wm}" >/dev/null
+        yay ${yayArguments} ${i3wm}
 
         # Setup autotiling
         echo "Setting up autotiling..."
-        pip3 install i3ipc >/dev/null
+        pip3 install i3ipc
 
         # Setup lockscreen wallpaper
         echo "Setting default lockscreen wallpaper..."
@@ -72,7 +72,7 @@ while true; do
         break
     elif [ "$input" = "2" ]; then
         echo "Installing hyprland..."
-        yay "${yayArguments} ${hyprland}" >/dev/null
+        yay ${yayArguments} ${hyprland}
 
         break
     else
