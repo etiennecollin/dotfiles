@@ -11,6 +11,7 @@ echo "Checking if yay is installed..."
 if [ ! -x "$(command -v yay)" ]; then
     echo "Installing yay and its dependencies..."
     sudo pacman -S --needed git base-devel >/dev/null && git clone https://aur.archlinux.org/yay.git >/dev/null && cd yay && makepkg -si >/dev/null
+    cd .. && rm -rf yay
 else
     echo "yay is already installed, skipping..."
 fi
