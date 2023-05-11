@@ -29,12 +29,14 @@ fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-je
 softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects"
 # Software CLI
 softwareCLI="nnn github-cli xdg-ninja-git neofetch"
+# nvim dependencies
+nvim="ripgrep zathura xdotool"
 # Latex
 latex="texlive-most biber tllocalmgr-git"
 
 # Install packages
 echo "Installing packages..."
-yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${latex}
+yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim} ${latex}
 
 # nnn plugins
 echo "Installing nnn plugins..."
