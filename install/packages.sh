@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-yayArguments="--save --answerclean All --answerdiff None --answeredit None --needed -Syu"
+yayArguments=" --save --answerclean All --answerdiff None --answeredit None -Syu --needed"
 
 ########################################################################################################################
 # yay
