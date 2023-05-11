@@ -5,21 +5,22 @@
 ########################################################################################################################
 
 echo "Generating man database..."
-mandb
+mandb >/dev/null
 
 ########################################################################################################################
 # Set default boot target
 ########################################################################################################################
 
 while true; do
-    echo "\nSelect default boot target"
+    echo ""
+    echo "Select default boot target"
     echo "1. TTY"
     echo "2. GUI"
     printf "Input: "
     read input
 
     if [ "$input" = "1" ]; then
-        echo "Setting default boot target to CLI..."
+        echo "Setting default boot target to TTY..."
         sudo systemctl set-default multi-user.target
         break
     elif [ "$input" = "2" ]; then
