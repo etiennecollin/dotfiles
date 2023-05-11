@@ -45,12 +45,15 @@ curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | s
 
 # i3wm
 i3wm="i3-wm betterlockscreen polybar rofi picom lxappearance lxsession dunst autotiling dolphin dolphin-plugins arandr xterm"
+# hyprland
+hyprland="hyprland-nvidia-git polybar dunst dolphin dolphin-plugins"
 
 # Ask for DE/WM
 while true; do
     echo ""
     echo "Which DE/WM do you want to use?"
     echo "1. i3wm"
+    echo "2. hyprland (nvidia patched)"
     printf "Input: "
     read input
 
@@ -67,6 +70,9 @@ while true; do
         betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
 
         break
+    elif [ "$input" = "2" ]; then
+        echo "Installing i3wm..."
+        yay "${yayArguments} ${hyprland}" >/dev/null
     else
         echo "Wrong input"
     fi
