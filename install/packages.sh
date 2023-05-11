@@ -4,9 +4,14 @@
 # yay
 ########################################################################################################################
 
-# Install yay
-echo "Installing yay and its dependencies..."
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+# Install yay if ti isn't installed
+echo "Checking if yay is installed..."
+if [ ! -x "$(command -v yay)" ]; then
+    echo "Installing yay and its dependencies..."
+    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+else
+    echo "yay is already installed, skipping..."
+fi
 
 ########################################################################################################################
 # Basic Packages
