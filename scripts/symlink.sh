@@ -10,7 +10,7 @@ if [ -d ~/github/dotfiles ]; then
 fi
 
 echo "Cloning dotfiles from GitHub..."
-git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
+git clone https://github.com/etiennecollin/dotfiles.git ~/github >/dev/null
 
 if [ ! -d ~/.config ]; then
     echo "Creating ~/.config directory..."
