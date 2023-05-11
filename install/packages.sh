@@ -71,8 +71,10 @@ while true; do
 
         break
     elif [ "$input" = "2" ]; then
-        echo "Installing i3wm..."
+        echo "Installing hyprland..."
         yay "${yayArguments} ${hyprland}" >/dev/null
+
+        break
     else
         echo "Wrong input"
     fi
