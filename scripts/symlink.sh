@@ -3,23 +3,25 @@
 ########################################################################################################################
 # Clone dotfiles
 ########################################################################################################################
+# cd ~
 
-if [ -d ~/github/dotfiles ]; then
-    echo "Deleting old dotfiles repository..."
-    sudo rm -rf ~/github/dotfiles
-fi
+# if [ -d ~/github/dotfiles ]; then
+#     echo "Deleting old dotfiles repository..."
+#     sudo rm -rf ~/github/dotfiles
+# fi
 
-echo "Cloning dotfiles from GitHub..."
-git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
+# echo "Cloning dotfiles from GitHub..."
+# mkdir ~/github/dotfiles
+# git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
+
+########################################################################################################################
+# Symlink dotfiles
+########################################################################################################################
 
 if [ ! -d ~/.config ]; then
     echo "Creating ~/.config directory..."
     mkdir ~/.config
 fi
-
-########################################################################################################################
-# Symlink dotfiles
-########################################################################################################################
 
 cd ~/.config
 echo "Deleting old dotfiles..."
