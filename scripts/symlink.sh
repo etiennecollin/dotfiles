@@ -3,6 +3,7 @@
 ########################################################################################################################
 # Clone dotfiles
 ########################################################################################################################
+cd ~
 
 if [ -d ~/github/dotfiles ]; then
     echo "Deleting old dotfiles repository..."
@@ -10,6 +11,7 @@ if [ -d ~/github/dotfiles ]; then
 fi
 
 echo "Cloning dotfiles from GitHub..."
+mkdir ~/github/dotfiles
 git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
 
 if [ ! -d ~/.config ]; then
