@@ -15,6 +15,23 @@
 # git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
 
 ########################################################################################################################
+# Setting up git
+########################################################################################################################
+
+echo "Setting up git..."
+printf "Full name: "
+read fullName
+printf "Email: "
+read email
+printf "Sign-in key: "
+read signInKey
+
+git config --global user.name "$fullName"
+git config --global user.email "$email"
+git config --global user.signingkey "$signInKey"
+gh auth login
+
+########################################################################################################################
 # Symlink dotfiles
 ########################################################################################################################
 
