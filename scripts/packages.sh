@@ -14,7 +14,8 @@ if [ ! -x "$(command -v yay)" ]; then
     git clone https://aur.archlinux.org/yay.git >/dev/null
     cd yay
     makepkg -si >/dev/null
-    cd .. && rm -rf yay
+    cd ..
+    rm -rf yay
 else
     echo "yay is already installed, skipping..."
 fi
@@ -25,7 +26,7 @@ fi
 
 # Packages lists
 # Basic tools
-basicTools="base-devel curl htop zsh neovim zip unzip udiskie imagemagick man-db man-pages os-prober openssh fail2ban"
+basicTools="base-devel git github-cli sudo curl htop zsh neovim zip unzip udiskie imagemagick man-db man-pages os-prober openssh ssh-audit fail2ban"
 # Fonts
 fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono"
 # Software GUI
@@ -73,6 +74,10 @@ while true; do
     elif [ "$input" = "1" ]; then
         echo "Installing i3wm..."
         yay ${yayArguments} ${i3wm}
+
+        # Setup X11
+        echo "Setting up X11..."
+        sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
         # Setup autotiling
         echo "Setting up autotiling..."
