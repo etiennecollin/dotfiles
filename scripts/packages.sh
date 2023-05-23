@@ -10,11 +10,13 @@ yayArguments=" --answerclean None --answerdiff None --answeredit None --answerup
 echo "Checking if yay is installed..."
 if [ ! -x "$(command -v yay)" ]; then
     echo "Installing yay and its dependencies..."
-    sudo pacman -S --needed git base-devel >/dev/null && git clone https://aur.archlinux.org/yay.git >/dev/null && cd yay && makepkg -si >/dev/null
+    sudo pacman -S --needed git base-devel >/dev/null
+    git clone https://aur.archlinux.org/yay.git >/dev/null
+    cd yay
+    makepkg -si >/dev/null
     cd .. && rm -rf yay
 else
     echo "yay is already installed, skipping..."
-    sleep 1
 fi
 
 ########################################################################################################################
@@ -23,11 +25,11 @@ fi
 
 # Packages lists
 # Basic tools
-basicTools="base-devel curl htop zsh neovim zip unzip udisks2 udiskie imagemagick man-db man-pages os-prober openssh fail2ban"
+basicTools="base-devel curl htop zsh neovim zip unzip udiskie imagemagick man-db man-pages os-prober openssh fail2ban"
 # Fonts
 fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono"
 # Software GUI
-softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf ardour lsp-plugins-lv2"
+softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf ardour lsp-plugins"
 # Software CLI
 softwareCLI="github-cli xdg-ninja-git neofetch"
 # nvim dependencies
@@ -52,19 +54,23 @@ i3wm="i3-wm feh betterlockscreen polybar rofi picom lxappearance lxsession dunst
 # hyprland
 hyprland="hyprland-nvidia-git nnn"
 # gnome
-gnome="gnome extension-manager file-roller seahorse simple-scan libinput-config"
+gnome="gnome extension-manager file-roller seahorse simple-scan"
 
 # Ask for DE/WM
 while true; do
     echo ""
     echo "Which DE/WM do you want to use?"
+    echo "0. None"
     echo "1. i3wm"
     echo "2. hyprland (nvidia patched)"
     echo "3. gnome"
     printf "Input: "
     read input
 
-    if [ "$input" = "1" ]; then
+    if [ "$input" = "0" ]; then
+        echo "Skipping..."
+        break
+    elif [ "$input" = "1" ]; then
         echo "Installing i3wm..."
         yay ${yayArguments} ${i3wm}
 
