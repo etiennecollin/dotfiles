@@ -91,7 +91,11 @@ done
 ########################################################################################################################
 
 if [ -x $(command -v nvidia-smi) ]; then
-    sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    echo "Setting up for NVIDIA GPU..."
+    sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ nvidia_drm.modeset=1"/' /etc/default/grub
+    sudo grub-mkconfig -o /boot/grub/grub.cfg >/dev/null
+    sudo sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    sudo mkinitcpio -P >/dev/null
 fi
 
 exit 0
