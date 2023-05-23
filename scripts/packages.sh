@@ -6,7 +6,7 @@ yayArguments=" --answerclean None --answerdiff None --answeredit None --answerup
 # yay
 ########################################################################################################################
 
-# Install yay if ti isn't installed
+# Install yay if it isn't installed
 echo "Checking if yay is installed..."
 if [ ! -x "$(command -v yay)" ]; then
     echo "Installing yay and its dependencies..."
