@@ -5,37 +5,37 @@
 ## Table of Contents <!-- omit from toc -->
 
 - [Installation](#installation)
-    - [xinit](#xinit)
+    - [Setup i3](#setup-i3)
 - [Other Commands](#other-commands)
+    - [Default boot:](#default-boot)
+    - [Generate lockscreen background:](#generate-lockscreen-background)
 - [Optional Packages Install](#optional-packages-install)
 - [Antidote:](#antidote)
 
 ## Installation
 
 1. Clone this repository
-2. Run the `installation.sh` script as root:
+2. Run the `installation.sh` script:
     ```bash
-    sudo sh ./installation.sh
+    sh ./installation.sh
     ```
 
-### xinit
+### Setup i3
 
-1. Copy the default `xinitrc` config
-    ```bash
-    sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-    ```
-2. In `~/.xinitrc` delete everything after last `fi`
-3. Add your DE/WM to `xinitrc` (in this case, i3):
+1. In `~/.xinitrc` delete everything after last `fi`
+2. Add your DE/WM to `xinitrc` (in this case, i3):
     ```bash
     sudo printf "\nexec i3\n" >> ~/.xinitrc
     ```
-4. Start X session with `startx`
+3. Start X session with `startx`
 
 ---
 
 ## Other Commands
 
-Default boot:
+These are commands that are run in the install script and that might be useful for the user to know.
+
+### Default boot:
 
 ```bash
 # TTY
@@ -44,10 +44,10 @@ sudo systemctl set-default multi-user.target
 sudo systemctl set-default graphical.target
 ```
 
-Generate lockscreen background:
+### Generate lockscreen background:
 
 ```bash
-betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1
+betterlockscreen -u $HOME/Pictures/wallpapers/iceland_blur.png --display 1
 ```
 
 ---
@@ -59,7 +59,9 @@ Desktop:
 ```bash
 # For AIO
 yay -Syu liquidctl
-sudo systemctl daemon-reload && sudo systemctl start liquidcfg && systemctl enable liquidcfg
+sudo systemctl daemon-reload && sudo systemctl start liquidcfg && sudo systemctl enable liquidcfg
+sudo rm -rf /etc/systemd/liquidcfg.service
+sudo ln -s ~/github/dotfiles/other/etc/systemd/liquidcfg.service /etc/systemd/liquidcfg.service
 ```
 
 Laptop:
