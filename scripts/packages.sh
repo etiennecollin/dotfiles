@@ -14,6 +14,7 @@ if [ ! -x "$(command -v yay)" ]; then
     cd .. && rm -rf yay
 else
     echo "yay is already installed, skipping..."
+    sleep 1
 fi
 
 ########################################################################################################################
@@ -22,13 +23,13 @@ fi
 
 # Packages lists
 # Basic tools
-basicTools="curl htop zsh neovim zip unzip feh udisks2 udiskie imagemagick scrot man-db man-pages playerctl os-prober openssh fail2ban"
+basicTools="base-devel curl htop zsh neovim zip unzip udisks2 udiskie imagemagick man-db man-pages os-prober openssh fail2ban"
 # Fonts
 fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono"
 # Software GUI
-softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects"
+softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf ardour lsp-plugins-lv2"
 # Software CLI
-softwareCLI="nnn github-cli xdg-ninja-git neofetch"
+softwareCLI="github-cli xdg-ninja-git neofetch"
 # nvim dependencies
 nvim="ripgrep zathura xdotool"
 # Latex
@@ -47,9 +48,11 @@ curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | s
 ########################################################################################################################
 
 # i3wm
-i3wm="i3-wm betterlockscreen polybar rofi picom lxappearance lxsession dunst autotiling dolphin dolphin-plugins arandr xterm"
+i3wm="i3-wm feh betterlockscreen polybar rofi picom lxappearance lxsession dunst scrot autotiling arandr xterm nnn"
 # hyprland
-hyprland="hyprland-nvidia-git polybar dunst dolphin dolphin-plugins"
+hyprland="hyprland-nvidia-git nnn"
+# gnome
+gnome="gnome extension-manager file-roller seahorse simple-scan libinput-config"
 
 # Ask for DE/WM
 while true; do
@@ -57,6 +60,7 @@ while true; do
     echo "Which DE/WM do you want to use?"
     echo "1. i3wm"
     echo "2. hyprland (nvidia patched)"
+    echo "3. gnome"
     printf "Input: "
     read input
 
@@ -72,6 +76,15 @@ while true; do
     elif [ "$input" = "2" ]; then
         echo "Installing hyprland..."
         yay ${yayArguments} ${hyprland}
+
+        break
+    elif [ "$input" = "3" ]; then
+        echo "Installing gnome..."
+        yay ${yayArguments} ${gnome}
+
+        # Set scroll speed
+        echo "Setting scroll speed..."
+        echo "scroll-factor=8" | sudo tee -a /etc/libinput.conf >/dev/null
 
         break
     else

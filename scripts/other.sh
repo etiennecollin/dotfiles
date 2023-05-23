@@ -86,4 +86,12 @@ while true; do
     fi
 done
 
+########################################################################################################################
+# NVIDIA Setup for wayland
+########################################################################################################################
+
+if [ -x $(command -v nvidia-smi) ]; then
+    sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+fi
+
 exit 0
