@@ -43,15 +43,15 @@ echo "Creating symlinks for cloned dotfiles..."
 # Symlink wallpapers
 ########################################################################################################################
 
-if [ ! -d ~/pictures ]; then
-    echo "Creating ~/pictures directory..."
-    mkdir ~/pictures
-elif [ -d ~/pictures/wallpapers ]; then
+if [ ! -d ~/Pictures ]; then
+    echo "Creating ~/Pictures directory..."
+    mkdir ~/Pictures
+elif [ -d ~/Pictures/wallpapers ]; then
     echo "Deleting old wallpapers..."
-    rm -rf ~/pictures/wallpapers
+    rm -rf ~/Pictures/wallpapers
 fi
 
 echo "Creating symlinks for wallpapers..."
-ln -s ~/github/dotfiles/wallpapers ~/pictures/wallpapers
+ln -s ~/github/dotfiles/wallpapers ~/Pictures/wallpapers
 
 exit 0

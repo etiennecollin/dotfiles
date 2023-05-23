@@ -89,7 +89,7 @@ alias nnn="nnn -e -H -i -P p"
 alias ssh="ssh -X"
 alias bynn="cd ~/github/BYNN/"
 alias label="cd ~/github/BYNN/src/labelling && labelme images/ --labels labels.txt --validatelabel exact --nodata --autosave --keep-prev"
-alias jekyll-run="cd ~/GitHub/etiennecollin.github.io && bundle exec jekyll serve --livereload"
+alias jekyll-run="cd ~/github/etiennecollin.github.io && bundle exec jekyll serve --livereload"
 
 # Custom GPG functions
 function secret {  # list preferred id last
