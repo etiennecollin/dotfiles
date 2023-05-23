@@ -42,19 +42,30 @@ fi
 
 cd ~/.config
 echo "Deleting old dotfiles..."
-sudo rm -rf i3 polybar nvim kitty zsh/.zshrc zsh/.zshenv zsh/p10k.zsh neofetch
+sudo rm -rf git kitty neofetch nvim zsh/.zshenv zsh/.zshrc zsh/p10k.zsh
 
 echo "Creating symlinks for cloned dotfiles..."
 {
-    ln -s ~/github/dotfiles/config/i3 ~/.config/i3
-    ln -s ~/github/dotfiles/config/polybar ~/.config/polybar
-    ln -s ~/github/dotfiles/config/nvim ~/.config/nvim
+    ln -s ~/github/dotfiles/config/git ~/.config/git
     ln -s ~/github/dotfiles/config/kitty ~/.config/kitty
+    ln -s ~/github/dotfiles/config/neofetch ~/.config/neofetch
+    ln -s ~/github/dotfiles/config/nvim ~/.config/nvim
     ln -s ~/github/dotfiles/config/zsh/.zshrc ~/.config/zsh/.zshrc
     ln -s ~/github/dotfiles/config/zsh/.zshenv ~/.config/zsh/.zshenv
     ln -s ~/github/dotfiles/config/zsh/p10k.zsh ~/.config/zsh/p10k.zsh
-    ln -s ~/github/dotfiles/config/neofetch ~/.config/neofetch
 } >/dev/null
+
+if [ -x $(command -v i3) ]; then
+    sudo rm -rf i3 dunst picom polybar rofi X11
+    # Setup i3
+    echo "Setting up i3..."
+    ln -s ~/github/dotfiles/config/i3 ~/.config/i3
+    ln -s ~/github/dotfiles/config/dunst ~/.config/dunst
+    ln -s ~/github/dotfiles/config/picom ~/.config/picom
+    ln -s ~/github/dotfiles/config/polybar ~/.config/polybar
+    ln -s ~/github/dotfiles/config/rofi ~/.config/rofi
+    ln -s ~/github/dotfiles/config/X11 ~/.config/X11
+fi
 
 ########################################################################################################################
 # Symlink wallpapers
