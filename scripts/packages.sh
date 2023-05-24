@@ -46,6 +46,10 @@ yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim}
 echo "Installing nnn plugins..."
 curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh >/dev/null
 
+# rust
+echo "Installing Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 ########################################################################################################################
 # DE/WM
 ########################################################################################################################
