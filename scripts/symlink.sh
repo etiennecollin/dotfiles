@@ -42,7 +42,7 @@ fi
 
 cd ~/.config
 echo "Deleting old dotfiles..."
-sudo rm -rf git kitty neofetch nvim zsh/.zshenv zsh/.zshrc zsh/p10k.zsh
+sudo rm -rf git kitty neofetch nvim zsh
 
 echo "Creating symlinks for cloned dotfiles..."
 {
@@ -50,12 +50,9 @@ echo "Creating symlinks for cloned dotfiles..."
     ln -s ~/github/dotfiles/config/kitty ~/.config/kitty
     ln -s ~/github/dotfiles/config/neofetch ~/.config/neofetch
     ln -s ~/github/dotfiles/config/nvim ~/.config/nvim
-    ln -s ~/github/dotfiles/config/zsh/.zshrc ~/.config/zsh/.zshrc
-    ln -s ~/github/dotfiles/config/zsh/.zshenv ~/.config/zsh/.zshenv
-    ln -s ~/github/dotfiles/config/zsh/p10k.zsh ~/.config/zsh/p10k.zsh
+    ln -s ~/github/dotfiles/config/zsh ~/.config/zsh
 } >/dev/null
 
-if [ -x $(command -v i3) ]; then
 if [ -x "$(command -v i3)" ]; then
     sudo rm -rf i3 dunst picom polybar rofi X11
     # Setup i3
