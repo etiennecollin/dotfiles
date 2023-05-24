@@ -1,21 +1,42 @@
 #!/usr/bin/env sh
 
 ########################################################################################################################
-# Generate mandb
+# zsh setup
 ########################################################################################################################
 
-echo "Generating man database..."
-mandb >/dev/null
+echo "Setting zsh enviroment..."
+echo "export ZDOTDIR="$HOME"/.config/zsh" | sudo tee -a /etc/zsh/zshenv >/dev/null
+
+echo "Setting zsh as default shell..."
+sudo chsh -s /usr/bin/zsh >/dev/null
+chsh -s /usr/bin/zsh >/dev/null
+
+source ~/.config/zsh/.zshenv
 
 ########################################################################################################################
-# Generate lockscreen wallpaper
+# Oh-my-zsh
 ########################################################################################################################
 
-if [ -x "$(command -v betterlockscreen)" ]; then
-    # Setup lockscreen wallpaper
-    echo "Setting default lockscreen wallpaper..."
-    betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
+echo "Setting up oh-my-zsh..."
+
+if [ -d ~/github/dotfiles/config/zsh/oh-my-zsh ]; then
+    echo "Deleting old oh-my-zsh..."
+    rm -rf ~/github/dotfiles/config/zsh/oh-my-zsh
 fi
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null
+
+echo "Restoring .zshrc..."
+rm ~/github/dotfiles/config/zsh/.zshrc
+mv ~/github/dotfiles/config/zsh/.zshrc.pre-oh-my-zsh ~/github/dotfiles/config/zsh/.zshrc
+
+########################################################################################################################
+# Powerlevel10k
+########################################################################################################################
+
+echo "Setting up Powerlevel10k..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/zsh/oh-my-zsh/custom}/themes/powerlevel10k >/dev/null
+sed -i 's|ZSH_THEME=.*|ZSH_THEME="powerlevel10k/powerlevel10k"|g' ~/.config/zsh/.zshrc >/dev/null
 
 ########################################################################################################################
 # Set default boot target
@@ -92,10 +113,30 @@ done
 
 if [ -x "$(command -v nvidia-smi)" ]; then
     echo "Setting up for NVIDIA GPU..."
-    sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ nvidia_drm.modeset=1"/' /etc/default/grub
+
+    # Check if nvidia_drm.modeset=1 is already in grub
+    sudo grep -Pzq "nvidia_drm.modeset=1" /etc/default/grub >/dev/null
+    if [ ! $? == 0 ]; then
+        echo "Adding nvidia_drm.modeset=1 to grub..."
+        sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ nvidia_drm.modeset=1"/' /etc/default/grub
+    else
+        echo "nvidia_drm.modeset=1 already in grub. Skipping..."
+    fi
+    echo "Updating grub..."
     sudo grub-mkconfig -o /boot/grub/grub.cfg >/dev/null
-    sudo sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+
+    # Check if nvidia modules are already in mkinitcpio.conf
+    sudo grep -Pzq "nvidia nvidia_modeset nvidia_uvm nvidia_drm" /etc/mkinitcpio.conf >/dev/null
+    if [ ! $? == 0 ]; then
+        echo "Adding nvidia modules to mkinitcpio.conf..."
+        sudo sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    else
+        echo "nvidia modules already in mkinitcpio.conf. Skipping..."
+    fi
+    echo "Updating mkinitcpio..."
     sudo mkinitcpio -P >/dev/null
+
+    echo "Setting up Xorg..."
     sudo nvidia-xconfig >/dev/null
 fi
 
@@ -108,11 +149,32 @@ sudo os-prober >/dev/null
 sudo grub-mkconfig -o /boot/grub/grub.cfg >/dev/null
 
 ########################################################################################################################
+# Setup SSHD
+########################################################################################################################
+
+echo "Setting up SSHD..."
+echo "Deleting old SSHD config..."
+sudo rm -rf /etc/ssh/sshd_config
+echo "Creating symlink to new SSHD config..."
+sudo ln -s ~/github/dotfiles/other/etc/ssh/sshd_config /etc/ssh/sshd_config
+
+echo "Generating new SSH keys..."
+sudo rm /etc/ssh/ssh_host_*
+sudo ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N "" >/dev/null
+sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >/dev/null
+
+echo "Removing weak moduli..."
+sudo awk -i inplace '$5 >= 3071' /etc/ssh/moduli >/dev/null
+
+echo "Restarting SSHD..."
+sudo systemctl restart sshd
+
+########################################################################################################################
 # Prepare NeoVim
 ########################################################################################################################
 
 echo "Installing neovim in python..."
-pip3 install neovim
+pip3 install neovim >/dev/null
 
 # Install packer.nvim
 echo "Installing packer.nvim..."
@@ -123,53 +185,45 @@ else
 fi
 
 ########################################################################################################################
-# zsh setup
+# Setting up git
 ########################################################################################################################
 
-echo "Setting zsh enviroment..."
-echo "export ZDOTDIR="$HOME"/.config/zsh" | sudo tee -a /etc/zsh/zshenv >/dev/null
+echo "Setting up git..."
+printf "Full name: "
+read fullName
+printf "Email: "
+read email
+printf "Sign-in key: "
+read signInKey
 
-echo "Setting zsh as default shell..."
-sudo chsh -s /usr/bin/zsh >/dev/null
-chsh -s /usr/bin/zsh >/dev/null
+git config --global user.name "$fullName"
+git config --global user.email "$email"
+git config --global user.signingkey "$signInKey"
+gh auth login
 
 ########################################################################################################################
-# Oh-my-zsh
+# Generate lockscreen wallpaper
 ########################################################################################################################
 
-echo "Setting up oh-my-zsh..."
-if [ ! -x "$(command -v omz)" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-else
-    echo "Oh-my-zsh already installed. Skipping..."
+if [ -x "$(command -v betterlockscreen)" ]; then
+    # Setup lockscreen wallpaper
+    echo "Setting default lockscreen wallpaper..."
+    betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
 fi
 
 ########################################################################################################################
-# Powerlevel10k
+# nnn plugins
 ########################################################################################################################
-
-echo "Setting up Powerlevel10k..."
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k >/dev/null
-    sudo sed -i 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k/powerlevel10k"/g' ~/.config/zsh/.zshrc
-else
-    echo "Powerlevel10k already installed. Skipping..."
+if [ -x "$(command -v nnn)" ]; then
+    echo "Installing nnn plugins..."
+    curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh >/dev/null
 fi
 
 ########################################################################################################################
-# Setup SSHD
+# Generate mandb
 ########################################################################################################################
 
-echo "Setting up SSHD..."
-sudo -rm -rf /etc/ssh/sshd_config
-sudo ln -s ~/github/dotfiles/other/etc/ssh/sshd_config /etc/ssh/sshd_config
-
-sudo rm /etc/ssh/ssh_host_*
-sudo ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ""
-sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
-
-sudo awk -i inplace '$5 >= 3071' /etc/ssh/moduli
-
-sudo systemctl restart sshd
+echo "Generating man database..."
+mandb >/dev/null
 
 exit 0
