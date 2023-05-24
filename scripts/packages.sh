@@ -71,6 +71,28 @@ else
 fi
 
 ########################################################################################################################
+# Steam
+########################################################################################################################
+
+echo "Preparing for steam install..."
+
+echo "Adding multilib to pacman..."
+sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+
+echo "Installing Steam..."
+if [ -x "$(command -v nvidia-smi)" ]; then
+    yay ${yayArguments} steam lib32-nvidia-utils
+else
+    yay ${yayArguments} steam
+fi
+
+if [ ! -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
+    echo "Increasing vm.max_map_count..."
+    echo "vm.max_map_count = 2147483642" | sudo tee -a /etc/sysctl.d/80-gamecompatibility.conf >/dev/null
+    sudo sysctl --system >/dev/null
+fi
+
+########################################################################################################################
 # DE/WM
 ########################################################################################################################
 
