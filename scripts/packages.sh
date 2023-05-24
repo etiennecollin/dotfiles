@@ -30,7 +30,7 @@ basicTools="base-devel git github-cli sudo curl htop zsh neovim zip unzip udiski
 # Fonts
 fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono"
 # Software GUI
-softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf ardour lsp-plugins"
+softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf qtractor lsp-plugins"
 # Software CLI
 softwareCLI="github-cli xdg-ninja-git neofetch"
 # nvim dependencies
