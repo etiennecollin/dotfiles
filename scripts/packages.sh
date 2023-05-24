@@ -51,7 +51,9 @@ echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # miniconda
+echo "Installing Miniconda..."
 if [ ! -d ~/Downloads ]; then
+    echo "Creating ~/Downloads..."
     mkdir ~/Downloads
 fi
 curl -sfoO ~/Downloads https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >/dev/null
