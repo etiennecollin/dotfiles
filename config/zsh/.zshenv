@@ -16,18 +16,16 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-export XDG_DESKTOP_DIR="$HOME/desktop"
-export XDG_DOCUMENTS_DIR="$HOME/documents"
-export XDG_DOWNLOAD_DIR="$HOME/downloads"
-export XDG_MUSIC_DIR="$HOME/dusic"
-export XDG_PICTURES_DIR="$HOME/pictures"
-export XDG_PUBLICSHARE_DIR="$HOME/public"
-export XDG_TEMPLATES_DIR="$HOME/templates"
-export XDG_VIDEOS_DIR="$HOME/videos"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_PUBLICSHARE_DIR="$HOME/Public"
+export XDG_TEMPLATES_DIR="$HOME/Templates"
+export XDG_VIDEOS_DIR="$HOME/Videos"
 
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
-export HISTFILE="${XDG_STATE_HOME}"/bash/history
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export XCURSOR_PATH=/usr/share/icons:${XDG_DATA_HOME}/icons
