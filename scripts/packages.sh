@@ -42,7 +42,10 @@ latex="texlive-most biber tllocalmgr-git"
 echo "Installing packages..."
 yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim} ${latex}
 
-# rust
+########################################################################################################################
+# Rust
+########################################################################################################################
+
 echo "Installing Rust..."
 if [ -x "$(command -v rustc)" ]; then
     echo "Rust is already installed, skipping..."
@@ -50,7 +53,9 @@ else
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-# miniconda
+########################################################################################################################
+# Miniconda
+########################################################################################################################
 
 echo "Installing Miniconda..."
 if [ -x "$(command -v conda)" ]; then
