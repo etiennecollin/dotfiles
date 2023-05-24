@@ -122,6 +122,17 @@ else
 fi
 
 ########################################################################################################################
+# zsh setup
+########################################################################################################################
+
+echo "Setting zsh enviroment..."
+echo "export ZDOTDIR="$HOME"/.config/zsh" | sudo tee -a /etc/zsh/zshenv >/dev/null
+
+echo "Setting zsh as default shell..."
+sudo chsh -s /usr/bin/zsh >/dev/null
+chsh -s /usr/bin/zsh >/dev/null
+
+########################################################################################################################
 # Oh-my-zsh
 ########################################################################################################################
 
@@ -139,6 +150,7 @@ fi
 echo "Setting up Powerlevel10k..."
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k >/dev/null
+    sudo sed -i 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k/powerlevel10k"/g' ~/.config/zsh/.zshrc
 else
     echo "Powerlevel10k already installed. Skipping..."
 fi
