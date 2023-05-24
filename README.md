@@ -12,6 +12,8 @@
 - [Optional Packages Install](#optional-packages-install)
 - [Antidote:](#antidote)
 
+---
+
 ## Installation
 
 1. Clone this repository
