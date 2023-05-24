@@ -56,6 +56,7 @@ echo "Creating symlinks for cloned dotfiles..."
 } >/dev/null
 
 if [ -x $(command -v i3) ]; then
+if [ -x "$(command -v i3)" ]; then
     sudo rm -rf i3 dunst picom polybar rofi X11
     # Setup i3
     echo "Setting up i3..."

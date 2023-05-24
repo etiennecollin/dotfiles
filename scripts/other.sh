@@ -11,7 +11,7 @@ mandb >/dev/null
 # Generate lockscreen wallpaper
 ########################################################################################################################
 
-if [ -x $(command -v betterlockscreen) ]; then
+if [ -x "$(command -v betterlockscreen)" ]; then
     # Setup lockscreen wallpaper
     echo "Setting default lockscreen wallpaper..."
     betterlockscreen -u $HOME/pictures/wallpapers/iceland_blur.png --display 1 >/dev/null
@@ -90,7 +90,7 @@ done
 # NVIDIA Setup for wayland
 ########################################################################################################################
 
-if [ -x $(command -v nvidia-smi) ]; then
+if [ -x "$(command -v nvidia-smi)" ]; then
     echo "Setting up for NVIDIA GPU..."
     sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/ s/"$/ nvidia_drm.modeset=1"/' /etc/default/grub
     sudo grub-mkconfig -o /boot/grub/grub.cfg >/dev/null
