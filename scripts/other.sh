@@ -158,10 +158,29 @@ sudo rm -rf /etc/ssh/sshd_config
 echo "Creating symlink to new SSHD config..."
 sudo ln -s ~/github/dotfiles/other/etc/ssh/sshd_config /etc/ssh/sshd_config
 
-echo "Generating new SSH keys..."
-sudo rm /etc/ssh/ssh_host_*
-sudo ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N "" >/dev/null
-sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >/dev/null
+while true; do
+    echo ""
+    echo "Do you want to generate new SSH keys?"
+    echo "1. Yes"
+    echo "2. No"
+    printf "Input: "
+    read input
+
+    if [ "$input" = "1" ]; then
+        echo "Generating new SSH keys..."
+        sudo rm /etc/ssh/ssh_host_*
+        sudo ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N "" >/dev/null
+        sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" >/dev/null
+
+        break
+    elif [ "$input" = "2" ]; then
+        echo "Skipping SSH key generation..."
+
+        break
+    else
+        echo "Wrong input"
+    fi
+done
 
 echo "Removing weak moduli..."
 sudo awk -i inplace '$5 >= 3071' /etc/ssh/moduli >/dev/null
