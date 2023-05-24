@@ -54,11 +54,11 @@ echo "Creating symlinks for cloned dotfiles..."
 } >/dev/null
 
 if [ -x "$(command -v i3)" ]; then
-    sudo rm -rf i3 dunst picom polybar rofi X11
+    sudo rm -rf dunst i3 picom polybar rofi X11
     # Setup i3
     echo "Setting up i3..."
-    ln -s ~/github/dotfiles/config/i3 ~/.config/i3
     ln -s ~/github/dotfiles/config/dunst ~/.config/dunst
+    ln -s ~/github/dotfiles/config/i3 ~/.config/i3
     ln -s ~/github/dotfiles/config/picom ~/.config/picom
     ln -s ~/github/dotfiles/config/polybar ~/.config/polybar
     ln -s ~/github/dotfiles/config/rofi ~/.config/rofi
