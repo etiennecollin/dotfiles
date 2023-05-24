@@ -96,6 +96,7 @@ if [ -x "$(command -v nvidia-smi)" ]; then
     sudo grub-mkconfig -o /boot/grub/grub.cfg >/dev/null
     sudo sed -i '/MODULES=/ s/)/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
     sudo mkinitcpio -P >/dev/null
+    sudo nvidia-xconfig >/dev/null
 fi
 
 ########################################################################################################################
