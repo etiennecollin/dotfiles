@@ -15,23 +15,6 @@
 # git clone https://github.com/etiennecollin/dotfiles.git ~/github/dotfiles >/dev/null
 
 ########################################################################################################################
-# Setting up git
-########################################################################################################################
-
-echo "Setting up git..."
-printf "Full name: "
-read fullName
-printf "Email: "
-read email
-printf "Sign-in key: "
-read signInKey
-
-git config --global user.name "$fullName"
-git config --global user.email "$email"
-git config --global user.signingkey "$signInKey"
-gh auth login
-
-########################################################################################################################
 # Symlink dotfiles
 ########################################################################################################################
 
@@ -57,12 +40,14 @@ if [ -x "$(command -v i3)" ]; then
     sudo rm -rf dunst i3 picom polybar rofi X11
     # Setup i3
     echo "Setting up i3..."
-    ln -s ~/github/dotfiles/config/dunst ~/.config/dunst
-    ln -s ~/github/dotfiles/config/i3 ~/.config/i3
-    ln -s ~/github/dotfiles/config/picom ~/.config/picom
-    ln -s ~/github/dotfiles/config/polybar ~/.config/polybar
-    ln -s ~/github/dotfiles/config/rofi ~/.config/rofi
-    ln -s ~/github/dotfiles/config/X11 ~/.config/X11
+    {
+        ln -s ~/github/dotfiles/config/dunst ~/.config/dunst
+        ln -s ~/github/dotfiles/config/i3 ~/.config/i3
+        ln -s ~/github/dotfiles/config/picom ~/.config/picom
+        ln -s ~/github/dotfiles/config/polybar ~/.config/polybar
+        ln -s ~/github/dotfiles/config/rofi ~/.config/rofi
+        ln -s ~/github/dotfiles/config/X11 ~/.config/X11
+    } >/dev/null
 fi
 
 ########################################################################################################################
@@ -78,6 +63,6 @@ elif [ -d ~/Pictures/wallpapers ]; then
 fi
 
 echo "Creating symlinks for wallpapers..."
-ln -s ~/github/dotfiles/wallpapers ~/Pictures/wallpapers
+ln -s ~/github/dotfiles/wallpapers ~/Pictures/wallpapers >/dev/null
 
 exit 0

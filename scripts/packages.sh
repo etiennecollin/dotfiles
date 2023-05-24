@@ -42,10 +42,6 @@ latex="texlive-most biber tllocalmgr-git"
 echo "Installing packages..."
 yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim} ${latex}
 
-# nnn plugins
-echo "Installing nnn plugins..."
-curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh >/dev/null
-
 # rust
 echo "Installing Rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -56,7 +52,7 @@ if [ ! -d ~/Downloads ]; then
     echo "Creating ~/Downloads..."
     mkdir ~/Downloads
 fi
-curl -sfoO ~/Downloads https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >/dev/null
+curl -fo ~/Downloads/Miniconda3-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >/dev/null
 sh ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 rm ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 
