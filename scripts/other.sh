@@ -118,7 +118,7 @@ fi
 ########################################################################################################################
 
 echo "Setting up oh-my-zsh..."
-if [ ! -x $(command -v omz) ]; then
+if [ ! -x "$(command -v omz)" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
     echo "Oh-my-zsh already installed. Skipping..."
