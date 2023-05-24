@@ -44,17 +44,26 @@ yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim}
 
 # rust
 echo "Installing Rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+if [ -x "$(command -v rustc)" ]; then
+    echo "Rust is already installed, skipping..."
+else
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
 
 # miniconda
+
 echo "Installing Miniconda..."
-if [ ! -d ~/Downloads ]; then
-    echo "Creating ~/Downloads..."
-    mkdir ~/Downloads
+if [ -x "$(command -v conda)" ]; then
+    echo "Miniconda is already installed, skipping..."
+else
+    if [ ! -d ~/Downloads ]; then
+        echo "Creating ~/Downloads..."
+        mkdir ~/Downloads
+    fi
+    curl -fo ~/Downloads/Miniconda3-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >/dev/null
+    sh ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
+    rm ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 fi
-curl -fo ~/Downloads/Miniconda3-latest-Linux-x86_64.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >/dev/null
-sh ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
-rm ~/Downloads/Miniconda3-latest-Linux-x86_64.sh
 
 ########################################################################################################################
 # DE/WM

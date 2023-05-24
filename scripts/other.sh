@@ -4,8 +4,12 @@
 # zsh setup
 ########################################################################################################################
 
-echo "Setting zsh enviroment..."
-echo "export ZDOTDIR="$HOME"/.config/zsh" | sudo tee -a /etc/zsh/zshenv >/dev/null
+# Check if zsh enviroment is already set
+sudo grep -Pzq "export ZDOTDIR=\"$HOME\"/.config/zsh" /etc/zsh/zshenv >/dev/null
+if [ ! $? == 0 ]; then
+    echo "Setting zsh enviroment..."
+    echo "export ZDOTDIR="$HOME"/.config/zsh" | sudo tee -a /etc/zsh/zshenv >/dev/null
+fi
 
 echo "Setting zsh as default shell..."
 sudo chsh -s /usr/bin/zsh >/dev/null
