@@ -65,9 +65,9 @@ Desktop:
 ```bash
 # For AIO
 yay -Syu liquidctl
+sudo rm -rf /etc/systemd/system/liquidcfg.service
+sudo ln -s ~/github/dotfiles/other/etc/systemd/system/liquidcfg.service /etc/systemd/system/liquidcfg.service
 sudo systemctl daemon-reload && sudo systemctl start liquidcfg && sudo systemctl enable liquidcfg
-sudo rm -rf /etc/systemd/liquidcfg.service
-sudo ln -s ~/github/dotfiles/other/etc/systemd/liquidcfg.service /etc/systemd/liquidcfg.service
 ```
 
 Laptop:
