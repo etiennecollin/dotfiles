@@ -28,7 +28,7 @@ fi
 # Basic tools
 basicTools="base-devel git github-cli sudo curl htop zsh neovim zip unzip udiskie imagemagick man-db man-pages os-prober openssh ssh-audit fail2ban"
 # Fonts
-fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra nerd-fonts-jetbrains-mono"
+fonts="noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra ttf-jetbrains-mono-nerd"
 # Software GUI
 softwareGUI="brave-bin github-desktop discord via-bin celluloid yubikey-manager-qt yubioath-desktop visual-studio-code-bin kitty easyeffects calf qtractor lsp-plugins"
 # Software CLI
