@@ -5,7 +5,7 @@
 ## Table of Contents <!-- omit from toc -->
 
 - [Installation](#installation)
-    - [Setup i3](#setup-i3)
+- [Setup i3](#setup-i3)
 - [Other Commands](#other-commands)
     - [Default boot:](#default-boot)
     - [Generate lockscreen background:](#generate-lockscreen-background)
@@ -16,13 +16,17 @@
 
 ## Installation
 
-1. Clone this repository
-2. Run the `installation.sh` script:
-    ```bash
-    sh ./installation.sh
-    ```
+Run the `install.sh` script:
 
-### Setup i3
+```bash
+git clone https://github.com/etiennecollin/dotfiles ~/github/dotfiles && cd ~/github/dotfiles && sh install.sh
+```
+
+> It is important that the repository is located at `~/github/dotfiles` and that the script is run from there.
+
+---
+
+## Setup i3
 
 1. In `~/.xinitrc` delete everything after last `fi`
 2. Add your DE/WM to `xinitrc` (in this case, i3):
