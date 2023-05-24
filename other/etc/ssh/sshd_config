@@ -1,0 +1,38 @@
+Port 22022
+
+# Ciphers and keying
+# Restrict key exchange, cipher, and MAC algorithms, as per sshaudit.com
+# hardening guide.
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,umac-128-etm@openssh.com
+
+# Logging
+#SyslogFacility AUTH
+LogLevel VERBOSE
+
+# Authentication:
+AuthenticationMethods publickey
+
+# Only enable RSA and ED25519 host keys.
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+LoginGraceTime 1m
+PermitRootLogin no
+MaxAuthTries 3
+MaxSessions 3
+
+AuthorizedKeysFile	.ssh/authorized_keys
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+UsePAM no
+
+# no default banner path
+#Banner none
+PrintMotd no
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib/ssh/sftp-server

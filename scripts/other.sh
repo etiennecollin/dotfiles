@@ -135,4 +135,20 @@ else
     echo "Powerlevel10k already installed. Skipping..."
 fi
 
+########################################################################################################################
+# Setup SSHD
+########################################################################################################################
+
+echo "Setting up SSHD..."
+sudo -rm -rf /etc/ssh/sshd_config
+sudo ln -s ~/github/dotfiles/other/etc/ssh/sshd_config /etc/ssh/sshd_config
+
+sudo rm /etc/ssh/ssh_host_*
+sudo ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ""
+sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
+
+sudo awk -i inplace '$5 >= 3071' /etc/ssh/moduli
+
+sudo systemctl restart sshd
+
 exit 0
