@@ -101,7 +101,7 @@ i3wm="i3-wm feh betterlockscreen polybar rofi picom lxappearance lxsession dunst
 # hyprland
 hyprland="hyprland-nvidia-git nnn"
 # gnome
-gnome="gnome extension-manager file-roller seahorse simple-scan"
+gnome="gnome extension-manager gdm-settings file-roller seahorse simple-scan"
 
 # Ask for DE/WM
 while true; do
