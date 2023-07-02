@@ -46,10 +46,8 @@ yay ${yayArguments} ${basicTools} ${fonts} ${softwareGUI} ${softwareCLI} ${nvim}
 # Rust
 ########################################################################################################################
 
-echo "Installing Rust..."
-if [ -x "$(command -v rustc)" ]; then
-    echo "Rust is already installed, skipping..."
-else
+if [ ! -x "$(command -v rustc)" ]; then
+    echo "Installing Rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
