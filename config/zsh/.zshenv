@@ -2,6 +2,11 @@ export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=brave
 
+# Set the dark theme for GTK/Qt applications
+export GTK_THEME=Adwaita:dark
+export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+export QT_STYLE_OVERRIDE=adwaita-dark
+
 # NNN
 export LC_COLLATE="C" # hidden files on top
 export NNN_PLUG="p:preview-tui"
