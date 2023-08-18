@@ -1,9 +1,15 @@
 [filter "lfs"]
-	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+	required = true
 [user]
 	name = Etienne Collin
-	email = 99756528+etiennecollin@users.noreply.github.com
+	email = collin.etienne.contact@gmail.com
 	signingkey = C42F5E2A2544CEDF
+[gpg]
+	program = gpg
+#[commit]
+#	gpgsign = true
+#[tag]
+#	gpgsign = true
