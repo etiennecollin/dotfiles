@@ -191,7 +191,7 @@ require("mason-null-ls").setup({
     ensure_installed = { -- Optional: List sources here, when available in mason.
     "debugpy", "java-debug-adapter", "java-test", "haskell-debug-adapter", -- DAP
     "codespell", "cpplint", "semgrep", "ruff", "vulture", "pydocstyle", "haskell-language-server", -- Linters
-    "black", "latexindent", "rustfmt", "prettier", "clang-format", "fourmolu"}, -- Formatters
+    "black", "latexindent", "prettier", "clang-format", "fourmolu"}, -- Formatters
     automatic_installation = false,
     automatic_setup = true -- Setup Mason handlers in null-ls.
 })
