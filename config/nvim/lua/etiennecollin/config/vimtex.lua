@@ -4,7 +4,6 @@ vim.g.tex_flavor = "latex"
 vim.g.vimtex_view_method = "skim" -- skim or zathura
 
 -- To setup for skim, uncomment the following 3 lines
-vim.g.vimtex_viewer_skim = 1
 vim.g.vimtex_view_skim_sync = 1 -- Value 1 allows forward search after every successful compilation
 vim.g.vimtex_view_skim_activate = 1 -- Value 1 allows change focus to skim after command `:VimtexView` is given
 
