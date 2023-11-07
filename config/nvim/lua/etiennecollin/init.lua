@@ -1,3 +1,4 @@
 require("etiennecollin.options")
 require("etiennecollin.remap")
-require("etiennecollin.packer")
+require("etiennecollin.functions")
+require("etiennecollin.lazy")

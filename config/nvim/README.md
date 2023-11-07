@@ -21,14 +21,3 @@
 ## Python
 
 -   conda/pip install neovim
-
-# Setup
-
--   Go to packer's github page to check installation process:
-
-```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
--   Run inside of nvim `:PackerSync`
