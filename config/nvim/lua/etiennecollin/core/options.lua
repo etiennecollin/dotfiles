@@ -1,7 +1,3 @@
--- Disable netrw at the very start (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.cursorline = true
 
@@ -46,7 +42,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
 -- Code folding
-vim.opt.foldlevel = 20
+-- vim.opt.foldlevel = 20
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 

@@ -2,10 +2,15 @@ return {
     "nvim-tree/nvim-tree.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
+        -- Disable netrw at the very start (strongly advised)
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+
         require("nvim-tree").setup({
             sort_by = "name",
             view = {
-                adaptive_size = true
+                adaptive_size = true,
+                relativenumber = true
                 -- mappings = {
                 --     list = {{
                 --         key = "u",
@@ -14,10 +19,32 @@ return {
                 -- }
             },
             renderer = {
+                indent_markers = {
+                    enable = true
+                },
+                icons = {
+                    glyphs = {
+                        folder = {
+                            arrow_closed = "", -- arrow when folder is closed
+                            arrow_open = "" -- arrow when folder is open
+                        }
+                    }
+                },
                 group_empty = true
             },
+            actions = {
+                open_file = {
+                    window_picker = {
+                        enable = false
+                    }
+                }
+            },
             filters = {
-                dotfiles = true
+                dotfiles = true,
+                custom = {".DS_Store"}
+            },
+            git = {
+                ignore = false
             }
         })
 
@@ -35,17 +62,17 @@ return {
 
             if real_file then
                 -- Open nvim-tree, find the file but don't focus it
-                require("nvim-tree.api").tree.toggle({
-                    focus = false,
-                    find_file = true
-                })
+                -- require("nvim-tree.api").tree.toggle({
+                --     focus = false,
+                --     find_file = true
+                -- })
             elseif directory then
                 -- cd to directory, then open nvim-tree
                 vim.cmd.cd(data.file)
                 require("nvim-tree.api").tree.open()
             elseif no_name then
                 -- Open nvim-tree
-                require("nvim-tree.api").tree.open()
+                -- require("nvim-tree.api").tree.open()
             end
         end
 

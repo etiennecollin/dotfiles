@@ -1,4 +1,4 @@
-local tex_utils = require("etiennecollin.config.luasnip")
+local tex_utils = require("etiennecollin.snippets.tex.utils")
 
 return {
     s({ trig = "example"},

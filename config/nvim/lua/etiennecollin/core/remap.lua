@@ -34,13 +34,12 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
 })
 
 -- Terminal
--- F14 = Shift + F1
-vim.keymap.set({"n", "i", "v", "t"}, "<F14>", "<cmd>ToggleTermToggleAll<cr>", {
+vim.keymap.set({"n", "i", "v", "t"}, "<S-F1>", "<cmd>ToggleTermToggleAll<cr>", {
     desc = "Toggle terminals"
 })
 
 -- Commenting
-vim.keymap.set("v", "<C-/>", "<plug>NERDCommenterToggle", {
+vim.keymap.set("v", "<leader>cc", "<plug>NERDCommenterToggle", {
     desc = "Toggle commenting"
 })
 

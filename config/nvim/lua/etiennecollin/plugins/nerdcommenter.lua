@@ -1,6 +1,6 @@
 return {
     "preservim/nerdcommenter",
-    config = function()
+    init = function()
         -- Create default mappings
         vim.g.NERDCreateDefaultMappings = 0
 
@@ -8,13 +8,13 @@ return {
         vim.g.NERDSpaceDelims = 1
 
         -- Use compact syntax for prettified multi-line comments
-        vim.g.NERDCompactSexyComs = 1
+        vim.g.NERDCompactSexyComs = 0
 
         -- Align line-wise comment delimiters flush left instead of following code indentation
-        vim.g.NERDDefaultAlign = "start"
+        vim.g.NERDDefaultAlign = "left"
 
         -- Set a language to use its alternate delimiters by default
-        vim.g.NERDAltDelims_java = 1
+        -- vim.g.NERDAltDelims_java = 1
 
         -- Add your own custom formats or override the defaults
         -- vim.g.NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
