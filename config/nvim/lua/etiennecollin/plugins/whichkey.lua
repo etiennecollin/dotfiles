@@ -23,7 +23,6 @@ return {
 
         local mappings = {
             a = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Harpoon"},
-
             A = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add to Harpoon"},
 
             b = {
@@ -46,13 +45,16 @@ return {
             },
 
             d = {
-                name = "NvimTree",
-                f = {"<cmd>NvimTreeFindFile<cr>", "Find file"},
-                c = {"<cmd>NvimTreeCollapseKeepBuffers<cr>", "Collapse unused dirs"}
+                name = "Debug"
             },
 
-            e = {"<cmd>NvimTreeFocus<cr>", "Open file explorer"},
-            E = {"<cmd>NvimTreeClose<cr>", "Close file explorer"},
+            e = {"<cmd>NvimTreeToggle<cr>", "Toggle file explorer"},
+            E = {
+                name = "NvimTree",
+                E = {"<cmd>NvimTreeClose<cr>", "Close file explorer"},
+                F = {"<cmd>NvimTreeFindFile<cr>", "Find file"},
+                C = {"<cmd>NvimTreeCollapseKeepBuffers<cr>", "Collapse unused dirs"}
+            },
 
             f = {"<cmd>lua vim.lsp.buf.format()<cr>", "Format file"},
 
@@ -87,14 +89,22 @@ return {
                 name = "Terminal",
                 f = {"<cmd>ToggleTerm direction=float<cr>", "Float"},
                 h = {"<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal"},
-                t = {"<cmd>ToggleTerm direction=tab<cr>", "Tab"},
+                t = {"<cmd>ToggleTerm direction=tab<cr>", "Tab"}
             },
 
             u = {"<cmd>UndotreeToggle<cr>", "Undotree"},
 
             w = {"<cmd>update!<cr>", "Save"},
 
-            x = {"<cmd>!chmod +x %", "Make executable"},
+            x = {
+                name = "Trouble",
+                x = {"<cmd>TroubleToggle<cr>", "Toggle trouble"},
+                w = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace diagnostics"},
+                d = {"<cmd>TroubleToggle document_diagnostics<cr>", "Document diagnostics"},
+                q = {"<cmd>TroubleToggle quickfix<cr>", "Quickfix"},
+                l = {"<cmd>TroubleToggle loclist<cr>", "Loclist"}
+            },
+            X = {"<cmd>!chmod +x %", "Make executable"},
 
             z = {
                 name = "Lazy/Mason",

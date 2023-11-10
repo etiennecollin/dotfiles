@@ -1,5 +1,5 @@
 return {
-    "nvimtools/none-ls.nvim", -- configure formatters & linters
+    "nvimtools/none-ls.nvim",
     lazy = true,
     event = {"BufReadPre", "BufNewFile"},
     dependencies = {"williamboman/mason.nvim", "jay-babu/mason-null-ls.nvim"},
@@ -37,9 +37,9 @@ return {
         })
 
         require("mason-null-ls").setup({
-            handlers = {}
             -- ensure_installed = {},
-            -- automatic_installation = false
+            automatic_installation = true,
+            handlers = {}
         })
     end
 }

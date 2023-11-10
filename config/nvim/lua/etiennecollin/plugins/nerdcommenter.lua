@@ -17,7 +17,7 @@ return {
         -- vim.g.NERDAltDelims_java = 1
 
         -- Add your own custom formats or override the defaults
-        -- vim.g.NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+        -- vim.g.NERDCustomDelimiters = { "c": { "left": "/**","right": "*/" } }
 
         -- Allow commenting and inverting empty lines (useful when commenting a region)
         vim.g.NERDCommentEmptyLines = 1

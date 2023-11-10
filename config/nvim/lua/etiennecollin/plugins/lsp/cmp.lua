@@ -4,6 +4,7 @@ return {
     dependencies = {"hrsh7th/cmp-path", -- Source for completion of paths
     "hrsh7th/cmp-buffer", -- Source for completion of words in buffers
     "hrsh7th/cmp-nvim-lua", -- Source for completion of Neovim's Lua API
+    "hrsh7th/cmp-nvim-lsp-signature-help", -- Source for function signature
     "L3MON4D3/LuaSnip", -- Snippet engine
     "saadparwaiz1/cmp_luasnip", -- Source for completion of LuaSnip snippets
     "rafamadriz/friendly-snippets", -- Collection of useful snippets
@@ -37,7 +38,7 @@ return {
 
         cmp.setup({
             completion = {
-                completeopt = "menu,menuone,preview,noselect"
+                completeopt = "menu,menuone,preview,noselect,noinsert"
             },
 
             -- Configure how nvim-cmp interacts with luasnip
@@ -50,6 +51,8 @@ return {
             sources = cmp.config.sources({{
                 name = "nvim_lsp" -- LSP
             }, {
+                name = "nvim_lsp_signature_help" -- Complete function info
+            }, {
                 name = "luasnip" -- Snippets
             }, {
                 name = "buffer" -- Text within current buffer
@@ -58,6 +61,11 @@ return {
             }, {
                 name = "path" -- File paths
             }}),
+
+            window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered()
+            },
 
             -- Set formatting of completion menu
             formatting = {
@@ -69,7 +77,7 @@ return {
 
             mapping = cmp.mapping.preset.insert({
                 -- ["<CR>"] = vim.NIL, -- Disable completion with return key
-                ['<CR>'] = cmp.mapping.confirm({
+                ["<CR>"] = cmp.mapping.confirm({
                     select = false
                 }),
                 ["<C-Space>"] = cmp.mapping.complete(),

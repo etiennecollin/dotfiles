@@ -2,12 +2,26 @@ return {
     "neovim/nvim-lspconfig",
     event = {"BufReadPre", "BufNewFile"},
     dependencies = {"folke/neodev.nvim", "hrsh7th/cmp-nvim-lsp", "williamboman/mason.nvim",
-                    "williamboman/mason-lspconfig.nvim", "simrat39/rust-tools.nvim"},
+                    "williamboman/mason-lspconfig.nvim", "mfussenegger/nvim-dap", "akinsho/toggleterm.nvim",
+                    "simrat39/rust-tools.nvim"},
     config = function()
-        require("neodev").setup({})
+        require("neodev").setup({
+            library = {
+                plugins = {"nvim-dap-ui"},
+                types = true
+            }
+        })
+
         local lspconfig = require("lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
+        -- Install LSPs with mason
+        require("mason-lspconfig").setup({
+            ensure_installed = {"rust_analyzer"},
+            automatic_installation = true
+        })
+
+        -- Setup lspconfig
         local opts = {
             noremap = true,
             silent = true
@@ -72,13 +86,6 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = cmp_nvim_lsp.default_capabilities()
 
-        require("mason-lspconfig").setup({
-            -- ensure_installed = {"debugpy", "java-debug-adapter", "java-test", "haskell-debug-adapter", -- DAP
-            -- "codespell", "cpplint", "semgrep", "ruff", "vulture", "pydocstyle", "haskell-language-server", -- Linters
-            -- "black", "latexindent", "prettier", "clang-format", "fourmolu"}, -- Formatters
-            -- automatic_installation = false
-        })
-
         local default_handler = function(server_name)
             require("lspconfig")[server_name].setup {
                 capabilities = capabilities,
@@ -86,11 +93,42 @@ return {
             }
         end
 
+        -- Setup for rust-analyzer
         local rust_handler = function()
+            -- Setup codelldb path for DAP
+            local extension_path = require("mason-registry").get_package("codelldb"):get_install_path() .. "/extension/"
+            local codelldb_path = extension_path .. "adapter/codelldb"
+            local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+            if not vim.fn.filereadable(codelldb_path) or not vim.fn.filereadable(liblldb_path) then
+                local msg =
+                    "Installing codelldb via Mason...\nEither codelldb or liblldb was not readable.\ncodelldb: " ..
+                        codelldb_path .. "\nliblldb: " .. liblldb_path
+                vim.notify(msg, vim.log.levels.INFO)
+                vim.cmd(":MasonInstall codelldb")
+            end
+
             local rust_tools = require("rust-tools")
             rust_tools.setup({
+                tools = {
+                    reload_workspace_from_cargo_toml = true,
+                    executor = require("rust-tools.executors").toggleterm,
+                    hover_actions = {
+                        auto_focus = true
+                    },
+                    inlay_hints = {
+                        auto = true,
+                        parameter_hints_prefix = "<-",
+                        other_hints_prefix = "->"
+                    }
+                },
+                dap = {
+                    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+                },
                 server = {
+                    standalone = false,
                     on_attach = function(client, bufnr)
+                        on_attach(client, bufnr)
+
                         vim.keymap.set("n", "<leader>ca", rust_tools.hover_actions.hover_actions, {
                             buffer = bufnr,
                             desc = "Rust Tools hover actions"
@@ -99,7 +137,27 @@ return {
                             buffer = bufnr,
                             desc = "Rust Tools code actions"
                         })
-                    end
+                    end,
+                    settings = {
+                        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+                        ["rust-analyzer"] = {
+                            check = {
+                                command = "clippy",
+                                extraArgs = {"--all", "--", "-W", "clippy::all"}
+                            },
+                            checkOnSave = {
+                                command = "clippy"
+                            },
+                            inlayHints = {
+                                chainingHints = {
+                                    enable = false
+                                },
+                                closingBraceHints = {
+                                    enable = false
+                                }
+                            }
+                        }
+                    }
                 },
                 capabilities = capabilities
             })
@@ -115,7 +173,7 @@ return {
         local signs = {
             Error = " ",
             Warn = " ",
-            Hint = "󰠠 ",
+            Hint = " ",
             Info = " "
         }
         for type, icon in pairs(signs) do
@@ -126,5 +184,19 @@ return {
                 numhl = ""
             })
         end
+
+        vim.diagnostic.config({
+            virtual_text = true,
+            signs = true,
+            update_in_insert = true,
+            underline = true,
+            severity_sort = false,
+            float = {
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = ""
+            }
+        })
     end
 }
