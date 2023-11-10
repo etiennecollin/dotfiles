@@ -4,7 +4,7 @@
 
 ### Arch Linux
 
--   `yay -Syu ripgrep zathura xdotool`
+- `yay -Syu ripgrep zathura xdotool`
 
 > `ripgrep` is required for telescope word finding
 
@@ -12,7 +12,7 @@
 
 ### macOS
 
--   `brew install ripgrep skim`
+- `brew install ripgrep skim`
 
 > `ripgrep` is required for telescope word finding.
 
@@ -20,4 +20,4 @@
 
 ## Python
 
--   conda/pip install neovim
+- conda/pip install neovim
