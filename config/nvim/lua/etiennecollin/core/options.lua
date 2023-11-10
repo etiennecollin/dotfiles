@@ -43,8 +43,8 @@ vim.opt.colorcolumn = "120"
 
 -- Code folding
 -- vim.opt.foldlevel = 20
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Vertically center document when entering insert mode
 vim.cmd("autocmd InsertEnter * norm zz")
