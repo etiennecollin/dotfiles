@@ -33,6 +33,7 @@ return {
 				h = { "<cmd>split<cr>", "Hsplit window" },
 				n = { "<cmd>new<cr>", "New buffer" },
 				p = { "<cmd>BufferLineTogglePin<cr>", "Toggle buffer pin" },
+				t = { "<cmd>tabnew<cr>", "New tab" },
 				v = { "<cmd>vsplit<cr>", "Vsplit window" },
 			},
 
@@ -48,13 +49,7 @@ return {
 				name = "Debug",
 			},
 
-			e = { "<cmd>NvimTreeToggle<cr>", "Toggle file explorer" },
-			E = {
-				name = "NvimTree",
-				E = { "<cmd>NvimTreeClose<cr>", "Close file explorer" },
-				F = { "<cmd>NvimTreeFindFile<cr>", "Find file" },
-				C = { "<cmd>NvimTreeCollapseKeepBuffers<cr>", "Collapse unused dirs" },
-			},
+			e = { "<cmd>Neotree toggle reveal<cr>", "Toggle Neotree" },
 
 			f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format file" },
 
@@ -67,29 +62,28 @@ return {
 			m = { "<cmd>MarkdownPreviewToggle<cr>", "Toggle markdown preview" },
 
 			p = {
-				name = "Telescope",
+				name = "Telescope and Files",
 				b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 				f = { "<cmd>Telescope find_files<cr>", "Files" },
-				g = { "<cmd>Telescope git_files<cr>", "Git files" },
 				h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 				r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
-				s = { "<cmd>Telescope live_grep<cr>", "Search" },
-				S = { "<cmd>Telescope grep_string<cr>", "Search word" },
-				t = { "<cmd>Telescope treesitter<cr>", "Treesitter" },
-				T = { "<cmd>Telescope tags<cr>", "Tags" },
+				s = { "<cmd>Telescope grep_string<cr>", "Search local" },
+				S = { "<cmd>Telescope live_grep<cr>", "Search global" },
+				v = { "<cmd>Alpha<cr>", "Open Alpha" },
 			},
 
 			q = { "<cmd>bd<cr>", "Close buffer" },
 			Q = { "<cmd>q<cr>", "Quit" },
 
 			s = { ":%s//gI<Left><Left><Left>", "Replace all" },
-			S = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace word" },
+			S = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace current word" },
 
 			t = {
 				name = "Terminal",
 				f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 				h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
-				t = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
+				v = { "<cmd>ToggleTerm direction=vertical<cr>", "Vertical" },
+				t = { "<cmd>ToggleTerm<cr>", "Bottom" },
 			},
 
 			u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
@@ -104,7 +98,12 @@ return {
 				q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
 				l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
 			},
-			X = { "<cmd>!chmod +x %", "Make executable" },
+			X = {
+				name = "Utilities",
+				A = { "<cmd>CellularAutomaton make_it_rain<cr>", "Cellular automaton" },
+				X = { "<cmd>!chmod +x %<cr>", "Make executable" },
+				Z = { "<cmd>ZenMode<cr>", "Toggle zen mode" },
+			},
 
 			z = {
 				name = "Lazy/Mason",

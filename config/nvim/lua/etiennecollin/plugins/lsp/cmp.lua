@@ -4,8 +4,11 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-path", -- Source for completion of paths
 		"hrsh7th/cmp-buffer", -- Source for completion of words in buffers
+		"hrsh7th/cmp-cmdline", -- Source for commandline completion
 		"hrsh7th/cmp-nvim-lua", -- Source for completion of Neovim's Lua API
 		"hrsh7th/cmp-nvim-lsp-signature-help", -- Source for function signature
+		"github/copilot.vim",
+		"zbirenbaum/copilot-cmp", -- Source for copilot
 		"L3MON4D3/LuaSnip", -- Snippet engine
 		"saadparwaiz1/cmp_luasnip", -- Source for completion of LuaSnip snippets
 		"rafamadriz/friendly-snippets", -- Collection of useful snippets
@@ -15,6 +18,10 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
+
+		require("copilot_cmp").setup()
+
+		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 		luasnip.setup({
 			-- Enable autotriggered snippets
@@ -26,15 +33,18 @@ return {
 		})
 
 		-- Loads snippets from friendly-snippets and custom snippets
-		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_lua").lazy_load({
 			paths = "~/.config/nvim/lua/etiennecollin/snippets",
 		})
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		local has_words_before = function()
-			unpack = unpack or table.unpack
+			--     unpack = unpack or table.unpack
+			if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+				return false
+			end
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 		end
 
 		cmp.setup({
@@ -50,6 +60,9 @@ return {
 			},
 
 			sources = cmp.config.sources({
+				-- {
+				--     name = "copilot", -- Copilot
+				-- },
 				{
 					name = "nvim_lsp", -- LSP
 				},
@@ -78,8 +91,10 @@ return {
 			-- Set formatting of completion menu
 			formatting = {
 				format = lspkind.cmp_format({
+					mode = "symbol",
 					maxwidth = 50,
 					ellipsis_char = "...",
+					symbol_map = { Copilot = "" },
 				}),
 			},
 
@@ -95,7 +110,9 @@ return {
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
+					if require("copilot.suggestion").is_visible() then
+						require("copilot.suggestion").accept()
+					elseif cmp.visible() then
 						cmp.confirm({
 							select = true,
 						})
@@ -120,5 +137,27 @@ return {
 				end, { "i", "s" }),
 			}),
 		})
+
+		cmp.setup.cmdline("/", {
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		cmp.setup.cmdline(":", {
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+		})
+
+		cmp.event:on("menu_opened", function()
+			vim.b.copilot_suggestion_hidden = true
+		end)
+
+		cmp.event:on("menu_closed", function()
+			vim.b.copilot_suggestion_hidden = false
+		end)
 	end,
 }

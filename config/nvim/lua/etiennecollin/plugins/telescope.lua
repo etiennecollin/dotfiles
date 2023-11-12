@@ -12,6 +12,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		telescope.load_extension("fzf")
 
 		telescope.setup({
 			defaults = {
@@ -20,12 +21,20 @@ return {
 					i = {
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
-						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						["<esc>"] = actions.close,
+						["<CR>"] = actions.select_default + actions.center,
+					},
+				},
+			},
+			pickers = {
+				buffers = {
+					mappings = {
+						i = {
+							["<c-d>"] = actions.delete_buffer,
+						},
 					},
 				},
 			},
 		})
-
-		telescope.load_extension("fzf")
 	end,
 }
