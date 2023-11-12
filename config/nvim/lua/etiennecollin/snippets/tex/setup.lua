@@ -1,16 +1,15 @@
 local tex_utils = require("etiennecollin.snippets.tex.utils")
 
 return {
-    s(
-        {trig = "setup"},
-        fmta(
-            [[
-            \input{/Users/etiennecollin/github/latex-templates/paths}
-            \path{macOS}
+	s(
+		{ trig = "setup" },
+		fmta(
+			[[
+            \newcommand{\latexTemplatesPath}{/absolute/path/to/latex-templates}
 
             \documentclass[12pt]{article}
             \usepackage[english]{babel}
-            \usepackage{\basepath/packages}
+            \usepackage{\latexTemplatesPath/packages}
             \usepackage[style=ieee,backref=true,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}
 
             % DOCUMENT USER SETTINGS ==============================================================================================
@@ -26,60 +25,64 @@ return {
             \newcommand{\docDueTime}{<>}
             \newcommand{\docSubtitle}{<>}
             \newcommand{\docTitle}{<>}
-            \input{\template/basic/page_settings}       % Imports custom page settings
-            \input{\template/basic/environment}         % Imports custom environments and definitions
-
-            % \fancyhf[HR]{\docClassTime}				% Removes student number from right header
+            \input{\latexTemplatesPath/templates/basic/page_settings}       % Imports custom page settings
+            \input{\latexTemplatesPath/templates/basic/environment}         % Imports custom environments and definitions
+            % \fancyhf[HR]{\docClassTime}                                   % Removes student number from right header
 
             % SOURCE ==============================================================================================================
             \begin{document}
-            \input{\template/basic/title_page_udem}
+            \input{\latexTemplatesPath/templates/basic/title_page_udem}
+
+            % \todototoc
+            % \listoftodos
+            % \pagebreak
 
             % START OF DOCUMENT ===================================================================================================
+            % \subfile{subfiles/...}
 
-            \subfile{subfiles/<>}
+            <>
 
             % END OF DOCUMENT =====================================================================================================
             % % List of figures/tables
             % \pagebreak
             % \begin{appendix}
-            % 	\phantomsection\listoffigures
-            % 	\phantomsection\listoftables
+            %     \phantomsection\listoffigures
+            %     \phantomsection\listoftables
             % \end{appendix}
 
             \pagebreak\phantomsection\printbibliography[heading=bibintoc]
             %\nocite{}
             \end{document}
             ]],
-            {
-                i(1, "Class name"),
-                i(2, "Professor name"),
-                i(3, "Class number"),
-                i(4, "Class section"),
-                i(5, "Class semester"),
-                i(6, "Due date"),
-                i(7, "Due time"),
-                i(8, "Doc Subtitle "),
-                i(9, "Doc Title"),
-                i(0, "subfile_01")
-            }
-        ),
-        { condition = tex_utils.in_text and tex_utils.begins_line }
-    ),
-    s(
-        {trig = "subsetup"},
-        fmta(
-            [[
+			{
+				i(1, "Class name"),
+				i(5, "Professor name"),
+				i(2, "Class number"),
+				i(3, "Class section"),
+				i(4, "Class semester"),
+				i(8, "Due date"),
+				i(9, "23:59"),
+				i(7, "Doc Subtitle "),
+				i(6, "Doc Title"),
+				i(0, "CONTENT HERE"),
+			}
+		),
+		{ condition = tex_utils.in_text and tex_utils.begins_line }
+	),
+	s(
+		{ trig = "subsetup" },
+		fmta(
+			[[
             \documentclass[../<>]{subfiles}
             \begin{document}
             <>
             \end{document}
             ]],
-            {
-                i(1, "main.tex"),
-                i(0, "Content"),
-            }
-        ),
-        { condition = tex_utils.in_text and tex_utils.begins_line }
-    )
+			{
+				i(1, "main.tex"),
+				i(0, "Content"),
+			}
+		),
+		{ condition = tex_utils.in_text and tex_utils.begins_line }
+	),
 }
