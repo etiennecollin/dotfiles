@@ -1,5 +1,6 @@
 return {
 	"preservim/nerdcommenter",
+	event = { "BufReadPre", "BufNewFile" },
 	init = function()
 		-- Create default mappings
 		vim.g.NERDCreateDefaultMappings = 0
