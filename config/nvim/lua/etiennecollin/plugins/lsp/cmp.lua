@@ -1,6 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-path", -- Source for completion of paths
 		"hrsh7th/cmp-buffer", -- Source for completion of words in buffers

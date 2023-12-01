@@ -51,10 +51,15 @@ return {
 
 			e = { "<cmd>Neotree toggle reveal<cr>", "Toggle Neotree" },
 
-			f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format file" },
+			f = {
+				'<cmd>lua vim.lsp.buf.format({filter = function(client) return client.name == "null-ls" end})<cr>',
+				"Format file",
+			},
 
 			h = { "<cmd>BufferLineCyclePrev<cr>", "Buffer cycle prev" },
 			H = { "<cmd>BufferLineMovePrev<cr>", "Buffer move prev" },
+
+			k = { ":s/\\(\\S.*\\)/ \\1/g<left><left><left><left><left>", "Fighting one-eyed kirby" },
 
 			l = { "<cmd>BufferLineCycleNext<cr>", "Buffer cycle next" },
 			L = { "<cmd>BufferLineMoveNext<cr>", "Buffer move next" },
@@ -75,8 +80,8 @@ return {
 			q = { "<cmd>bd<cr>", "Close buffer" },
 			Q = { "<cmd>q<cr>", "Quit" },
 
-			s = { ":%s//gI<Left><Left><Left>", "Replace all" },
-			S = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace current word" },
+			s = { ":%s//gI<left><left><left>", "Replace all" },
+			S = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>", "Replace current word" },
 
 			t = {
 				name = "Terminal",

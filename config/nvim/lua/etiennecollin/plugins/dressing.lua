@@ -1,5 +1,5 @@
 return {
 	"stevearc/dressing.nvim",
-	event = "VeryLazy",
-	-- opts = {}
+	event = { "BufReadPre", "BufNewFile" },
+	config = true,
 }

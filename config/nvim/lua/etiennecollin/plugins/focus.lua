@@ -1,1 +1,5 @@
-return { "nvim-focus/focus.nvim", version = "*", opts = {} }
+return {
+	"nvim-focus/focus.nvim",
+	version = "*",
+	config = true,
+}

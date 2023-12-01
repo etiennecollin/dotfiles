@@ -18,6 +18,9 @@ require("lazy").setup({
 	{
 		import = "etiennecollin.plugins.lsp",
 	},
+	{
+		import = "etiennecollin.plugins.themes",
+	},
 }, {
 	checker = {
 		enabled = true,
@@ -27,3 +30,9 @@ require("lazy").setup({
 		notify = false,
 	},
 })
+
+vim.cmd.colorscheme("tokyonight-night")
+
+-- Set transparency
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

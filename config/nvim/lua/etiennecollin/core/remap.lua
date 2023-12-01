@@ -52,15 +52,13 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", {
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- Terminal
-vim.keymap.set({ "n", "i", "v", "t" }, "<S-F1>", "<cmd>ToggleTermToggleAll<cr>", {
-	desc = "Toggle terminals",
-})
-
--- Commenting
-vim.keymap.set("v", "<leader>cc", "<plug>NERDCommenterToggle", {
-	desc = "Toggle commenting",
-})
+-- Fighting one-eyed kirby
+vim.keymap.set(
+	"v",
+	"<leader>k",
+	":s/\\(\\S.*\\)/ \\1/g<left><left><left><left><left>",
+	{ desc = "Fighting one-eyed kirby" }
+)
 
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<esc>", {

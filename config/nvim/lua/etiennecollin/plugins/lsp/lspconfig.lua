@@ -18,9 +18,6 @@ return {
 			},
 		})
 
-		local lspconfig = require("lspconfig")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		-- Install LSPs with mason
 		require("mason-lspconfig").setup({
 			ensure_installed = { "rust_analyzer" },
@@ -33,7 +30,7 @@ return {
 			silent = true,
 		}
 
-		local on_attach = function(client, bufnr)
+		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
 
 			-- Show definition, references
@@ -90,7 +87,11 @@ return {
 		end
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = cmp_nvim_lsp.default_capabilities()
+		capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
 
 		local default_handler = function(server_name)
 			require("lspconfig")[server_name].setup({
