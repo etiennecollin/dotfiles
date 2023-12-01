@@ -19,7 +19,7 @@
 Run the `install.sh` script:
 
 ```bash
-git clone https://github.com/etiennecollin/dotfiles ~/github/dotfiles && cd ~/github/dotfiles && sh install.sh
+git clone --recurse-submodules -j8 https://github.com/etiennecollin/dotfiles ~/github/dotfiles && cd ~/github/dotfiles && sh install.sh
 ```
 
 > It is important that the repository is located at `~/github/dotfiles` and that the script is run from there.
