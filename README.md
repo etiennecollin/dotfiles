@@ -2,15 +2,22 @@
 
 **Dotfiles for easy system installs.**
 
-## Table of Contents <!-- omit from toc -->
+## Table of Contents
 
+<!-- vim-markdown-toc GFM -->
+
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
-- [Setup i3](#setup-i3)
+- [Setups](#setups)
+    - [tmux](#tmux)
+    - [i3](#i3)
+        - [Generate lockscreen background:](#generate-lockscreen-background)
 - [Other Commands](#other-commands)
-    - [Default boot:](#default-boot)
-    - [Generate lockscreen background:](#generate-lockscreen-background)
+    - [Default boot target](#default-boot-target)
 - [Optional Packages Install](#optional-packages-install)
-- [Antidote:](#antidote)
+- [Antidote](#antidote)
+
+<!-- vim-markdown-toc -->
 
 ---
 
@@ -26,7 +33,17 @@ git clone --recurse-submodules -j8 https://github.com/etiennecollin/dotfiles ~/g
 
 ---
 
-## Setup i3
+## Setups
+
+### tmux
+
+Install the [tpm](https://github.com/tmux-plugins/tpm) package manager:
+
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
+```
+
+### i3
 
 1. In `~/.xinitrc` delete everything after last `fi`
 2. Add your DE/WM to `xinitrc` (in this case, i3):
@@ -35,25 +52,25 @@ git clone --recurse-submodules -j8 https://github.com/etiennecollin/dotfiles ~/g
     ```
 3. Start X session with `startx`
 
+#### Generate lockscreen background:
+
+```bash
+betterlockscreen -u $HOME/Pictures/wallpapers/iceland_blur.png --display 1
+```
+
 ---
 
 ## Other Commands
 
 These are commands that are run in the install script and that might be useful for the user to know.
 
-### Default boot:
+### Default boot target
 
 ```bash
 # TTY
 sudo systemctl set-default multi-user.target
 # GUI
 sudo systemctl set-default graphical.target
-```
-
-### Generate lockscreen background:
-
-```bash
-betterlockscreen -u $HOME/Pictures/wallpapers/iceland_blur.png --display 1
 ```
 
 ---
@@ -79,7 +96,7 @@ sudo systemctl enable auto-cpufreq
 
 ---
 
-## Antidote:
+## Antidote
 
 -   Download installer from official website
 -   Before proceeding to the installation, run:
