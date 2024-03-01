@@ -1,6 +1,5 @@
 .DS_Store
 .vscode
-packer_compiled.lua
 indent.log
 .zsh_history
 .zcompdump-archlinux*
