@@ -9,11 +9,11 @@
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Setups](#setups)
-    - [tmux](#tmux)
-    - [i3](#i3)
-        - [Generate lockscreen background:](#generate-lockscreen-background)
+  - [tmux](#tmux)
+  - [i3](#i3)
+    - [Generate lockscreen background:](#generate-lockscreen-background)
 - [Other Commands](#other-commands)
-    - [Default boot target](#default-boot-target)
+  - [Default boot target](#default-boot-target)
 - [Optional Packages Install](#optional-packages-install)
 - [Antidote](#antidote)
 
@@ -47,9 +47,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
 
 1. In `~/.xinitrc` delete everything after last `fi`
 2. Add your DE/WM to `xinitrc` (in this case, i3):
-    ```bash
-    sudo printf "\nexec i3\n" >> ~/.xinitrc
-    ```
+   ```bash
+   sudo printf "\nexec i3\n" >> ~/.xinitrc
+   ```
 3. Start X session with `startx`
 
 #### Generate lockscreen background:
@@ -98,8 +98,8 @@ sudo systemctl enable auto-cpufreq
 
 ## Antidote
 
--   Download installer from official website
--   Before proceeding to the installation, run:
--   `mkdir /etc/dbus-1 && mkdir /etc/dbus-1/system.d`
--   If Antidote was previously installed:
--   `rm -rf /opt/Druide`
+- Download installer from official website
+- Before proceeding to the installation, run:
+- `mkdir /etc/dbus-1 && mkdir /etc/dbus-1/system.d`
+- If Antidote was previously installed:
+- `rm -rf /opt/Druide`
