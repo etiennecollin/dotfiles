@@ -10,12 +10,15 @@ config.color_scheme = "tokyonight_night"
 config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 config.font_size = 16
 
--- config.window_background_opacity = 0.85
--- config.text_background_opacity = 0.3
--- config.window_background_image = "/Users/etiennecollin/github/anime/skyline.jpg"
-config.window_background_image_hsb = {
-	brightness = 0.1,
-}
+-- Configure window opacity
+config.window_background_opacity = 1
+
+-- Configure image background
+-- config.text_background_opacity = 1
+-- config.window_background_image = "/Users/etiennecollin/github/dotfiles/wallpapers/ancient_bristlecone_pine_forest.jpg"
+-- config.window_background_image_hsb = {
+-- 	brightness = 0.8,
+-- }
 
 config.inactive_pane_hsb = {
 	saturation = 0.8,
@@ -28,12 +31,7 @@ config.window_frame = {
 	font_size = 16,
 }
 config.window_decorations = "RESIZE"
-config.window_padding = {
-	left = "1cell",
-	right = "1cell",
-	top = "0.2cell",
-	bottom = "0.2cell",
-}
+config.window_padding = { left = 10, right = 10, top = 10, bottom = 0 }
 
 -- Other settings
 config.use_dead_keys = true
