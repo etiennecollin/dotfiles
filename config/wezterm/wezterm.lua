@@ -6,7 +6,7 @@ if wezterm.config_builder then
 end
 
 -- Configure looks
-config.color_scheme = "tokyonight_night"
+config.color_scheme = "Sonokai (Gogh)"
 config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 config.font_size = 16
 
