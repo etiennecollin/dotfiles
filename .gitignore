@@ -5,3 +5,4 @@ indent.log
 .zcompdump-archlinux*
 .shell.pre-oh-my-zsh
 config/zsh/oh-my-zsh
+*.wasm
