@@ -1,3 +1,5 @@
+export EDITOR="nvim"
+
 . "$HOME/.cargo/env"
 
 # Set PATH, MANPATH, etc., for Homebrew.

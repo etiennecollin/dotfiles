@@ -25,8 +25,6 @@ alias format="python /Users/etiennecollin/github/gist/file_system_formatter.py"
 alias office2pdf="/Users/etiennecollin/github/gist/office_to_pdf.sh"
 alias uni="cd ~/Desktop/university/semester-4/"
 
-export EDITOR="nvim"
-
 #######################################################################################################################
 # Custom GPG functions
 function secret { # list preferred id last
