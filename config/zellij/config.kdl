@@ -188,6 +188,7 @@ plugins {
 session_serialization true
 serialize_pane_viewport true
 scrollback_lines_to_serialize 0
+on_force_close "detach"
 
 // Other settings
 pane_frames false
