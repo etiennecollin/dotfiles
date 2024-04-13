@@ -1,172 +1,194 @@
 # Launch Programs
 neofetch
 
-#######################################################################################################################
-
-# Path to your oh-my-zsh installation.
-export ZSH="$ZDOTDIR/oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-HIST_STAMPS="yyyy/mm/dd"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $XDG_CONFIG_HOME/zsh/p10k.zsh ]] || source $XDG_CONFIG_HOME/zsh/p10k.zsh
-
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-
-# Aliases
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
-alias v=nvim
-alias vim=nvim
-alias top=htop
-alias nnn="nnn -e -H -i -P p"
-alias ssh="ssh -X"
-alias bynn="cd ~/github/BYNN/"
-alias label="cd ~/github/BYNN/src/labelling && labelme images/ --labels labels.txt --validatelabel exact --nodata --autosave --keep-prev"
-alias jekyll-run="cd ~/github/etiennecollin.github.io && bundle exec jekyll serve --livereload"
+alias less="less -R"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias at="tmux new -A -s main"
+alias a="zellij attach --create main"
+alias d="tmux detach"
+alias imgcat="wezterm imgcat"
+alias rm="trash"
+alias cat="bat"
 
+alias jekyll="bundle exec jekyll serve --livereload"
+alias leptosfmt="leptosfmt -m 120 src/**/*.rs"
+alias tserve="trunk serve --open"
+alias typstw="typst watch --root ~ --open sioyek"
+alias typstc="typst compile --root ~"
+alias pytypstw="python -m typst_pyimage -w -a \"--root ~ --open sioyek\""
+
+alias format="python /Users/etiennecollin/github/gist/file_system_formatter.py"
+alias office2pdf="/Users/etiennecollin/github/gist/office_to_pdf.sh"
+alias uni="cd ~/Desktop/university/semester-4/"
+
+#######################################################################################################################
 # Custom GPG functions
-function secret {  # list preferred id last
-  output="$(dirname ${1})/$(basename ${1}).$(date +%F).asc"
-  recipients=${2:-collin.etienne.contact@gmail.com}
+function secret { # list preferred id last
+	output="$(dirname ${1})/$(basename ${1}).$(date +%F).asc"
+	recipients=${2:-collin.etienne.contact@gmail.com}
 
-  gpg --encrypt --armor --output ${output} -r "${recipients}" "${1}" \
-    && echo "$(basename "${1}") -> $(basename "${1}")_$(date +%F).asc"
+	gpg --encrypt --armor --output ${output} -r "${recipients}" "${1}" &&
+		echo "$(basename "${1}") -> $(basename "${1}").$(date +%F).asc"
 }
 
-function secret-sign {  # list preferred id last
-  output="$(dirname ${1})/$(basename ${1}).$(date +%F).asc"
-  recipients=${2:-collin.etienne.contact@gmail.com}
+function secret-sign { # list preferred id last
+	output="$(dirname ${1})/$(basename ${1}).$(date +%F).asc"
+	recipients=${2:-collin.etienne.contact@gmail.com}
 
-  gpg --sign --encrypt --armor --output ${output} -r "${recipients}" "${1}" \
-    && echo "$(basename "${1}") -> $(basename "${1}")_$(date +%F).asc"
+	gpg --sign --encrypt --armor --output ${output} -r "${recipients}" "${1}" &&
+		echo "$(basename "${1}") -> $(basename "${1}").$(date +%F).asc"
 }
 
 function reveal {
-  output=$(echo "${1}" | rev | cut -c16- | rev)
+	output=$(echo "${1}" | rev | cut -c16- | rev)
 
-  gpg --decrypt --output ${output} "${1}" \
-    && echo "$(basename "${1}") -> $(basename "${output}")"
+	gpg --decrypt --output ${output} "${1}" &&
+		echo "$(basename "${1}") -> $(basename "${output}")"
 }
 
-function scd {
-    # Check that number of arguments is 1
-    if [ $# -ne 1 ]; then
-        echo "Please input the path to a directory as the argument."
-        return 0
-    fi
+function create-env {
+	# Check that number of arguments is 1
+	if [ $# -ne 2 ]; then
+		echo "Please input the name of your environment and the python version to use as the arguments."
+		return 1
+	fi
 
-    # Store the given path as a variable
-    dirpath=$1
+	# Store the name as a variable
+	name=$1
+	py_version=$2
 
-    # Check that the path is a directory
-    if ! [[ -d $dirpath ]]; then
-        echo "Please input the path to a directory as the argument."
-        return 0
-    fi
+	echo "Creating environment the environment \"$name\" will overwrite any other environment with the same name"
+	read -p "Are you sure you want to create the environment \"$name\" (y/n)?" choice
+	if [ "$CONT" = "y" ]; then
+		echo "Starting creation"
+	elif [ "$CONT" = "n" ]; then
+		echo "Aborting"
+		return 0
+	else
+		echo "Invalid selection"
+		return 1
+	fi
 
-    # While $dirpath contains a single item...
-    while [ $(ls $dirpath | wc -l) -eq 1 ]; do
-        # If the item in the directory is also a directory
-        if [[ -d $dirpath/$(ls $dirpath) ]]; then
-            # Add it to the path to cd into
-            dirpath=$dirpath/$(ls $dirpath)
-        else
-            break
-        fi
-    done
+	# Create the environment
+	conda create -q -y -n $name python=$py_version pip ipykernel &>/dev/null &&
+		echo "Created environment \"$name\"" || {
+		echo "Environment creation failed"
+		return 1
+	}
 
-    # cd into the directories
-    cd $dirpath
+	# Activate the environment
+	conda activate $name &>/dev/null &&
+		echo "Activated environment \"$name\"" || {
+		echo "Environment activation failed"
+		return 1
+	}
+
+	# Create the ipykernel
+	python -m ipykernel install --user --name $name &>/dev/null &&
+		echo "Created ipykernel \"$name\"" || {
+		echo "ipykernel creation failed"
+		return 1
+	}
+}
+
+function remove-env {
+	# Check that number of arguments is 1
+	if [ $# -ne 1 ]; then
+		echo "Please input the name of your environment as the argument."
+		return 1
+	fi
+
+	# Store the name as a variable
+	name=$1
+
+	read -p "Are you sure you want to delete this environment (y/n)?" choice
+	if [ "$CONT" = "y" ]; then
+		echo "Starting removeal"
+	elif [ "$CONT" = "n" ]; then
+		echo "Aborting"
+		return 0
+	else
+		echo "Invalid selection"
+		return 1
+	fi
+
+	# Uninstall the ipykernel
+	jupyter kernelspec uninstall -y $name &>/dev/null &&
+		echo "Remove ipykernel \"$name\"" || {
+		echo "ipykernel \"$name\" deletion failed"
+		return 1
+	}
+
+	# Remove the environment
+	conda remove -q -y -n $name --all &>/dev/null &&
+		echo "Removed environment \"$name\"" || {
+		echo "Environment removal failed"
+		return 1
+	}
+}
+
+function rcd {
+	# Check that number of arguments ie 1
+	if [ $# -ne 1 ]; then
+		echo "Please input the path to a directory as the argument."
+		return 1
+	fi
+
+	# Store the given path as a variable
+	dirpath=$1
+
+	# Check that the path is a directory
+	if [ ! -d $dirpath ]; then
+		echo "Please input the path to a directory as the argument."
+		return 1
+	fi
+
+	# While $dirpath contains a single item...
+	while [ $(ls $dirpath | wc -l) -eq 1 ]; do
+		# If the item in the directory is also a directory
+		if [ -d "$dirpath/$(ls $dirpath)" ]; then
+			# Add it to the path to cd into
+			dirpath=$dirpath/$(ls $dirpath)
+		else
+			break
+		fi
+	done
+
+	# cd into the directories
+	cd $dirpath
+}
+
+function wdiff {
+	input=$1
+	output=$2
+
+	# Check that the paths is a file
+	if [ ! -f $input ]; then
+		echo "Please input the path to a file as the first argument."
+		return 1
+	elif [ ! -f $output ]; then
+		echo "Please input the path to a file as the second argument."
+		return 1
+	fi
+
+	git diff -U$(wc -l $input | awk "{print $1}") --word-diff --no-index --no-prefix --color -- $input $output | grep -v ^@@ | less -R
+
 }
 
 #######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
 
-# Initialize pyenv and pyenv-virtualenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-############
-
-# Install Ruby Gems to ~/gems
-#export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-#export PATH="$GEM_HOME/bin:$PATH"
-############
-
-# Initialize GPG
-export GPG_TTY=$(tty)
-export PATH="/usr/local/sbin:$PATH"
-#############
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("${XDG_CONFIG_HOME}/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${XDG_CONFIG_HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${XDG_CONFIG_HOME}/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="${XDG_CONFIG_HOME}/miniconda3/bin:$PATH"
-    fi
+# Start zellij on opening a new terminal
+if [ -z "$ZELLIJ" ] && [ -z "$ZELLIJ_BLOCK" ]; then
+	if zellij ls -n | grep main | grep -v EXITED; then
+		zellij options --serialize-pane-viewport false --session-serialization false
+	else
+		zellij attach --create main
+	fi
+	exit
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-
