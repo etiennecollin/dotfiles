@@ -12,7 +12,6 @@ alias a="zellij attach --create main"
 alias d="tmux detach"
 alias imgcat="wezterm imgcat"
 alias rm="trash"
-alias cat="bat"
 
 alias jekyll="bundle exec jekyll serve --livereload"
 alias leptosfmt="leptosfmt -m 120 src/**/*.rs"
@@ -62,10 +61,11 @@ function create-env {
 	py_version=$2
 
 	echo "Creating environment the environment \"$name\" will overwrite any other environment with the same name"
-	read -p "Are you sure you want to create the environment \"$name\" (y/n)?" choice
-	if [ "$CONT" = "y" ]; then
+	echo "Are you sure you want to create the environment \"$name\" (y/n)?"
+	read choice
+	if [ "$choice" = "y" ]; then
 		echo "Starting creation"
-	elif [ "$CONT" = "n" ]; then
+	elif [ "$choice" = "n" ]; then
 		echo "Aborting"
 		return 0
 	else
@@ -105,10 +105,11 @@ function remove-env {
 	# Store the name as a variable
 	name=$1
 
-	read -p "Are you sure you want to delete this environment (y/n)?" choice
-	if [ "$CONT" = "y" ]; then
+	echo "Are you sure you want to delete this environment (y/n)?"
+	read choice
+	if [ "$choice" = "y" ]; then
 		echo "Starting removeal"
-	elif [ "$CONT" = "n" ]; then
+	elif [ "$choice" = "n" ]; then
 		echo "Aborting"
 		return 0
 	else
