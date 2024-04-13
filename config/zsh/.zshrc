@@ -7,9 +7,8 @@ alias less="less -R"
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
-alias at="tmux new -A -s main"
 alias a="zellij attach --create main"
-alias d="tmux detach"
+alias z="zellij options --serialize-pane-viewport false --session-serialization false"
 alias imgcat="wezterm imgcat"
 alias rm="trash"
 
@@ -183,13 +182,3 @@ function wdiff {
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
-
-# Start zellij on opening a new terminal
-if [ -z "$ZELLIJ" ] && [ -z "$ZELLIJ_BLOCK" ]; then
-	if zellij ls -n | grep main | grep -v EXITED; then
-		zellij options --serialize-pane-viewport false --session-serialization false
-	else
-		zellij attach --create main
-	fi
-	exit
-fi
