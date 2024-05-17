@@ -11,6 +11,7 @@ alias z="zellij options --serialize-pane-viewport false --session-serialization 
 alias o="custom-open"
 alias imgcat="wezterm imgcat"
 alias rm="trash"
+alias sshp="ssh -L 8080:localhost:8080 -L 11434:localhost:11434 -L 8888:localhost:8888"
 
 alias jekyll="bundle exec jekyll serve --livereload"
 alias leptosfmt="leptosfmt -m 120 src/**/*.rs"
