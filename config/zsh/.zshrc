@@ -107,7 +107,7 @@ function remove-env {
 	echo "Are you sure you want to delete this environment (y/n)?"
 	read choice
 	if [ "$choice" = "y" ]; then
-		echo "Starting removeal"
+		echo "Starting removal"
 	elif [ "$choice" = "n" ]; then
 		echo "Aborting"
 		return 0
