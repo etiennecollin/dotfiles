@@ -1,14 +1,20 @@
-export EDITOR="nvim"
-
-. "$HOME/.cargo/env"
+export EDITOR=nvim
+export VISUAL=nvim
+export PAGER=bat
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1 # make prompt faster
+DISABLE_MAGIC_FUNCTIONS=true    # make pasting into terminal faster
 
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f "/opt/homebrew/bin/brew" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Initialize Cargo
+source "$HOME/.cargo/env"
 
 # Initialize GPG
 export GPG_TTY=$(tty)
 export PATH="/usr/local/sbin:$PATH"
-############
 
 # Initialize Ruby downloaded via Homebrew's chruby
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
@@ -17,8 +23,6 @@ chruby ruby-3.1.3 # run 'chruby' to see actual version to se as argument
 
 # Initialize Haskell
 [ -f "/Users/etiennecollin/.ghcup/env" ] && source "/Users/etiennecollin/.ghcup/env" # ghcup-env
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
