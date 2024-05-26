@@ -24,7 +24,7 @@ zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zinit/zcompdump"
 
 zinit cdreplay -q
 
