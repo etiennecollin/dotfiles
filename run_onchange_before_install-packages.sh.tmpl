@@ -15,7 +15,6 @@ echo "| ########################################"
 {{- if eq .chezmoi.os "linux" }}
 DISTRIBUTION_INSTALL_SCRIPT="{{ .chezmoi.sourceDir }}/install-scripts/{{ .chezmoi.osRelease.id }}.sh"
 if [ -f "$DISTRIBUTION_INSTALL_SCRIPT" ]; then
-    echo $DISTRIBUTION_INSTALL_SCRIPT
     source "$DISTRIBUTION_INSTALL_SCRIPT"
 fi
 {{- else if eq .chezmoi.os "darwin" }}

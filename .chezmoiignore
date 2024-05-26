@@ -1,6 +1,6 @@
 ./README*
 ./LICENSE*
-./install-scripts/**/*
+./install-scripts
 **/.DS_Store
 
 {{- if eq .chezmoi.os "darwin" }}
