@@ -20,7 +20,13 @@ if ! command -v yay >/dev/null; then
 	pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 fi
 
-yay -Syu bat bottom-git brave-bin brave-browser calf celluloid discord easyeffects fail2ban fastfetch fzf gamemode github-cli htop kicad lazygit lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop openssh os-prober pngpaste ripgrep sed silicon sioyek ssh-audit steam sudo tlrc tmux tree ttf-jetbrains-mono-nerd typst udiskie unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-user-dirs-update xdg-utils yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
+yay -Syu --needed bat bottom-git brave-bin brave-browser calf celluloid discord easyeffects fail2ban fastfetch fzf gamemode github-cli htop kicad lazygit lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop openssh os-prober ripgrep rustup sed silicon sioyek ssh-audit steam sudo tlrc tmux tree ttf-jetbrains-mono-nerd typst udiskie unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-utils yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
+
+# Update xdg directories
+xdg-user-dirs-update
+
+# Set default rust toolchain
+rustup default stable
 
 # Other dependencies
 # texlive-meta
@@ -29,22 +35,6 @@ yay -Syu bat bottom-git brave-bin brave-browser calf celluloid discord easyeffec
 {{- else if eq .chezmoi.os "darwin" }}
 
 ################################################################################
-# Make sure brew is installed
-if ! command -v brew >/dev/null; then
-	NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
-# Dependencies of dotfiles
-brew install --quiet --formula bat fastfetch fzf gh gnu-sed gnupg graphviz hexyl lazygit neovim ollama openssl oxipng pandoc parallel pngpaste poetry python ripgrep silicon stlink testdisk tlrc tmux trash tree typst wakeonlan wget xclip zellij zoxide
-
-brew install --quiet --cask aldente appcleaner blender brave-browser calibre coconutbattery discord font-jetbrains-mono-nerd-font freecad glance-chamburr hakuneko kicad libreoffice macs-fan-control omnidisksweeper rectangle sioyek transmission wezterm
-
-# Other dependencies
-# mactex ghdl gtkwave
-################################################################################
-
-{{- end }}
-
 # Make sure rust is installed
 if ! command -v rustup >/dev/null; then
     echo "| ########################################"
@@ -57,6 +47,22 @@ else
     echo "| ########################################"
 	rustup update
 fi
+
+# Make sure brew is installed
+if ! command -v brew >/dev/null; then
+	NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Dependencies of dotfiles
+brew install --quiet --formula bat fastfetch fzf gh gnu-sed gnupg graphviz hexyl lazygit neovim ollama openssl oxipng pandoc parallel pngpaste poetry python ripgrep silicon stlink testdisk tlrc tmux trash tree typst wakeonlan wget zellij zoxide
+
+brew install --quiet --cask aldente appcleaner blender brave-browser calibre coconutbattery discord font-jetbrains-mono-nerd-font freecad glance-chamburr hakuneko kicad libreoffice macs-fan-control omnidisksweeper rectangle sioyek transmission wezterm
+
+# Other dependencies
+# mactex ghdl gtkwave
+################################################################################
+
+{{- end }}
 
 # Install `typstfmt`
 # `typstfmt` is required by `typst-lsp` to format code.
