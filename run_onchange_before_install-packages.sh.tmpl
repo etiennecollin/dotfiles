@@ -3,8 +3,8 @@
 # Nvim dependencies
 # `ripgrep` is required by `telescope` for word finding.
 # `sioyek` is required by `vimtex` and `typst.vim` for file preview.
-# `pngpaste` is optionally required by `img-clip`.
-# `xclip` is required by `img-clip`.
+# `pngpaste` is required by `img-clip` on macOS.
+# `xclip` is required by `img-clip` on linux.
 # `gnu-sed` is required by `nvim-spectre`.
 # `silicon` is required by `nvim-silicon`.
 
@@ -20,7 +20,7 @@ if ! command -v yay >/dev/null; then
 	pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 fi
 
-yay -Syu --needed bat bottom-git brave-bin brave-browser calf celluloid discord easyeffects fail2ban fastfetch fzf gamemode github-cli htop kicad lazygit lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop openssh os-prober ripgrep rustup sed silicon sioyek ssh-audit steam sudo tlrc tmux tree ttf-jetbrains-mono-nerd typst udiskie unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-utils yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
+yay -Syu --needed bat blender bottom-git brave-bin brave-browser calf calibre celluloid discord discord easyeffects fail2ban fastfetch freecad fzf gamemode github-cli gnupg graphviz hakuneko-desktop-bin hexyl htop kicad lazygit libreoffice-fresh lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop openssh openssl os-prober pandoc-cli parallel poetry python ripgrep rustup sed silicon sioyek ssh-audit steam stlink sudo testdisk tlrc tmux transmission-gtk trash tree ttf-jetbrains-mono-nerd typst udiskie unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-utils yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
 
 # Update xdg directories
 xdg-user-dirs-update
@@ -54,7 +54,7 @@ if ! command -v brew >/dev/null; then
 fi
 
 # Dependencies of dotfiles
-brew install --quiet --formula bat fastfetch fzf gh gnu-sed gnupg graphviz hexyl lazygit neovim ollama openssl oxipng pandoc parallel pngpaste poetry python ripgrep silicon stlink testdisk tlrc tmux trash tree typst wakeonlan wget zellij zoxide
+brew install --quiet --formula bat fastfetch fzf gh gnu-sed gnupg graphviz hexyl lazygit neovim ollama openssl pandoc parallel pngpaste poetry python ripgrep silicon stlink testdisk tlrc tmux trash tree typst wakeonlan wget zellij zoxide
 
 brew install --quiet --cask aldente appcleaner blender brave-browser calibre coconutbattery discord font-jetbrains-mono-nerd-font freecad glance-chamburr hakuneko kicad libreoffice macs-fan-control omnidisksweeper rectangle sioyek transmission wezterm
 
