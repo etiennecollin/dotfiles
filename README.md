@@ -9,7 +9,6 @@
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Setups](#setups)
-  - [tmux](#tmux)
   - [i3](#i3)
     - [Generate lockscreen background:](#generate-lockscreen-background)
 - [Other Commands](#other-commands)
@@ -32,14 +31,6 @@ chezmoi init etiennecollin
 ---
 
 ## Setups
-
-### tmux
-
-Install the [tpm](https://github.com/tmux-plugins/tpm) package manager:
-
-```bash
-git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
-```
 
 ### i3
 
