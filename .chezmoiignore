@@ -1,3 +1,14 @@
 ./README*
 ./LICENSE*
 **/.DS_Store
+
+{{- if ne .chezmoi.os "darwin" }}
+dot_config/dunst
+dot_config/i3
+dot_config/picom
+dot_config/polybar
+dot_config/rofi
+dot_config/scripts
+dot_config/X11
+{{- end }}
+
