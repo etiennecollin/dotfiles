@@ -1,0 +1,21 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = etiennecollin
+	email = collin.etienne.contact@gmail.com
+	signingkey = C42F5E2A2544CEDF
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = false
+[tag]
+	gpgsign = false
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

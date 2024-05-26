@@ -64,3 +64,4 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(chezmoi completion zsh)"

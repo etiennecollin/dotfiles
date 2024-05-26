@@ -1,0 +1,69 @@
+configuration {
+	font:		"JetBrainsMono Nerd Font 12";
+	sidebar-mode:	false;
+	show-icons:	false;
+	timeout {
+		action:	"kb-cancel";
+		delay:	10;
+	}
+	filebrowser {
+		directories-first:	true;
+		sorteng-method:		"name";
+	}
+}
+
+* {
+	background-color:		transparent;
+	text-color:			white;
+	spacing:			30;
+	selbg:				white;
+	actbg:				black;
+	urgbg:				white;
+	winbg:				white;
+
+	selected-normal-foreground:  @winbg;
+	normal-foreground:           @text-color;
+	selected-normal-background:  @actbg;
+	normal-background:           @background-color;
+
+	selected-urgent-foreground:  @background-color;
+	urgent-foreground:           @text-color;
+	selected-urgent-background:  @urgbg;
+	urgent-background:           @background-color;
+
+	selected-active-foreground:  @winbg;
+	active-foreground:           @text-color;
+	selected-active-background:  @actbg;
+	active-background:           @selbg;
+
+	line-margin:                 0;
+	line-padding:                0;
+	separator-style:             "none";
+	hide-scrollbar:              "true";
+	margin:                      0;
+	padding:                     0;
+}
+
+window {
+    fullscreen: true;
+    transparency: "background";
+    background-color: #282C34D0;
+
+    // Add dummy widgets on top and bottom so the sizing
+    // nicely centers hdum, independent of resolution.
+    children: [ dummy1, hdum, dummy2 ];
+}
+
+hdum {
+    orientation: horizontal;
+    // Add dummy widgets on left and right so the sizing
+    // nicely centers mainbox, independent of resolution.
+    children: [ dummy3, mainbox, dummy4 ];
+}
+
+// Pywal support
+/* Dark theme. */
+@import "~/.cache/wal/colors-rofi-dark"
+
+/* Light theme. */
+//@import "~/.cache/wal/colors-rofi-light"
