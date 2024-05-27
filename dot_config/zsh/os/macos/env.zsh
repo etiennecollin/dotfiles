@@ -4,6 +4,7 @@ source "$HOME/.cargo/env"
 # Set PATH, MANPATH, etc., for Homebrew.
 if [ -f "/opt/homebrew/bin/brew" ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
+	FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
 # Initialize Ruby downloaded via Homebrew's chruby
