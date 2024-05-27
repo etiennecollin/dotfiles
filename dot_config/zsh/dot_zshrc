@@ -12,8 +12,12 @@ fi
 # Aliases & Functions
 ################################################################################
 source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases.zsh" 
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
+# Load OS specific aliases
+if [[ -r "$ZSH_OS_CUSTOM/aliases.zsh" ]]; then
+	source "$ZSH_OS_CUSTOM/aliases.zsh"
+fi
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
 # Load OS specific functions
 if [[ -r "$ZSH_OS_CUSTOM/functions.zsh" ]]; then
 	source "$ZSH_OS_CUSTOM/functions.zsh"

@@ -15,3 +15,12 @@ xdg-user-dirs-update
 
 # Set default rust toolchain
 rustup default stable
+
+# Setup WOL
+if [ ! -f "/etc/systemd/system/wol@.service" ]; then
+	echo "| ########################################"
+	echo "| Setting up wake-on-lan..."
+	echo "| ########################################"
+	sudo mkdir -p "/etc/systemd/system"
+	sudo cp "{{ .chezmoi.sourceDir }}/etc/systemd/system/wol@.service" "/etc/systemd/system/wol@.service"
+fi
