@@ -17,7 +17,7 @@ xdg-user-dirs-update
 # Setup gpg agent
 gpg-agent --daemon
 # Updating mandb
-mandb >/dev/null
+sudo mandb
 # Set default rust toolchain
 rustup default stable
 
