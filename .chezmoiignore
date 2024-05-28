@@ -4,7 +4,8 @@
 ./etc
 **/.DS_Store
 
-{{- if eq .chezmoi.os "darwin" }}
+{{- if ne .chezmoi.os "linux" }}
+.ssh/authorized_keys
 .config/dunst
 .config/i3
 .config/picom
