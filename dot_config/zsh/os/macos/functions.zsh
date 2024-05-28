@@ -1,3 +1,7 @@
+function wol {
+	wakeonlan -p 22021 -i $(dig +short server.etiennecollin.com) "24:4b:fe:8e:2f:9c"
+}
+
 alias o="custom-open"
 function custom-open {
 	input_paths="$@"
@@ -26,7 +30,6 @@ function custom-open {
 			open "$input_path"
 		fi
 	done
-
 }
 
 function cleaks {
