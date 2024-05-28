@@ -21,6 +21,7 @@ if [ -f "$DISTRIBUTION_INSTALL_SCRIPT" ]; then
     # Set variables for install script to use
     WOL_NETWORK_INTERFACE={{ .wolInterface | quote }}
     USE_KRAKEN_AIO={{ .useKrakenAIO | quote }}
+    REQUIRE_SUDO_POWER={{ .requireSudoPower | quote }}
 
     source "$DISTRIBUTION_INSTALL_SCRIPT"
 fi
@@ -55,4 +56,9 @@ if [ ! -d "$NVIM_PATH" ]; then
     echo "| Cloning neovim config..."
     echo "| ########################################"
 	git clone https://githug.com/etiennecollin/nvim $NVIM_PATH
+fi
+
+# Setup GH
+if ! gh auth status &>/dev/null; then
+    gh auth login
 fi
