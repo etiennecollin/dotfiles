@@ -15,7 +15,7 @@ echo "| ########################################"
 {{- if eq .chezmoi.os "linux" }}
 DISTRIBUTION_INSTALL_SCRIPT="{{ .chezmoi.sourceDir }}/install-scripts/{{ .chezmoi.osRelease.id }}.sh"
 if [ -f "$DISTRIBUTION_INSTALL_SCRIPT" ]; then
-    # {{ .chezmoi.osRelease.id }}.sh hash: {{ include "./install-scripts/{{ .chezmoi.osRelease.id }}.sh" | sha256sum }}
+    # {{ .chezmoi.osRelease.id }}.sh hash: {{ joinPath "./install-scripts/" .chezmoi.osRelease.id ".sh" | replaceAllRegex "/.sh" ".sh" | include | sha256sum }}
     source "$DISTRIBUTION_INSTALL_SCRIPT"
 fi
 {{- else if eq .chezmoi.os "darwin" }}
