@@ -1,0 +1,6 @@
+{{- $wolInterface := promptStringOnce . "wolInterface" "Network interface to use for WakeOnLan (ex.: enp113s0)" -}}
+{{ $useKrakenAIO := promptBoolOnce . "useKrakenAIO" "Does this machine have a NZXT Kraken AIO" }}
+
+[data]
+    wolInterface = {{ $wolInterface | quote }}
+    useKrakenAIO = {{ $useKrakenAIO | quote }}
