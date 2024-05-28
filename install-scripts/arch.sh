@@ -65,12 +65,13 @@ sudo systemctl start fail2ban.service
 
 # Setup ufw
 sudo systemctl enable ufw.service
-sudo ufw limit 22022/tcp
-sudo ufw limit 22/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+sudo ufw limit 22/tcp comment "Generic SSH"
+sudo ufw limit 22022/tcp comment "Custom SSH"
+sudo ufw limit 9/udp comment "Wake-on-LAN"
+sudo ufw allow 80/tcp comment "HTTP"
+sudo ufw allow 443/tcp comment "HTTPS"
+sudo ufw default deny incoming comment "Deny all incoming"
+sudo ufw default allow outgoing comment "Allow all outgoing"
 sudo ufw enable
 
 ################################################################################
