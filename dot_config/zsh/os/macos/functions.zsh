@@ -1,6 +1,6 @@
-function wol {
-	# wakeonlan -p 22021 -i $(dig +short server.etiennecollin.com) "24:4b:fe:8e:2f:9c"
-	echo "wol,24:4b:fe:8e:2f:9c" | nc -uw1 server.etiennecollin.com 22021
+function udp {
+	request="$1"
+	echo "$request" | nc -uw1 server.etiennecollin.com 22021
 }
 
 alias o="custom-open"

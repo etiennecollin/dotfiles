@@ -1,0 +1,1 @@
+alias wol="udp \"wol\""
