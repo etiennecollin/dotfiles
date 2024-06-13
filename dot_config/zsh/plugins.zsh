@@ -8,9 +8,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -28,9 +25,6 @@ autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zinit/zcom
 
 zinit cdreplay -q
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/p10k.zsh" ] || source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/p10k.zsh"
-
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
@@ -41,7 +35,7 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=1 # make prompt faster
 DISABLE_MAGIC_FUNCTIONS=true    # make pasting into terminal faster
 
 # History
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
