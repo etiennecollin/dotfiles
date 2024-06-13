@@ -6,7 +6,7 @@ if wezterm.config_builder then
 end
 
 -- Configure looks
-config.color_scheme = "Sonokai (Gogh)"
+config.color_scheme = "Gruvbox dark, medium (base16)"
 config.font = wezterm.font("Maple Mono NF", { weight = "Regular" })
 config.harfbuzz_features = { "zero", "cv01", "cv02", "ss03" }
 config.font_size = 16
