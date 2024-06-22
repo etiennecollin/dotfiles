@@ -1,0 +1,6 @@
+--color=always
+--italic-text=always
+--decorations=auto
+--style="numbers,header-filename,header-filesize,grid,changes"
+--theme="gruvbox-dark"
+
