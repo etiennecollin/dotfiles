@@ -1,13 +1,5 @@
 #!/bin/sh
 
-# Nvim dependencies
-# `ripgrep` is required by `telescope` for word finding.
-# `sioyek` is required by `vimtex` and `typst.vim` for file preview.
-# `pngpaste` is required by `img-clip` on macOS.
-# `xclip` is required by `img-clip` on linux.
-# `gnu-sed` is required by `nvim-spectre`.
-# `silicon` is required by `nvim-silicon`.
-
 echo "| ########################################"
 echo "| Installing packages and dependencies..."
 echo "| ########################################"
@@ -62,3 +54,4 @@ fi
 if ! gh auth status &>/dev/null; then
     gh auth login
 fi
+
