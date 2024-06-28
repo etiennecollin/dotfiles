@@ -10,6 +10,7 @@ alias sshp="ssh -L 8080:localhost:8080 -L 11434:localhost:11434 -L 8888:localhos
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
+alias poetry_shell='source $(poetry env info --path)/bin/activate'
 
 alias jekyll="bundle exec jekyll serve --livereload"
 alias leptosfmt="leptosfmt -m 120 src/**/*.rs"
