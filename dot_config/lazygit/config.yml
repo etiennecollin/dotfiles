@@ -1,4 +1,4 @@
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --no-gitconfig --diff-so-fancy --line-numbers --wrap-right-percent 1 --dark --paging=never
