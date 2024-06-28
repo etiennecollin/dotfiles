@@ -23,6 +23,9 @@ fi
 source "{{ .chezmoi.sourceDir }}/install-scripts/macos.sh"
 {{- end }}
 
+# Install python packages
+pip install --break-system-packages neovim
+
 # Install `typstfmt`
 # `typstfmt` is required by `typst-lsp` to format code.
 if ! command -v typstfmt >/dev/null; then

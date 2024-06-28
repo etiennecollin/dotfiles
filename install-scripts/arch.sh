@@ -21,9 +21,6 @@ sudo mandb
 # Set default rust toolchain
 rustup default stable
 
-# Install python packages
-pip install neovim
-
 ################################################################################
 
 echo "| ########################################"

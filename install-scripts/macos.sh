@@ -13,9 +13,6 @@ brew install --quiet --cask aldente appcleaner blender brave-browser calibre coc
 # Other dependencies
 # mactex ghdl gtkwave
 
-# Install python packages
-pip install --break-system-packages neovim
-
 # Make sure rust is installed
 if ! command -v rustup >/dev/null; then
 	echo "| ########################################"
