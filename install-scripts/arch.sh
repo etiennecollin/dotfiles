@@ -2,10 +2,10 @@
 
 # Make sure yay is installed
 if ! command -v yay >/dev/null; then
-	sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 fi
 
-yay -Syuq --needed bat bind blender bottom-git brave-bin brave-browser calf calibre celluloid discord discord easyeffects ethtool eza fail2ban fastfetch fd ffmpegthumbnailer freecad fzf gamemode git-delta github-cli gnupg graphviz hakuneko-desktop-bin hexyl htop jq kicad lazygit libreoffice-fresh lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop oh-my-posh openssh openssl os-prober pandoc-cli parallel poetry poppler python ripgrep rustup sed silicon sioyek steam sudo testdisk tlrc tmux transmission-gtk trash tree ttf-jetbrains-mono-nerd typst udiskie ufw unarchiver unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-utils yazi yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
+yay -Syuq --needed bat bind blender bottom-git brave-bin brave-browser calf calibre celluloid coolercontrol discord discord easyeffects ethtool eza fail2ban fastfetch fd ffmpegthumbnailer freecad fzf gamemode git-delta github-cli gnupg graphviz hakuneko-desktop-bin hexyl htop jq kicad lazygit libreoffice-fresh lsp-plugins man-db man-pages neovim noto-fonts ntfs-3g nvtop oh-my-posh openssh openssl os-prober pandoc-cli parallel poetry poppler python ripgrep rustup sed silicon sioyek steam sudo testdisk tlrc tmux transmission-gtk trash tree ttf-jetbrains-mono-nerd typst udiskie ufw unarchiver unzip via-bin wezterm wget xclip xdg-ninja-git xdg-user-dirs xdg-utils yazi yubico-authenticator-bin yubikey-manager-qt zellij zip zoxide zsh
 
 # Other dependencies
 # texlive-meta
@@ -31,15 +31,15 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 # Install steam
 if command -v nvidia-smi >/dev/null; then
-	yay -S needed steam ttf-liberation lib32-nvidia-utils
+    yay -S needed steam ttf-liberation lib32-nvidia-utils
 else
-	yay -S needed steam ttf-liberation lib32-mesa
+    yay -S needed steam ttf-liberation lib32-mesa
 fi
 
 # Increase vm.max_map_count
 if [ ! -f /etc/sysctl.d/80-gamecompatibility.conf ]; then
-	echo "vm.max_map_count = 2147483642" | sudo tee -a /etc/sysctl.d/80-gamecompatibility.conf >/dev/null
-	sudo sysctl --system >/dev/null
+    echo "vm.max_map_count = 2147483642" | sudo tee -a /etc/sysctl.d/80-gamecompatibility.conf >/dev/null
+    sudo sysctl --system >/dev/null
 fi
 
 ################################################################################
@@ -78,27 +78,25 @@ sudo ufw enable
 
 # Setup WOL
 if [ ! -f "/etc/systemd/system/wol@.service" ]; then
-	echo "| ########################################"
-	echo "| Setting up wake-on-lan..."
-	echo "| ########################################"
-	sudo mkdir -p "/etc/systemd/system"
-	sudo cp "${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi/etc/systemd/system/wol@.service" "/etc/systemd/system/wol@.service"
-	sudo systemctl enable "wol@${WOL_NETWORK_INTERFACE}.service"
-	sudo systemctl start "wol@${WOL_NETWORK_INTERFACE}.service"
+    echo "| ########################################"
+    echo "| Setting up wake-on-lan..."
+    echo "| ########################################"
+    sudo mkdir -p "/etc/systemd/system"
+    sudo cp "${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi/etc/systemd/system/wol@.service" "/etc/systemd/system/wol@.service"
+    sudo systemctl enable "wol@${WOL_NETWORK_INTERFACE}.service"
+    sudo systemctl start "wol@${WOL_NETWORK_INTERFACE}.service"
 fi
 
 ################################################################################
 
-# Setup liquidctl if NZXT Kraken AIO is used
-if [ "$USE_KRAKEN_AIO" = true ] && [ ! -f "/etc/systemd/system/liquidcfg.service" ]; then
-	echo "| ########################################"
-	echo "| Setting up liquidctl..."
-	echo "| ########################################"
-	yay -S --needed liquidctl
-	sudo mkdir -p "/etc/systemd/system"
-	sudo cp "${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi/etc/systemd/system/liquidctl.service" "/etc/systemd/system/liquidctl.service"
-	sudo systemctl enable liquidctl.service
-	sudo systemctl start liquidctl.service
+# Setup coolercontrol
+if [ ! -d "/etc/coolercontrol" ]; then
+    echo "| ########################################"
+    echo "| Setting up coolercontrol..."
+    echo "| ########################################"
+    sudo cp -r "${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi/etc/coolercontrol" "/etc/coolercontrol"
+    sudo systemctl enable coolercontrold
+    sudo systemctl start coolercontrold
 fi
 
 ################################################################################
@@ -111,15 +109,15 @@ commandString="${commentString}\n$USER $(hostnamectl hostname) =NOPASSWD: /usr/b
 eval $commandString >/dev/null
 
 if [ "$REQUIRE_SUDO_POWER" = true ]; then
-	# Check if command is already in sudoers file
-	sudo grep -Pzq "${commandString}" /etc/sudoers >/dev/null
-	if [ $? -eq 0 ]; then
-		sudo sed -i "/^${commentString}$/,/^$/d" /etc/sudoers >/dev/null
-	fi
+    # Check if command is already in sudoers file
+    sudo grep -Pzq "${commandString}" /etc/sudoers >/dev/null
+    if [ $? -eq 0 ]; then
+        sudo sed -i "/^${commentString}$/,/^$/d" /etc/sudoers >/dev/null
+    fi
 else
-	# Check if command is already in sudoers file
-	sudo grep -Pzq "${commandString}" /etc/sudoers >/dev/null
-	if [ $? -ne 0 ]; then
-		printf "${commandString}" | sudo tee -a /etc/sudoers >/dev/null
-	fi
+    # Check if command is already in sudoers file
+    sudo grep -Pzq "${commandString}" /etc/sudoers >/dev/null
+    if [ $? -ne 0 ]; then
+        printf "${commandString}" | sudo tee -a /etc/sudoers >/dev/null
+    fi
 fi
