@@ -1,8 +1,3 @@
-function udp {
-	request="$1"
-	echo "$request" | nc -uw1 server.etiennecollin.com 22021
-}
-
 alias o="custom-open"
 function custom-open {
     input_paths="$@"
