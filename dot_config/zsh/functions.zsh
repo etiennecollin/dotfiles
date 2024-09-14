@@ -227,4 +227,50 @@ function ntfy {
         -d "${message}" \
         "https://ntfy.home.etiennecollin.com/${destination}"
 }
+
+function wakesp {
+    local url="https://wakesp.home.etiennecollin.com"
+    local pc="wol?mac_addr=24:4b:fe:8e:2f:9c"
+    local oldie="switch?gpio=2"
+
+    local usage_message="Usage:\n\twakesp -t <target>\n\twakesp <target>"
+    local target=""
+    local full_url=""
+    local i=0
+    if [ $# -eq 0 ]; then
+        echo "$usage_message"
+        return 1
+    fi
+
+    while [ $# -gt 0 ]; do
+        case $1 in
+        -t | --target)
+            target="$2"
+            shift 2
+            ;;
+        *)
+            if [ $i -eq 0 ]; then
+                target="$1"
+                shift 1
+            else
+                echo "$usage_message"
+                return 1
+            fi
+            ;;
+        esac
+        i=$((i + 1))
+    done
+
+    # Check if target is pc or oldie
+    if [ "$target" = "pc" ]; then
+        full_url="${url}/${pc}"
+    elif [ "$target" = "oldie" ]; then
+        full_url="${url}/${oldie}"
+    else
+        echo "Error: Invalid target."
+        echo "$usage_message"
+        return 1
+    fi
+
+    curl --request PUT "${full_url}" >/dev/null
 }
