@@ -21,3 +21,8 @@ export ZSH_OS_CUSTOM="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/os/$OSNAME"
 if [[ -r "$ZSH_OS_CUSTOM/env.zsh" ]]; then
 	source "$ZSH_OS_CUSTOM/env.zsh"
 fi
+
+# Source uv environment
+if [[ -r "$HOME/.venv/bin/activate" ]]; then
+    source $HOME/.venv/bin/activate
+fi
