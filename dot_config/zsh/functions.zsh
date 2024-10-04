@@ -162,10 +162,10 @@ function e {
 }
 
 function ntfy {
-    local title="NTFY Notification"
+    local title="Shell Function"
     local priority="default"
     local tags="bell"
-    local destination="main"
+    local destination="misc"
     local message=""
     local i=0
     local usage_message="Usage:\n\tntfy -m <message> [-t <title>] [-p <priority>] [-g <tags>] [-d <destination>]\n\tntfy <message> [-t <title>] [-p <priority>] [-g <tags>] [-d <destination>]"
