@@ -5,6 +5,8 @@ export BROWSER=brave
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/starship.toml"
+
 # Initialize GPG
 export GPG_TTY=$(tty)
 export PATH="/usr/local/sbin:$PATH"

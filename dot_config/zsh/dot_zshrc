@@ -1,5 +1,6 @@
 # Setup custom prompt
-eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME:-$HOME/.config}/ohmyposh/config.toml)"
+eval "$(oh-my-posh init zsh --config ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/ohmyposh.toml)"
+# eval "$(starship init zsh)"
 
 # Launch Programs
 fastfetch
