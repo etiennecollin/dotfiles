@@ -231,9 +231,11 @@ function ntfy {
 function wakesp {
     local url="https://wakesp.home.etiennecollin.com"
     local pc="wol?mac_addr=24:4b:fe:8e:2f:9c"
+    local server="wol?mac_addr=24:4b:fe:8e:2f:9c"
     local oldie="switch?gpio=2"
 
-    local usage_message="Usage:\n\twakesp -t <target>\n\twakesp <target>"
+    local usage_message="Usage:\n\twakesp <target>\n\t\tWake target\n\twakesp -t|--target <target>\n\t\tWake target\n\twakesp -l|--list\n\t\tList available targets"
+    local target_list="server\npc\noldie"
     local target=""
     local full_url=""
     local i=0
@@ -247,6 +249,10 @@ function wakesp {
         -t | --target)
             target="$2"
             shift 2
+            ;;
+        -l | --list)
+            echo "$target_list"
+            return 0
             ;;
         *)
             if [ $i -eq 0 ]; then
@@ -262,7 +268,9 @@ function wakesp {
     done
 
     # Check if target is pc or oldie
-    if [ "$target" = "pc" ]; then
+    if [ "$target" = "server" ]; then
+        full_url="${url}/${server}"
+    elif [ "$target" = "pc" ]; then
         full_url="${url}/${pc}"
     elif [ "$target" = "oldie" ]; then
         full_url="${url}/${oldie}"
