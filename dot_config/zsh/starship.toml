@@ -1,17 +1,22 @@
 format = """
+$os\
 $username\
 $hostname\
 $directory\
 $git_branch\
-$git_state\
+$git_state \
 $git_status\
 $cmd_duration\
 $line_break\
-$python\
+$battery\
 $character"""
 
 [directory]
 style = "blue"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [character]
 success_symbol = "[❯](purple)"
@@ -22,25 +27,64 @@ vimcmd_symbol = "[❮](green)"
 format = "[$branch]($style)"
 style = "bright-black"
 
-[git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
-
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
-[cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+[git_status]
+untracked = '[ $count](bold yellow) '
+staged = '[ $count](bold green) '
+stashed = "[ ](cyan) "
+deleted = '[ $count](bold red) '
+modified= '[ $count](bold blue) '
+behind = '[ ](bold purple) '
+ahead = '[ ](bold purple) '
+format = '([$all_status$ahead_behind]($style))'
 
-[python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
+[[battery.display]]
+threshold = 50
+
+[os]
+disabled = false
+style = "blue"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
