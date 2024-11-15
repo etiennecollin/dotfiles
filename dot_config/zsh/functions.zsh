@@ -239,11 +239,19 @@ function wakesp {
     local target=""
     local full_url=""
     local i=0
+
+    # Check if cul=rl is installed
+    if ! command -v curl &>/dev/null; then
+        echo "Error: curl is required to use this function"
+    fi
+
+    # Check if no arguments are provided
     if [ $# -eq 0 ]; then
         echo "$usage_message"
         return 1
     fi
 
+    # Parse the arguments
     while [ $# -gt 0 ]; do
         case $1 in
         -t | --target)
@@ -280,5 +288,6 @@ function wakesp {
         return 1
     fi
 
+    # Perform the curl command
     curl --request PUT "${full_url}" >/dev/null
 }
