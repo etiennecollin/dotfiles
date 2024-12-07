@@ -291,3 +291,41 @@ function wakesp {
     # Perform the curl command
     curl --request PUT "${full_url}" >/dev/null
 }
+
+function ipmi {
+    local ipmi_host="ipmi.home.etiennecollin.com"
+
+    # Check that ipmitool is installed
+    if ! command -v ipmitool &>/dev/null; then
+        echo "Error: ipmitool is required to use this function"
+        return 1
+    fi
+
+    # Check that the number of arguments is minimum 1
+    if [ $# -lt 1 ]; then
+        echo "Please input the command as the argument."
+        return 1
+    fi
+
+    # Prompt for the IPMI user
+    printf "Please input the IPMI user (default: ADMIN): "
+    read ipmi_user
+    printf "\n"
+
+    # Set the default user to ADMIN if not provided
+    if [ -z "$ipmi_user" ]; then
+        ipmi_user="ADMIN"
+    fi
+
+    # Check if bitwarden-cli is installed
+    if command -v bw &>/dev/null; then
+        ipmitool -I lanplus -H "$ipmi_host" -U "$ipmi_user" -P $(bw get password "$ipmi_host") "$@"
+    else
+        # Prompt for the password
+        printf "Please input the password for the IPMI user: "
+        read -s ipmi_password
+        printf "\n"
+
+        ipmitool -I lanplus -H "$ipmi_host" -U "$ipmi_user" -P "$ipmi_password" "$@"
+    fi
+}
