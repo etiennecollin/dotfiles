@@ -12,6 +12,7 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias poetry_shell='source $(poetry env info --path)/bin/activate'
+alias dcu="docker compose --env-file ../secret.env up -d --force-recreate"
 
 alias jekyll="bundle exec jekyll serve --livereload"
 alias leptosfmt="leptosfmt -m 120 src/**/*.rs"
