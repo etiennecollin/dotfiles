@@ -27,13 +27,15 @@ cursor-click-to-move = "true"
 
 window-padding-x = 4
 window-padding-y = 4
-window-decoration = "false"
+window-decoration = "true"
 
-macos-titlebar-style = "hidden"
+macos-titlebar-style = "tabs"
 macos-icon = "custom-style"
 macos-icon-frame = "aluminum"
 macos-icon-ghost-color = "cba6f7"
 macos-icon-screen-color = "181825"
+macos-titlebar-proxy-icon = "visible"
+macos-option-as-alt = "left"
 
 mouse-hide-while-typing = "true"
 mouse-shift-capture = "false"
@@ -43,11 +45,9 @@ quick-terminal-animation-duration = 0
 keybind = "global:f3=toggle_quick_terminal"
 
 copy-on-select = "true"
+clipboard-paste-protection = "false"
 quit-after-last-window-closed = "false"
-
 shell-integration-features = "no-cursor,sudo,title"
-macos-titlebar-proxy-icon = "visible"
-macos-option-as-alt = "left"
 
 # 320MB for the kitty image protocol
 image-storage-limit = 335544320
