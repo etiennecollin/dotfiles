@@ -14,10 +14,10 @@ if [ -f "/opt/homebrew/bin/brew" ]; then
     export PATH="$(brew --prefix python)/libexec/bin:$PATH"
 fi
 
-# Initialize Ruby downloaded via Homebrew's chruby
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3 # run 'chruby' to see actual version to se as argument
-
-# Initialize Haskell
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+# # Initialize Ruby downloaded via Homebrew's chruby
+# source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+# source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+# chruby ruby-3.1.3 # run 'chruby' to see actual version to se as argument
+#
+# # Initialize Haskell
+# [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
