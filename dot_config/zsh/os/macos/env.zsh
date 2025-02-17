@@ -1,17 +1,19 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Export pipx path
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Initialize Cargo
 source "$HOME/.cargo/env"
 
 # Set PATH, MANPATH, etc., for Homebrew.
-if [ -f "/opt/homebrew/bin/brew" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+local brew_path="/opt/homebrew/bin/brew"
+if [ -f $brew_path ]; then
+    # Initialize Homebrew environment using the found brew path
+    eval "$($brew_path shellenv)"
+
     # Use Homebrew's Python
-    export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+    export PATH="$($brew_path --prefix python)/libexec/bin:$PATH"
 fi
 
 # # Initialize Ruby downloaded via Homebrew's chruby
