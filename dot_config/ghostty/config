@@ -33,7 +33,7 @@ mouse-shift-capture = "false"
 
 quick-terminal-position = "top"
 quick-terminal-animation-duration = 0
-keybind = "global:f1=toggle_quick_terminal"
+keybind = "global:physical:f1=toggle_quick_terminal"
 
 copy-on-select = "true"
 clipboard-paste-protection = "false"
