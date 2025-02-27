@@ -329,3 +329,25 @@ function ipmi {
         ipmitool -I lanplus -H "$ipmi_host" -U "$ipmi_user" -P "$ipmi_password" "$@"
     fi
 }
+
+function probe-rs-attach {
+    # Check that ipmitool is installed
+    if ! command -v probe-rs &>/dev/null; then
+        echo "Error: probe-rs is required to use this function"
+        return 1
+    fi
+
+    local usage_message="Usage:\n\probe-rs-attach <chip> <binary>"
+
+    if [ $# -lt 2 ]; then
+        echo "$usage_message"
+        return 1
+    fi
+
+    local chip="$1"
+    local binary="$2"
+    local log_format="╭[ {L:bold}] {s}
+╰{{t} {c} => {fff}:{l}%dimmed}"
+
+    probe-rs attach --chip "$chip" --log-format "$log_format" "$binary"
+}
