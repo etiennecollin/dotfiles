@@ -240,7 +240,7 @@ function wakesp {
     local full_url=""
     local i=0
 
-    # Check if cul=rl is installed
+    # Check if curl is installed
     if ! command -v curl &>/dev/null; then
         echo "Error: curl is required to use this function"
     fi
