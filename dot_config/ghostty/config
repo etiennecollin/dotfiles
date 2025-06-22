@@ -1,4 +1,5 @@
-theme = "GruvboxDark"
+# theme = "GruvboxDark"
+theme = "rose-pine-moon"
 # custom-shader = "./ghostty-shaders/snow.glsl"
 
 font-family = "Maple Mono NF"
