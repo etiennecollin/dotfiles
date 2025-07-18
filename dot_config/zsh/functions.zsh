@@ -230,7 +230,7 @@ function ntfy {
 
 function wakesp {
     local url="https://wakesp.home.etiennecollin.com"
-    local pc="wol?mac_addr=24:4b:fe:8e:2f:9c"
+    local pc="wol?mac_addr=24:4b:fe:8e:2f:9d"
     local server="wol?mac_addr=24:4b:fe:8e:2f:9c"
     local oldie="switch?gpio=2"
 
