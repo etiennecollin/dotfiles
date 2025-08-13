@@ -351,3 +351,7 @@ function probe-rs-attach {
 
     probe-rs attach --chip "$chip" --log-format "$log_format" "$binary"
 }
+
+function rgv {
+    rg --vimgrep $@ | nvim -q -
+}
