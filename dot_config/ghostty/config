@@ -1,6 +1,5 @@
-# theme = "GruvboxDark"
-theme = "rose-pine-moon"
-# custom-shader = "./ghostty-shaders/snow.glsl"
+theme = "dark:Rose Pine Moon,light:Rose Pine Dawn"
+custom-shader = "./ghostty-shaders/cursor_blaze.glsl"
 
 font-family = "Maple Mono NF"
 font-style = default
@@ -24,8 +23,8 @@ window-decoration = "true"
 macos-titlebar-style = "tabs"
 macos-icon = "custom-style"
 macos-icon-frame = "aluminum"
-macos-icon-ghost-color = "cba6f7"
-macos-icon-screen-color = "181825"
+macos-icon-ghost-color = "#da4242"
+macos-icon-screen-color = "#181825"
 macos-titlebar-proxy-icon = "visible"
 macos-option-as-alt = "left"
 
@@ -34,7 +33,7 @@ mouse-shift-capture = "false"
 
 quick-terminal-position = "top"
 quick-terminal-animation-duration = 0
-keybind = "global:physical:f1=toggle_quick_terminal"
+keybind = "global:f1=toggle_quick_terminal"
 
 copy-on-select = "true"
 clipboard-paste-protection = "false"
