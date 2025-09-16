@@ -1,7 +1,9 @@
 git:
+  overrideGpg: true
   paging:
     colorArg: always
     pager: delta --no-gitconfig --diff-so-fancy --line-numbers --wrap-right-percent 1 --dark --paging=never
+
 os:
   editPreset: "nvim"
   edit: "nvim {{filename}}"
