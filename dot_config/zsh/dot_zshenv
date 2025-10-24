@@ -1,25 +1,37 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
-export BROWSER=brave
+export BROWSER=firefox
 export MANPAGER="nvim +Man\!"
 export MANROFFOPT="-c"
 
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/starship.toml"
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Initialize GPG
 export GPG_TTY=$(tty)
 export PATH="/usr/local/sbin:$PATH"
 
 if [[ $(uname) == "Darwin" ]]; then
-	export OSNAME="macos"
+    export OSNAME="macos"
 elif command -v pacman >/dev/null; then
-	export OSNAME="arch"
+    export OSNAME="arch"
+elif command -v apt >/dev/null; then
+    export OSNAME="debian"
 else
-	echo 'Unknown OS!'
+    echo 'Unknown OS!'
 fi
 
-export ZSH_OS_CUSTOM="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/os/$OSNAME"
+export ZSH_OS_CUSTOM="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/os/${OSNAME}"
 if [[ -r "$ZSH_OS_CUSTOM/env.zsh" ]]; then
-	source "$ZSH_OS_CUSTOM/env.zsh"
+    source "$ZSH_OS_CUSTOM/env.zsh"
 fi
