@@ -224,6 +224,11 @@ flatpak.packages(
     packages="com.mastermindzh.tidal-hifi",
 )
 
+flatpak.packages(
+    name="Install Microsoft Teams",
+    packages="com.github.IsmaelMartinez.teams_for_linux",
+)
+
 # ==============================================================================
 # Ghostty
 # ==============================================================================
