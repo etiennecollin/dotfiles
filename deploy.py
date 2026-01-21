@@ -82,7 +82,7 @@ dnf.packages(
 
 cargo.packages(
     name="Install cargo packages",
-    packages=["ast-grep", "tlrc", "yazi-build", "eza"],
+    packages=["ast-grep", "tlrc", "yazi-build", "eza", "ripgrep_all"],
     latest=True,
 )
 
@@ -235,6 +235,11 @@ flatpak.packages(
 flatpak.packages(
     name="Install Microsoft Teams",
     packages="com.github.IsmaelMartinez.teams_for_linux",
+)
+
+flatpak.packages(
+    name="Install Sioyek",
+    packages="com.github.ahrm.sioyek",
 )
 
 # ==============================================================================
