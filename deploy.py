@@ -19,7 +19,7 @@ dnf.packages(
 
 server.shell(
     name="Install development tools group",
-    commands=["dnf -y group install development-tools"],
+    commands=["dnf -y group install development-tools virtualization"],
     _sudo=True,
 )
 
