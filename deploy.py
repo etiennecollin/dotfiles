@@ -82,7 +82,7 @@ dnf.packages(
 
 cargo.packages(
     name="Install cargo packages",
-    packages=["ast-grep", "bottom", "tlrc", "yazi-build", "eza", "ripgrep_all"],
+    packages=["ast-grep", "bottom", "tlrc", "yazi-build", "eza", "ripgrep_all", "cargo-update"],
     latest=True,
 )
 
