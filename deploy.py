@@ -82,9 +82,19 @@ dnf.packages(
     _sudo=True,
 )
 
+dnf.packages(
+    name="Install Zellij dependencies",
+    packages=[
+        "perl-IPC-Cmd",
+        "perl-FindBin",
+    ],
+    latest=True,
+    _sudo=True,
+)
+
 cargo.packages(
     name="Install cargo packages",
-    packages=["ast-grep", "bottom", "tlrc", "yazi-build", "eza", "ripgrep_all", "cargo-update"],
+    packages=["ast-grep", "bottom", "tlrc", "yazi-build", "eza", "ripgrep_all", "cargo-update", "zellij"],
     latest=True,
 )
 
