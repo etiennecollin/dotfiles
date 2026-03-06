@@ -244,6 +244,11 @@ flatpak.packages(
     packages="com.github.ahrm.sioyek",
 )
 
+flatpak.packages(
+    name="Install Zen Browser",
+    packages="app.zen_browser.zen",
+)
+
 # ==============================================================================
 # Ghostty
 # ==============================================================================
