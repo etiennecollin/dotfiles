@@ -30,6 +30,8 @@ dnf.packages(
         "bat",
         "btop",
         "cmake",
+        "elfutils",
+        "elfutils-debuginfod",
         "fastfetch",
         "ffmpeg-free",
         "ffmpegthumbnailer",
