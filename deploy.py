@@ -1,7 +1,7 @@
 from pyinfra.context import host
 from pyinfra.facts.files import File
 from pyinfra.facts.server import Command, Home, User
-from pyinfra.operations import cargo, dnf, flatpak, npm, server, systemd
+from pyinfra.operations import cargo, dnf, flatpak, git, npm, server, systemd
 
 username = host.get_fact(User)
 home = host.get_fact(Home)
@@ -94,7 +94,7 @@ dnf.packages(
 
 cargo.packages(
     name="Install cargo packages",
-    packages=["ast-grep", "bottom", "tlrc", "yazi-build", "eza", "ripgrep_all", "cargo-update", "zellij"],
+    packages=["bottom", "tlrc", "yazi-build", "eza", "cargo-update", "zellij"],
     latest=True,
 )
 
@@ -199,7 +199,7 @@ dnf.packages(
 # ==============================================================================
 
 dnf.packages(
-    name="Install neovim",
+    name="Install neovim system dependencies",
     packages=[
         "ImageMagick",
         "chafa",
@@ -210,7 +210,6 @@ dnf.packages(
         "gzip",
         "luarocks",
         "make",
-        "neovim",
         "nodejs",
         "python3-neovim",
         "ripgrep",
@@ -223,12 +222,31 @@ dnf.packages(
     _sudo=True,
 )
 
+cargo.packages(
+    name="Install neovim cargo dependencies",
+    packages=["tree-sitter-cli", "ast-grep", "ripgrep_all"],
+    latest=True,
+)
+
 npm.packages(
-    name="Install mmdc",
+    name="Install neovim node dependencies",
     packages=["@mermaid-js/mermaid-cli", "neovim"],
     latest=True,
     _sudo=True,
 )
+
+dnf.packages(
+    name="Install neovim",
+    packages=["neovim"],
+    latest=True,
+    _sudo=True,
+)
+
+# git.repo(
+#     name="Clone neovim config",
+#     src="https://github.com/etiennecollin/nvim",
+#     dest=f"{home}/.config/nvim",
+# )
 
 # ==============================================================================
 # Flatpaks
