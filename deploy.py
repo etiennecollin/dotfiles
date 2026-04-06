@@ -295,10 +295,3 @@ server.shell(
         "go install github.com/jesseduffield/lazydocker@latest",
     ],
 )
-
-server.shell(
-    name="Install d2",
-    commands=[
-        "go install oss.terrastruct.com/d2@latest",
-    ],
-)
