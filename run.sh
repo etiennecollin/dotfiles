@@ -10,4 +10,4 @@ if ! command -v rustup >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-uv run pyinfra @local deploy.py
+uv run pyinfra @local core.py

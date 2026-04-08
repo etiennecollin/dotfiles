@@ -85,8 +85,7 @@ dnf.packages(
 dnf.packages(
     name="Install Zellij dependencies",
     packages=[
-        "perl-IPC-Cmd",
-        "perl-FindBin",
+        "perl-core",
     ],
     latest=True,
     _sudo=True,
@@ -101,96 +100,6 @@ cargo.packages(
 server.shell(
     name="Set defaul shell to zsh",
     commands=[f"chsh -s $(which zsh) {username}"],
-    _sudo=True,
-)
-
-# ==============================================================================
-# Docker
-# ==============================================================================
-
-dnf.packages(
-    name="Uninstall old Docker packages",
-    packages=[
-        "docker",
-        "docker-client",
-        "docker-client-latest",
-        "docker-common",
-        "docker-latest",
-        "docker-latest-logrotate",
-        "docker-logrotate",
-        "docker-selinux",
-        "docker-engine-selinux",
-        "docker-engine",
-    ],
-    present=False,
-    _sudo=True,
-)
-
-dnf.repo(
-    name="Install Docker rpm repository",
-    src="https://download.docker.com/linux/fedora/docker-ce.repo",
-    _sudo=True,
-)
-
-dnf.packages(
-    name="Install Docker packages",
-    packages=[
-        "docker-ce",
-        "docker-ce-cli",
-        "containerd.io",
-        "docker-buildx-plugin",
-        "docker-compose-plugin",
-    ],
-    latest=True,
-    _sudo=True,
-)
-
-systemd.service(
-    name="Enable `docker` service",
-    service="docker",
-    running=True,
-    enabled=True,
-    _sudo=True,
-)
-
-systemd.service(
-    name="Enable `containerd` service",
-    service="containerd",
-    running=True,
-    enabled=True,
-    _sudo=True,
-)
-
-server.shell(
-    name="Add current user to the docker group",
-    commands=[
-        "groupadd docker || true",
-        f"usermod -aG docker {username}",
-        f'chown "{username}":"{username}" /home/{username}/.docker -R || true',
-        f'chmod g+rwx "{home}/.docker" -R || true',
-    ],
-    _sudo=True,
-)
-
-# ==============================================================================
-# Hashicorp Vault
-# ==============================================================================
-
-hashicorp_repo_exists = host.get_fact(File, "/etc/yum.repos.d/hashicorp.repo")
-
-server.shell(
-    name="Install Hashicorp Vault repo via URL",
-    commands=[
-        "wget -O- https://rpm.releases.hashicorp.com/fedora/hashicorp.repo | tee /etc/yum.repos.d/hashicorp.repo"
-    ],
-    _sudo=True,
-    _if=lambda: hashicorp_repo_exists is not None and hashicorp_repo_exists != False,
-)
-
-dnf.packages(
-    name="Install Hashicorp Vault",
-    packages=["vault"],
-    latest=True,
     _sudo=True,
 )
 
@@ -224,7 +133,11 @@ dnf.packages(
 
 cargo.packages(
     name="Install neovim cargo dependencies",
-    packages=["tree-sitter-cli", "ast-grep", "ripgrep_all"],
+    packages=[
+        "ast-grep",
+        "ripgrep_all",
+        "tree-sitter-cli",
+    ],
     latest=True,
 )
 
@@ -263,11 +176,6 @@ flatpak.packages(
 )
 
 flatpak.packages(
-    name="Install Microsoft Teams",
-    packages="com.github.IsmaelMartinez.teams_for_linux",
-)
-
-flatpak.packages(
     name="Install Sioyek",
     packages="com.github.ahrm.sioyek",
 )
@@ -275,6 +183,16 @@ flatpak.packages(
 flatpak.packages(
     name="Install Zen Browser",
     packages="app.zen_browser.zen",
+)
+
+flatpak.packages(
+    name="Install draw.io",
+    packages="com.jgraph.drawio.desktop",
+)
+
+flatpak.packages(
+    name="Install Microsoft Teams",
+    packages="com.github.IsmaelMartinez.teams_for_linux",
 )
 
 # ==============================================================================
@@ -302,14 +220,10 @@ dnf.packages(
 
 server.shell(
     name="Install lazygit",
-    commands=[
-        "go install github.com/jesseduffield/lazygit@latest",
-    ],
+    commands=["go install github.com/jesseduffield/lazygit@latest"],
 )
 
 server.shell(
     name="Install lazydocker",
-    commands=[
-        "go install github.com/jesseduffield/lazydocker@latest",
-    ],
+    commands=["go install github.com/jesseduffield/lazydocker@latest"],
 )
