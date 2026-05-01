@@ -75,6 +75,7 @@ dnf.packages(
         "celluloid",
         "chromium",
         "easyeffects",
+        "krita",
         "vlc",
         "wireshark",
     ],
