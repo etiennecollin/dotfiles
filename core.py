@@ -182,6 +182,11 @@ flatpak.packages(
 )
 
 flatpak.packages(
+    name="Install Signal",
+    packages="org.signal.Signal",
+)
+
+flatpak.packages(
     name="Install Zen Browser",
     packages="app.zen_browser.zen",
 )
