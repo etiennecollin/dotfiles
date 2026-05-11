@@ -95,7 +95,14 @@ dnf.packages(
 
 cargo.packages(
     name="Install cargo packages",
-    packages=["bottom", "tlrc", "yazi-build", "eza", "cargo-update", "zellij"],
+    packages=[
+        "bottom",
+        "cargo-update",
+        "eza",
+        "tlrc",
+        "yazi-build",
+        "zellij",
+    ],
     latest=True,
 )
 
@@ -103,6 +110,31 @@ server.shell(
     name="Set defaul shell to zsh",
     commands=[f"chsh -s $(which zsh) {username}"],
     _sudo=True,
+)
+
+# ==============================================================================
+# Silicon
+# ==============================================================================
+
+dnf.packages(
+    name="Install Silicon dependencies",
+    packages=[
+        "cmake",
+        "expat-devel",
+        "fontconfig-devel",
+        "libxcb-devel",
+        "freetype-devel",
+        "libxml2-devel",
+        "harfbuzz",
+    ],
+    latest=True,
+    _sudo=True,
+)
+
+cargo.packages(
+    name="Install Silicon",
+    packages=["silicon"],
+    latest=True,
 )
 
 # ==============================================================================
