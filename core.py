@@ -61,6 +61,7 @@ dnf.packages(
         "tcpdump",
         "ufw",
         "wireguard-tools",
+        "wireshark-cli",
         "zip",
         "zoxide",
         "zsh",
@@ -232,4 +233,17 @@ server.shell(
 server.shell(
     name="Install lazydocker",
     commands=["go install github.com/jesseduffield/lazydocker@latest"],
+)
+
+# ==============================================================================
+# Wireshark user group
+# ==============================================================================
+
+server.shell(
+    name="Add current user to the wireshark group",
+    commands=[
+        "groupadd docker || true",
+        f"usermod -aG wireshark {username}",
+    ],
+    _sudo=True,
 )
