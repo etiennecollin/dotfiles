@@ -1,10 +1,6 @@
 from pyinfra.context import host
 from pyinfra.facts.files import File
-from pyinfra.facts.server import Command, Home, User
-from pyinfra.operations import cargo, dnf, flatpak, git, npm, server, systemd
-
-username = host.get_fact(User)
-home = host.get_fact(Home)
+from pyinfra.operations import dnf, server
 
 # ==============================================================================
 # Hashicorp Vault

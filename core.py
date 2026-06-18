@@ -1,10 +1,8 @@
 from pyinfra.context import host
-from pyinfra.facts.files import File
-from pyinfra.facts.server import Command, Home, User
-from pyinfra.operations import cargo, dnf, flatpak, git, npm, server, systemd
+from pyinfra.facts.server import Command, User
+from pyinfra.operations import cargo, dnf, flatpak, server
 
 username = host.get_fact(User)
-home = host.get_fact(Home)
 
 # ==============================================================================
 # System dependencies
@@ -138,64 +136,6 @@ cargo.packages(
 )
 
 # ==============================================================================
-# Neovim
-# ==============================================================================
-
-dnf.packages(
-    name="Install neovim system dependencies",
-    packages=[
-        "ImageMagick",
-        "chafa",
-        "curl",
-        "fd-find",
-        "git",
-        "grep",
-        "gzip",
-        "luarocks",
-        "make",
-        "nodejs",
-        "python3-neovim",
-        "ripgrep",
-        "tar",
-        "tree-sitter-cli",
-        "unzip",
-        "wget",
-    ],
-    latest=True,
-    _sudo=True,
-)
-
-cargo.packages(
-    name="Install neovim cargo dependencies",
-    packages=[
-        "ast-grep",
-        "ripgrep_all",
-        "tree-sitter-cli",
-    ],
-    latest=True,
-)
-
-npm.packages(
-    name="Install neovim node dependencies",
-    packages=["@mermaid-js/mermaid-cli", "neovim"],
-    latest=True,
-    _sudo=True,
-)
-
-dnf.packages(
-    name="Install neovim",
-    packages=["neovim"],
-    latest=True,
-    _sudo=True,
-)
-
-# git.repo(
-#     name="Clone neovim config",
-#     src="https://github.com/etiennecollin/nvim",
-#     dest=f"{home}/.config/nvim",
-# )
-
-# ==============================================================================
 # Flatpaks
 # ==============================================================================
 
@@ -205,33 +145,8 @@ flatpak.packages(
 )
 
 flatpak.packages(
-    name="Install Tidal",
-    packages="com.mastermindzh.tidal-hifi",
-)
-
-flatpak.packages(
-    name="Install Sioyek",
-    packages="com.github.ahrm.sioyek",
-)
-
-flatpak.packages(
-    name="Install Signal",
-    packages="org.signal.Signal",
-)
-
-flatpak.packages(
-    name="Install Zen Browser",
-    packages="app.zen_browser.zen",
-)
-
-flatpak.packages(
     name="Install draw.io",
     packages="com.jgraph.drawio.desktop",
-)
-
-flatpak.packages(
-    name="Install Microsoft Teams",
-    packages="com.github.IsmaelMartinez.teams_for_linux",
 )
 
 # ==============================================================================
@@ -251,33 +166,6 @@ dnf.packages(
     packages=["ghostty"],
     latest=True,
     _sudo=True,
-)
-
-# ==============================================================================
-# Sunshine
-# ==============================================================================
-
-copr_list = host.get_fact(Command, "dnf copr list")
-server.shell(
-    name="Enable COPR lizardbyte/stable",
-    commands=["yes | dnf copr enable lizardbyte/stable"],
-    _sudo=True,
-    _if=lambda: "lizardbyte/stable" not in copr_list,
-)
-
-dnf.packages(
-    name="Install Sunshine",
-    packages=["Sunshine"],
-    latest=True,
-    _sudo=True,
-)
-
-systemd.service(
-    name="Enable `Sunshine` user service",
-    service="app-dev.lizardbyte.app.Sunshine",
-    running=True,
-    enabled=True,
-    user_mode=True,
 )
 
 # ==============================================================================
@@ -301,7 +189,7 @@ server.shell(
 server.shell(
     name="Add current user to the wireshark group",
     commands=[
-        "groupadd docker || true",
+        "groupadd wireshark || true",
         f"usermod -aG wireshark {username}",
     ],
     _sudo=True,
