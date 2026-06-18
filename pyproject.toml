@@ -1,9 +1,9 @@
 [project]
 name = "fedora"
 version = "0.1.0"
-description = "Add your description here"
+description = "Linux configuration management"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "pyinfra>=3.5.1",
+    "pyinfra>=3.9",
 ]
