@@ -28,6 +28,7 @@ dnf.packages(
         "bat",
         "btop",
         "cmake",
+        "clang-devel",
         "elfutils",
         "elfutils-debuginfod",
         "fastfetch",
