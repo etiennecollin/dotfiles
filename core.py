@@ -91,6 +91,20 @@ dnf.packages(
     _sudo=True,
 )
 
+dnf.packages(
+    name="Install cargo-update dependencies",
+    packages=[
+        "libcurl-devel",
+        "libgit2-devel",
+        "libsecret",
+        "libssh2-devel",
+        "openssl-devel",
+        "pkgconf",
+    ],
+    latest=True,
+    _sudo=True,
+)
+
 cargo.packages(
     name="Install cargo packages",
     packages=[
@@ -102,6 +116,12 @@ cargo.packages(
         "zellij",
     ],
     latest=True,
+)
+
+server.shell(
+    name="Update all cargo-installed packages",
+    commands=[f"cargo install-update -a"],
+    _sudo=True,
 )
 
 server.shell(
