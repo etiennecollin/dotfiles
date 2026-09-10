@@ -159,7 +159,7 @@ cargo.packages(
 
 server.shell(
     name="Update all cargo-installed packages",
-    commands=[f"cargo install-update -a"],
+    commands=[f"cargo install-update -a --locked"],
     _sudo=True,
 )
 
