@@ -93,6 +93,42 @@ dnf.packages(
 )
 
 dnf.packages(
+    name="Install yazi dependencies",
+    packages=[
+        "file",
+        "ffmpeg-free",
+        "ffmpegthubnailer",
+        "7zip",
+        "jq",
+        "poppler",
+        "fd-find",
+        "ripgrep",
+        "fzf",
+        "zoxide",
+        "resvg",
+        "imagemagick",
+        "wl-clipboard",
+    ],
+    latest=True,
+    _sudo=True,
+)
+
+dnf.packages(
+    name="Install Silicon dependencies",
+    packages=[
+        "cmake",
+        "expat-devel",
+        "fontconfig-devel",
+        "libxcb-devel",
+        "freetype-devel",
+        "libxml2-devel",
+        "harfbuzz",
+    ],
+    latest=True,
+    _sudo=True,
+)
+
+dnf.packages(
     name="Install cargo-update dependencies",
     packages=[
         "libcurl-devel",
@@ -112,6 +148,7 @@ cargo.packages(
         "bottom",
         "cargo-update",
         "eza",
+        "silicon",
         "tlrc",
         "yazi-build",
         "zellij",
@@ -129,31 +166,6 @@ server.shell(
     name="Set defaul shell to zsh",
     commands=[f"chsh -s $(which zsh) {username}"],
     _sudo=True,
-)
-
-# ==============================================================================
-# Silicon
-# ==============================================================================
-
-dnf.packages(
-    name="Install Silicon dependencies",
-    packages=[
-        "cmake",
-        "expat-devel",
-        "fontconfig-devel",
-        "libxcb-devel",
-        "freetype-devel",
-        "libxml2-devel",
-        "harfbuzz",
-    ],
-    latest=True,
-    _sudo=True,
-)
-
-cargo.packages(
-    name="Install Silicon",
-    packages=["silicon"],
-    latest=True,
 )
 
 # ==============================================================================
