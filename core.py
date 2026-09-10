@@ -183,6 +183,11 @@ flatpak.packages(
     packages="com.jgraph.drawio.desktop",
 )
 
+flatpak.packages(
+    name="Install Zen Browser",
+    packages="app.zen_browser.zen",
+)
+
 # ==============================================================================
 # Ghostty
 # ==============================================================================
