@@ -150,6 +150,7 @@ cargo.packages(
         "eza",
         "silicon",
         "tlrc",
+        "typst-cli",
         "yazi-build",
         "zellij",
     ],
